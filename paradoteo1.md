@@ -1,4 +1,4 @@
-![fsociety logo](./markdown_images/fsociety_logo.png "Fun Society Logo")
+![fsociety logo](./images/fsociety_logo.png "Fun Society Logo")
 ## Έγγραφο Ανάλυσης Απαιτήσεων
 
 ### Σκοπός - Ιδέα

@@ -12,7 +12,7 @@ import gr.ntua.ece.softeng.EventRepository;
 
 
 
-@Controller    // This means that this class is a Controller
+@Controller    
 @RequestMapping(path="/event_announce")
 public class EventController {
 	@Autowired
@@ -28,6 +28,7 @@ public class EventController {
 		event.setCapacity(capacity);
 		event.setCategory(category);
 		event.setPrice(price);
+		event.setState(state.OPEN);
 		eventRepository.save(event);
 		return "OK";
 	}

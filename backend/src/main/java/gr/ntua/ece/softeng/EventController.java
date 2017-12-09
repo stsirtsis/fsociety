@@ -21,13 +21,11 @@ public class EventController {
 	@GetMapping(path="/add")
 	public @ResponseBody String addNewUser (
 			  @RequestParam Integer capacity,
-			  @RequestParam String provider,
 			  @RequestParam String category,
 			  @RequestParam Integer price) {
 		
 		Event event = new Event();
 		event.setCapacity(capacity);
-		event.setProvider(provider);
 		event.setCategory(category);
 		event.setPrice(price);
 		eventRepository.save(event);

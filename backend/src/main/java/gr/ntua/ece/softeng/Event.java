@@ -1,9 +1,16 @@
 package gr.ntua.ece.softeng;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+import gr.ntua.ece.softeng.Parent;
 
 enum state { OPEN, IN_PROGRESS, FINISHED }
 
@@ -17,8 +24,22 @@ public class Event {
 	private Integer price;
 	private String category;
 	private state state;	
-	private String provider;
 	
+	@ManyToOne
+	private Providers provider;
+	
+	@ManyToMany(mappedBy = "events")
+	private Set<Parent> parents;
+	
+	
+	public Set<Parent> getParents() {
+		return parents;
+	}
+
+	public void setParents(Set<Parent> parents) {
+		this.parents = parents;
+	}
+
 	public Integer getCapacity() {
 		return capacity;
 	}
@@ -27,11 +48,11 @@ public class Event {
 		this.capacity = capacity;
 	}
 	
-	public String getProvider() {
+	public Providers getProvider() {
 		return provider;
 	}
 
-	public void setProvider(String provider) {
+	public void setProvider(Providers provider) {
 		this.provider = provider;
 	}
 

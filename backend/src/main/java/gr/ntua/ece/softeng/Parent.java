@@ -1,30 +1,38 @@
 package gr.ntua.ece.softeng;
 
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+
+import gr.ntua.ece.softeng.Event;
 
 @Entity
 public class Parent {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+	private String username;
+	
 	private String FirstName;
 	private String LastName;
-	private String username;
 	private String password;
 	private String email;
 	private String PhoneNumber;
 	private String DebitCard;
 	private Integer Fpoints;
 	
+	@ManyToMany
+	Set<Event> events;
 	
-	public Integer getId() {
-		return id;
+	
+	public Set<Event> getEvents() {
+		return events;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setEvents(Set<Event> events) {
+		this.events = events;
 	}
 	public String getFirstName() {
 		return FirstName;
@@ -75,8 +83,4 @@ public class Parent {
 		Fpoints = fpoints;
 	}
 	
-	
-	
-	
-
 }

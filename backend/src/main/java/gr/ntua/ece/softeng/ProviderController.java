@@ -1,5 +1,9 @@
 package gr.ntua.ece.softeng;
 
+
+import java.util.HashSet;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +15,7 @@ import gr.ntua.ece.softeng.Providers;
 import gr.ntua.ece.softeng.ProvidersRepository;
 
 @Controller 
-@RequestMapping(path="/providers-registartion")
+@RequestMapping(path="/providers-registration")
 public class ProviderController {
 	@Autowired
 	private ProvidersRepository providersRepository;
@@ -26,7 +30,7 @@ public class ProviderController {
 		// @RequestParam means it is a parameter from the GET or POST request
 		
 		Providers n = new Providers();
-		n.setCompanyName(companyName);
+		n.setcompanyName(companyName);
 		n.setFirstName(firstName);
 		n.setLastName(lastName);
 		n.setUserName(userName);
@@ -39,6 +43,7 @@ public class ProviderController {
 		n.setTelNumber(telNumber);
 		n.setMail(mail);
 		n.setIban(iban);
+		n.setEvents(new HashSet<>());
 		providersRepository.save(n);
 		return "Saved";
 	}

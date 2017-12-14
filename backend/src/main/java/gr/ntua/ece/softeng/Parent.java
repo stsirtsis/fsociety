@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import gr.ntua.ece.softeng.Event;
 
 @Entity
-public class Parent implements java.io.Serializable{
+public class Parent {
 	@Id
 	private String username;
 	
@@ -30,11 +30,11 @@ public class Parent implements java.io.Serializable{
 	private Integer Fpoints;
 	
 	@ManyToMany
-	@JoinTable(name="tickets",joinColumns=@JoinColumn(name = "parent_fk"),
-	inverseJoinColumns=@JoinColumn(name = "event_fk"))
-    @Column(nullable = true)
+//	@JoinTable(name="tickets",joinColumns=@JoinColumn(name = "parent_fk"),
+//	inverseJoinColumns=@JoinColumn(name = "event_fk"))
+//    @Column(nullable = true)
 	@JsonManagedReference
-	@JsonIgnore
+//	@JsonIgnore
 	Set<Event> events;
 	
 	

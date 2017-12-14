@@ -64,10 +64,10 @@ public class BuyTicketController {
 			eventRepository.save(event);
 			parent.getEvents().add(event);
 			parentRepository.save(parent);
-			int size = event.getParents().size();
-			int size1 = parent.getEvents().size();
-			System.out.println(size);
-			System.out.println(size1);
+//			int size = event.getParents().size();
+//			int size1 = parent.getEvents().size();
+//			System.out.println(size);
+//			System.out.println(size1);
 			if(new_capacity <= 0)
 				return "OK, ticket bought\t and now event is full!";
 			return "OK, ticket bought\t" + new_capacity + " left. Hurry!";

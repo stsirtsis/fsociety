@@ -1,15 +1,17 @@
 package gr.ntua.ece.softeng;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity 
 public class Providers {
 	@Id
-	private String CompanyName;
+	private String companyName;
 	private String FirstName;
 	private String LastName;
 	private String UserName;
@@ -24,12 +26,13 @@ public class Providers {
 	private String Iban;
 	
 	@OneToMany(mappedBy = "provider")
-	private List<Event> events;
+	@JsonBackReference
+	private Set<Event> events;
 	
-    public List<Event> getEvents() {
+    public Set<Event> getEvents() {
 		return events;
 	}
-	public void setEvents(List<Event> events) {
+	public void setEvents(Set<Event> events) {
 		this.events = events;
 	}
 	
@@ -47,11 +50,11 @@ public class Providers {
 		LastName = lastName;
 	}
 	
-	public String getCompanyName() {
-		return CompanyName;
+	public String getcompanyName() {
+		return companyName;
 	}
-	public void setCompanyName(String companyName) {
-		CompanyName = companyName;
+	public void setcompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 	
 	public String getUserName() {

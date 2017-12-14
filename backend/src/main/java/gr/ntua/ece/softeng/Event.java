@@ -15,32 +15,33 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import gr.ntua.ece.softeng.Parent;
 
 enum state { OPEN, IN_PROGRESS, FINISHED }
 
 @Entity
-public class Event implements java.io.Serializable{
+public class Event {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long Id;
 	
 	private Integer capacity;
 	private Integer price;
-//	@Column(columnDefinition="set character set='utf8'")
 	private String category;
 	private state state;	
 	
 	
 	@ManyToOne
-	@JoinColumn
-	@JsonBackReference
-	@JsonIgnore
+	@JsonManagedReference
 	private Providers provider;
 	
 	
 	@ManyToMany(mappedBy = "events")
+	// @JoinColumn
+	@JsonBackReference
+	// @JsonIgnore
 	private Set<Parent> parents;
 	
 	

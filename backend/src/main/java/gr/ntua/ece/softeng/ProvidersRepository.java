@@ -9,5 +9,5 @@ import gr.ntua.ece.softeng.Providers;
 // CRUD refers Create, Read, Update, Delete
 
 public interface ProvidersRepository extends JpaRepository<Providers, Long> {
-
+	Providers findByCompanyName(String companyName);
 }

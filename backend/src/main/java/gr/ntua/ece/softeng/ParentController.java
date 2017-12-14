@@ -1,5 +1,9 @@
 package gr.ntua.ece.softeng;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,18 +36,19 @@ public class ParentController {
 		p.setPhoneNumber(PhoneNumber);
 		p.setDebitCard(DebitCard);
 		p.setFpoints(null);
+		p.setEvents(new HashSet<>());
 		parentRepository.save(p);
 		return "Saved";
 	}	
 	
 	@GetMapping(path="/{parent_username}/events")
-	public @ResponseBody Iterable<Event> findEvents (@PathVariable String parent_username) {
+	public @ResponseBody Set<Event> findEvents (@PathVariable String parent_username) {
 		return parentRepository.findByUsername(parent_username).getEvents();
 	}
 
 
 	@GetMapping(path="/all")
-	public @ResponseBody Iterable<Parent> getAllParents() {
+	public @ResponseBody List<Parent> getAllParents() {
 		// This returns a JSON or XML with the users
 		return parentRepository.findAll();
 	}

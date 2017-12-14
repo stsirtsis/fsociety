@@ -3,16 +3,21 @@ package gr.ntua.ece.softeng;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import gr.ntua.ece.softeng.Event;
 
 @Entity
-public class Parent {
+public class Parent implements java.io.Serializable{
 	@Id
 	private String username;
 	
@@ -25,6 +30,11 @@ public class Parent {
 	private Integer Fpoints;
 	
 	@ManyToMany
+	@JoinTable(name="tickets",joinColumns=@JoinColumn(name = "parent_fk"),
+	inverseJoinColumns=@JoinColumn(name = "event_fk"))
+    @Column(nullable = true)
+	@JsonManagedReference
+	@JsonIgnore
 	Set<Event> events;
 	
 	

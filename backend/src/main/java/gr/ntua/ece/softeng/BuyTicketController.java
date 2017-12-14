@@ -1,17 +1,25 @@
 package gr.ntua.ece.softeng;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import java.util.HashMap;
+//import java.util.HashSet;
+//import java.util.Set;
+
+//import java.util.HashSet;
+//import java.util.Set;
+//
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import gr.ntua.ece.softeng.Event;
 import gr.ntua.ece.softeng.EventRepository;
+import gr.ntua.ece.softeng.ParentRepository;
 
 
 @Controller
@@ -19,11 +27,13 @@ import gr.ntua.ece.softeng.EventRepository;
 public class BuyTicketController {
 	// Don't worry for this
 	// It is for the admin
-    private final static Logger logger = LoggerFactory.getLogger(BuyTicketController.class);
+    // private final static Logger logger = LoggerFactory.getLogger(BuyTicketController.class);
 
 	@Autowired
 	private EventRepository eventRepository;
 	
+	@Autowired
+	private ParentRepository parentRepository;
 
 	public String book(Event event, Integer capacity) {
 		event.setCapacity(capacity - 1);
@@ -34,17 +44,30 @@ public class BuyTicketController {
 	}
 	
 	
-	@RequestMapping(path="/new")
-	public synchronized @ResponseBody String buynewticket (@RequestParam Long id) {
-		Event event      = eventRepository.findOne(id) ;
+	@RequestMapping(path="/new/{parent_username}/{event_id}")
+	public synchronized @ResponseBody String buynewticket (@PathVariable String parent_username, 
+														   @PathVariable Long event_id) {
+		Event event      = eventRepository.findOne(event_id) ;
+		Parent parent    = parentRepository.findByUsername(parent_username);
 		Integer capacity;
+		 
 
 		capacity = event.getCapacity();
 		if(capacity > 0) {
 			Integer new_capacity = capacity - 1;
 			event.setCapacity(new_capacity);
+			
+			
+			
+			
+			event.getParents().add(parent);
 			eventRepository.save(event);
-
+			parent.getEvents().add(event);
+			parentRepository.save(parent);
+			int size = event.getParents().size();
+			int size1 = parent.getEvents().size();
+			System.out.println(size);
+			System.out.println(size1);
 			if(new_capacity <= 0)
 				return "OK, ticket bought\t and now event is full!";
 			return "OK, ticket bought\t" + new_capacity + " left. Hurry!";

@@ -3,30 +3,42 @@ package gr.ntua.ece.softeng;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import gr.ntua.ece.softeng.Parent;
 
 enum state { OPEN, IN_PROGRESS, FINISHED }
 
 @Entity
-public class Event {
+public class Event implements java.io.Serializable{
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long Id;
 	
 	private Integer capacity;
 	private Integer price;
+//	@Column(columnDefinition="set character set='utf8'")
 	private String category;
 	private state state;	
 	
+	
 	@ManyToOne
+	@JoinColumn
+	@JsonBackReference
+	@JsonIgnore
 	private Providers provider;
+	
 	
 	@ManyToMany(mappedBy = "events")
 	private Set<Parent> parents;

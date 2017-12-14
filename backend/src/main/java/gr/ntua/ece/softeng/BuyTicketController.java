@@ -1,15 +1,6 @@
 package gr.ntua.ece.softeng;
 
 
-//import java.util.HashMap;
-//import java.util.HashSet;
-//import java.util.Set;
-
-//import java.util.HashSet;
-//import java.util.Set;
-//
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,9 +16,6 @@ import gr.ntua.ece.softeng.ParentRepository;
 @Controller
 @RequestMapping(path="/buyticket")
 public class BuyTicketController {
-	// Don't worry for this
-	// It is for the admin
-    // private final static Logger logger = LoggerFactory.getLogger(BuyTicketController.class);
 
 	@Autowired
 	private EventRepository eventRepository;

@@ -2,8 +2,6 @@ package gr.ntua.ece.softeng;
 
 
 import java.util.HashSet;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,8 +24,6 @@ public class ProviderController {
 			String category, @RequestParam  String description, @RequestParam String area,@RequestParam String streetName,
 			@RequestParam  Integer streetNumber, @RequestParam String telNumber, @RequestParam  String mail,@RequestParam String iban) 
 	{
-		// @ResponseBody means the returned String is the response, not a view name
-		// @RequestParam means it is a parameter from the GET or POST request
 		
 		Providers n = new Providers();
 		n.setcompanyName(companyName);
@@ -50,7 +46,6 @@ public class ProviderController {
 	
 	@GetMapping(path="/all")
 	public @ResponseBody Iterable<Providers> getAllUsers() {
-		// This returns a JSON or XML with the users
 		return providersRepository.findAll();
 	}
 }

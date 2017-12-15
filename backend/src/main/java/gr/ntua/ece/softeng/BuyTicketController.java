@@ -18,7 +18,7 @@ public class BuyTicketController {
 
 	@Autowired
 	private EventRepository eventRepository;
-	
+
 	@Autowired
 	private ParentRepository parentRepository;
 
@@ -29,15 +29,15 @@ public class BuyTicketController {
 			return "Sorry, event is full";
 		return "OK, ticket bought\t" + event.getCapacity() + " left. Hurry!";
 	}
-	
-	
+
+
 	@RequestMapping(path="/new/{parent_username}/{event_id}")
 	public synchronized @ResponseBody String buynewticket (@PathVariable String parent_username, 
-														   @PathVariable Long event_id) {
+			@PathVariable Long event_id) {
 		Event event      = eventRepository.findOne(event_id) ;
 		Parent parent    = parentRepository.findByUsername(parent_username);
 		Integer capacity;
-		 
+
 
 		capacity = event.getCapacity();
 		if(capacity > 0) {
@@ -45,7 +45,7 @@ public class BuyTicketController {
 			event.setCapacity(new_capacity);
 			event.getParents().add(parent);
 			eventRepository.save(event);
-			
+
 			parent.getEvents().add(event);
 			parentRepository.save(parent);
 			if(new_capacity <= 0)

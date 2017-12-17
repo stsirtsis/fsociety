@@ -1,0 +1,11 @@
+.my-toolbar {
+  background-color: #eee;
+}
+.log-button{
+  background-color: #00b4e6;
+  color: #fff;
+  margin: 3px;
+}
+.example-fill-remaining-space {
+  flex: 1 1 auto;
+}

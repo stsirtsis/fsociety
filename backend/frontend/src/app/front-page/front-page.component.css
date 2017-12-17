@@ -1,0 +1,11 @@
+.my-jumbotron-left{
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-image: url("child_fun.png");
+  background-size: 40%;
+}
+
+.my-jumbotron-right{
+  text-align: left;
+  text-shadow: 
+}

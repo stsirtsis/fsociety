@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProviderRegisterComponent } from './provider-register.component';
+import { ParentRegisterPageComponent } from './parent-register-page.component';
 
-describe('ProviderRegisterComponent', () => {
-  let component: ProviderRegisterComponent;
-  let fixture: ComponentFixture<ProviderRegisterComponent>;
+describe('ParentRegisterPageComponent', () => {
+  let component: ParentRegisterPageComponent;
+  let fixture: ComponentFixture<ParentRegisterPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProviderRegisterComponent ]
+      declarations: [ ParentRegisterPageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProviderRegisterComponent);
+    fixture = TestBed.createComponent(ParentRegisterPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

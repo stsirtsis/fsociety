@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Εγγραφή Γονέα</h2>
+  <h2>Εγγραφή Παρόχου</h2>
   <br>
   <form>
     <div class="form-row">
@@ -21,19 +21,77 @@
         <label for="inputPassword">Password</label>
         <input type="password" class="form-control" id="inputPassword" placeholder="Password">
       </div>
+  
+  <p> Κατηγορία Δραστηριότητας     </p> <br>
+  <div class="form-group">
+ 
+  <div class="form-check form-check-inline"> 
+  
+  <label class="form-check-label"> 
+    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> Εκπαιδευτικό
+  </label>
+  </div>
+  <div class="form-check form-check-inline">
+    <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"> ΑΘλητισμός
+    </label>
+  </div>
+  <div class="form-check form-check-inline">
+    <label class="form-check-label">
+     <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"> Καλλιτεχνικά
+     </label>
+   </div>
     </div>
+  <div class="form-check form-check-inline">
+    <label class="form-check-label">
+     <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4"> Διασκέδαση
+     </label>
+   </div>
+
+    </div>  
+    
+    
+     <div class="form-group">
+      <label for="inputDescription">Περιγραφή Δραστηριότητας</label>
+      <input type="text" class="form-control" id="inputDescription">
+    </div>
+    
+    <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">Περιοχή</label>
+      <input type="text" class="form-control" id="inputCity">
+    </div>
+    <div class="form-group col-md-4">
+    <label for="inputodos">Οδός</label>
+      <input type="text" class="form-control" id="inputodos">
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputarithmos">Αριθμός</label>
+      <input type="text" class="form-control" id="inputarithmos">
+    </div>
+  </div>
+    
+    
     <div class="form-group">
       <label for="inputEmail">E-Mail</label>
       <input type="email" class="form-control" id="inputEmail" placeholder="E-Mail">
     </div>
+    
     <div class="form-group">
       <label for="inputPhoneNumber">Αριθμός Τηλεφώνου</label>
       <input type="text" class="form-control" id="inputPhoneNumber">
     </div>
+    
     <div class="form-group">
-      <label for="inputDebitCard">Αριθμός Χρεωστικής Κάρτας</label>
-      <input type="text" class="form-control" id="inputDebitCard">
+      <label for="inputiban">Αριθμός Χρεωστικής Κάρτας</label>
+      <input type="text" class="form-control" id="inputiban">
     </div>
+    <div class="form-check">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input">
+      Αποδέχομαι τους όρους
+    </label>
+  </div>
     <button type="submit" class="btn btn-primary">Υποβολή</button>
   </form>
 </div>

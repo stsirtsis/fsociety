@@ -9,6 +9,9 @@ import { FrontPageComponent } from './front-page/front-page.component';
 import { FooterComponent } from './footer/footer.component';
 import { ParentRegisterPageComponent } from './parent-register-page/parent-register-page.component';
 import { ProviderRegisterPageComponent } from './provider-register-page/provider-register-page.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { ParentEventsComponent } from './parent-events/parent-events.component';
+import { AnonEventsComponent } from './anon-events/anon-events.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { ProviderRegisterPageComponent } from './provider-register-page/provider
     MainToolbarComponent,
     FooterComponent,
     ParentRegisterPageComponent,
-    ProviderRegisterPageComponent
+    ProviderRegisterPageComponent,
+    LoginPageComponent,
+    ParentEventsComponent,
+    AnonEventsComponent
   ],
   imports: [
     BrowserModule,

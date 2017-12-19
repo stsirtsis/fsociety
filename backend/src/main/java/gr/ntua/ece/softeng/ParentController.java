@@ -45,7 +45,7 @@ public class ParentController {
 	}	
 	
 	@PostMapping(path="/addNewParent")
-	public @ResponseBody String test_post (@RequestBody Parent p) {
+	public @ResponseBody String addParent (@RequestBody Parent p) {
 		parentRepository.save(p);
 		return "OK with post";
 	}

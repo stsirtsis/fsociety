@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -42,6 +44,12 @@ public class ProviderController {
 		n.setEvents(new HashSet<>());
 		providersRepository.save(n);
 		return "Saved";
+	}
+	
+	@PostMapping(path="/addNewProvider")
+	public @ResponseBody String test_post (@RequestBody Providers p) {
+		providersRepository.save(p);
+		return "OK with post";
 	}
 	
 	@GetMapping(path="/all")

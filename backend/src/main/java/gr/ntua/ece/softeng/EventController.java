@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,6 +50,16 @@ public class EventController {
 		provider.getEvents().add(event);
 		providersRepository.save(provider);
 		return "OK";
+	}
+	
+	@PostMapping(path="/addNewEvent/{providerCompanyName}")
+	public @ResponseBody String test_post (@RequestBody Event e, @PathVariable String providerCompanyName) {
+		Providers provider = providersRepository.findByCompanyName(providerCompanyName);
+		provider.getEvents().add(e);
+		providersRepository.save(provider);
+		e.setProvider(provider); 
+		eventRepository.save(e);
+		return "OK with post";
 	}
 	
 	@GetMapping(path="testutf")

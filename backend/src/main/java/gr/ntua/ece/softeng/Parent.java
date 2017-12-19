@@ -4,6 +4,8 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import gr.ntua.ece.softeng.Event;
@@ -22,7 +24,7 @@ public class Parent {
 	private Integer Fpoints;
 	
 	@ManyToMany
-	@JsonManagedReference
+	@JsonIgnore
 	Set<Event> events;
 	
 	

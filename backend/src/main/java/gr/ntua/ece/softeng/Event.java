@@ -10,6 +10,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import gr.ntua.ece.softeng.Parent;
@@ -29,12 +30,12 @@ public class Event {
 	
 	
 	@ManyToOne
-	@JsonManagedReference
+	@JsonIgnore
 	private Providers provider;
 	
 	
 	@ManyToMany(mappedBy = "events")
-	@JsonBackReference
+	@JsonIgnore
 	private Set<Parent> parents;
 	
 	

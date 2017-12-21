@@ -12,4 +12,5 @@ export class Providers {
   telNumber: string;
   mail: string;
   iban: string;
+  events: string[];
 }

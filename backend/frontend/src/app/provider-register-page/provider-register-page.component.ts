@@ -12,7 +12,7 @@ import {ProvidersService} from '../providers.service';
 export class ProviderRegisterPageComponent implements OnInit {
 
 providers: Providers  = { companyName: '', firstName: '', lastName: '', userName: '', password: '', category: '',
-  description: '', area: '', streetName: '', streetNumber: 0, telNumber: '', mail: '', iban: '' };
+  description: '', area: '', streetName: '', streetNumber: 0, telNumber: '', mail: '', iban: '', events: []};
 
   constructor(private providerService: ProvidersService) { }
 

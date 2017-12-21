@@ -127,6 +127,10 @@ public class Providers {
 	public void setIban(String iban) {
 		Iban = iban;
 	}
+	@Override
+	public String toString() {
+		return "Provider [companyName=" + companyName + ",FirstName=" + FirstName + ", LastName=" + LastName + ", UserName=" + UserName + " , Password=" + Password + ", Category= "+Category+", Description= "+Description+" , Area= "+Area+", StreetName= "+StreetName+", StreetNumber= "+StreetNumber+", TelNumber= "+TelNumber+", Mail=" + Mail + ", Iban= "+Iban+"]";
+	}
 	
 }
 

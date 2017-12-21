@@ -50,7 +50,7 @@ private final static String POST_PARENT_URL = "/addNewProvider";
 	
 	@PostMapping(POST_PARENT_URL)
 	public @ResponseBody String createParent(@RequestBody Providers pro) {
-		System.out.println("Creat Parent: " + pro);
+		System.out.println("Creat Provider: " + pro);
 		providersRepository.save(pro);
 		return "ok with post";
 	}

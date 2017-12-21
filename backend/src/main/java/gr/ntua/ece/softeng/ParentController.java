@@ -1,6 +1,7 @@
 package gr.ntua.ece.softeng;
 
 import java.awt.PageAttributes.MediaType;
+import org.springframework.http.ResponseEntity;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,16 +39,21 @@ public class ParentController {
 		p.setEmail(email);
 		p.setPhoneNumber(PhoneNumber);
 		p.setDebitCard(DebitCard);
-		p.setFpoints(null);
+		//p.setFpoints(null);
 		p.setEvents(new HashSet<>());
 		parentRepository.save(p);
 		return "Saved";
 	}	
+	/*BUG FIX: POST to path*/
+	private final static String POST_PARENT_URL = "/addNewParent";
 	
-	@PostMapping(path="/addNewParent")
-	public @ResponseBody String addParent (@RequestBody Parent p) {
-		parentRepository.save(p);
-		return "OK with post";
+	@PostMapping(POST_PARENT_URL)
+	public @ResponseBody String createParent(@RequestBody Parent parent) {
+		
+		parent.setFpoints(0);
+		System.out.println("Creat Parent: " + parent);
+		parentRepository.save(parent);
+		return "ok with post";
 	}
 	
 	

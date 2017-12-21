@@ -15,12 +15,12 @@ public class Parent {
 	@Id
 	private String username;
 	
-	private String FirstName;
-	private String LastName;
+	private String firstName;
+	private String lastName;
 	private String password;
 	private String email;
-	private String PhoneNumber;
-	private String DebitCard;
+	private String phoneNumber;
+	private String debitCard;
 	private Integer Fpoints;
 	
 	@ManyToMany
@@ -35,16 +35,16 @@ public class Parent {
 		this.events = events;
 	}
 	public String getFirstName() {
-		return FirstName;
+		return firstName;
 	}
 	public void setFirstName(String firstName) {
-		FirstName = firstName;
+		this.firstName = firstName;
 	}
 	public String getLastName() {
-		return LastName;
+		return lastName;
 	}
 	public void setLastName(String lastName) {
-		LastName = lastName;
+		this.lastName = lastName;
 	}
 	public String getUsername() {
 		return username;
@@ -65,22 +65,26 @@ public class Parent {
 		this.email = email;
 	}
 	public String getPhoneNumber() {
-		return PhoneNumber;
+		return phoneNumber;
 	}
 	public void setPhoneNumber(String phoneNumber) {
-		PhoneNumber = phoneNumber;
+		this.phoneNumber = phoneNumber;
 	}
 	public String getDebitCard() {
-		return DebitCard;
+		return debitCard;
 	}
 	public void setDebitCard(String debitCard) {
-		DebitCard = debitCard;
+		this.debitCard = debitCard;
 	}
 	public Integer getFpoints() {
 		return Fpoints;
 	}
 	public void setFpoints(Integer fpoints) {
 		Fpoints = fpoints;
+	}
+	@Override
+	public String toString() {
+		return "Parent [firstName=" + firstName + ", lastName=" + lastName + ", username=" + username + " , password=" + password + ", email=" + email + ", phoneNumber=" + phoneNumber + ", debitCard=" + debitCard + " ,Fpoints=" + Fpoints + "]";
 	}
 	
 }

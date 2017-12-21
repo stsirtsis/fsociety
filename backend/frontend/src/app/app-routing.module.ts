@@ -17,4 +17,4 @@ const appRoutes: Routes = [
   {path: 'anon-events', component: AnonEventsComponent}
 ];
 
-export const Routing = RouterModule.forRoot(appRoutes)
+export const Routing = RouterModule.forRoot(appRoutes);

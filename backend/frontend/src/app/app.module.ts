@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+
 
 import { AppComponent } from './app.component';
 import { Routing } from './app-routing.module';
@@ -12,6 +15,8 @@ import { ProviderRegisterPageComponent } from './provider-register-page/provider
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ParentEventsComponent } from './parent-events/parent-events.component';
 import { AnonEventsComponent } from './anon-events/anon-events.component';
+import {ParentService} from './parent.service';
+import {ProvidersService} from './providers.service';
 
 @NgModule({
   declarations: [
@@ -28,9 +33,11 @@ import { AnonEventsComponent } from './anon-events/anon-events.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    Routing
+    Routing,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ParentService, ProvidersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

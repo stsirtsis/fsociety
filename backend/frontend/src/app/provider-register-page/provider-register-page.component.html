@@ -41,25 +41,31 @@
 <div class="container">
   <h2>Εγγραφή Παρόχου</h2>
   <br>
-  <form>
+  <form (ngSubmit)="onSubmit()">
+     <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="inputFirstName">Όνομα Επιχείρησης</label>
+        <input type="text" class="form-control" id="inputCompanyName" placeholder="Επιχείρηση" [(ngModel)]="providers.companyName" name="companyName" required>
+      </div>
+    </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputFirstName">Όνομα</label>
-        <input type="text" class="form-control" id="inputFirstName" placeholder="Όνομα">
+        <input type="text" class="form-control" id="inputFirstName" placeholder="Όνομα" [(ngModel)]="providers.firstName" name="firstName" required>
       </div>
       <div class="form-group col-md-6">
         <label for="inputLastName">Επώνυμο</label>
-        <input type="text" class="form-control" id="inputLastName" placeholder="Επώνυμο">
+        <input type="text" class="form-control" id="inputLastName" placeholder="Επώνυμο" [(ngModel)]="providers.lastName" name="lastName" required>
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputUserName">Username</label>
-        <input type="text" class="form-control" id="inputUserName" placeholder="Username">
+        <input type="text" class="form-control" id="inputUserName" placeholder="Username" [(ngModel)]="providers.userName" name="userName" required>
       </div>
       <div class="form-group col-md-6">
         <label for="inputPassword">Password</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password" [(ngModel)]="providers.password" name="password" required>
       </div>
   
   <p> Κατηγορία Δραστηριότητας     </p> <br>
@@ -68,23 +74,23 @@
   <div class="form-check form-check-inline"> 
   
   <label class="form-check-label"> 
-    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"> Εκπαιδευτικό
+    <input class="form-check-input" type="checkbox" id="inlineCheckbox1"  [(ngModel)]="providers.category" name="category" required ng-true-value="Εκπαιδευτικό"> Εκπαιδευτικό
   </label>
   </div>
   <div class="form-check form-check-inline">
     <label class="form-check-label">
-    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"> ΑΘλητισμός
+    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" [(ngModel)]="providers.category" name="category" required ng-true-value="ΑΘλητισμός" > ΑΘλητισμός
     </label>
   </div>
   <div class="form-check form-check-inline">
     <label class="form-check-label">
-     <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"> Καλλιτεχνικά
+     <input class="form-check-input" type="checkbox" id="inlineCheckbox3" [(ngModel)]="providers.category" name="category" required ng-true-value="Καλλιτεχνικά" > Καλλιτεχνικά
      </label>
    </div>
     </div>
   <div class="form-check form-check-inline">
     <label class="form-check-label">
-     <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4"> Διασκέδαση
+     <input class="form-check-input" type="checkbox" id="inlineCheckbox4" [(ngModel)]="providers.category" name="category" required ng-true-value="Διασκέδαση" > Διασκέδαση
      </label>
    </div>
 
@@ -93,38 +99,38 @@
     
      <div class="form-group">
       <label for="inputDescription">Περιγραφή Δραστηριότητας</label>
-      <input type="text" class="form-control" id="inputDescription">
+      <input type="text" class="form-control" id="inputDescription" [(ngModel)]="providers.description" name="description" required>
     </div>
     
     <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">Περιοχή</label>
-      <input type="text" class="form-control" id="inputCity">
+      <input type="text" class="form-control" id="inputCity" [(ngModel)]="providers.area" name="area" required>
     </div>
     <div class="form-group col-md-4">
     <label for="inputodos">Οδός</label>
-      <input type="text" class="form-control" id="inputodos">
+      <input type="text" class="form-control" id="inputodos" [(ngModel)]="providers.streetName" name="streetName" required>
     </div>
     <div class="form-group col-md-2">
       <label for="inputarithmos">Αριθμός</label>
-      <input type="text" class="form-control" id="inputarithmos">
+      <input type="text" class="form-control" id="inputarithmos" [(ngModel)]="providers.streetNumber" name="streetNumber" required>
     </div>
   </div>
     
     
     <div class="form-group">
       <label for="inputEmail">E-Mail</label>
-      <input type="email" class="form-control" id="inputEmail" placeholder="E-Mail">
+      <input type="email" class="form-control" id="inputEmail" placeholder="E-Mail" [(ngModel)]="providers.Mail" name="Mail" required>
     </div>
     
     <div class="form-group">
       <label for="inputPhoneNumber">Αριθμός Τηλεφώνου</label>
-      <input type="text" class="form-control" id="inputPhoneNumber">
+      <input type="text" class="form-control" id="inputPhoneNumber" [(ngModel)]="providers.TelNumber" name="TelNumber" required>
     </div>
     
     <div class="form-group">
       <label for="inputiban">Αριθμός Χρεωστικής Κάρτας</label>
-      <input type="text" class="form-control" id="inputiban">
+      <input type="text" class="form-control" id="inputiban" [(ngModel)]="providers.Iban" name="Iban" required>
     </div>
     <div class="form-check">
     <label class="form-check-label">
@@ -135,3 +141,6 @@
     <button type="submit" class="btn btn-primary">Υποβολή</button>
   </form>
 </div>
+<script>
+
+</script>

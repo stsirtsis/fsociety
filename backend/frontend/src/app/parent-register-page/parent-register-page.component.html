@@ -42,39 +42,39 @@
 <div class="container">
   <h2>Εγγραφή Γονέα</h2>
   <br>
-  <form>
+  <form (ngSubmit)="onSubmit()">
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputFirstName">Όνομα</label>
-        <input type="text" class="form-control" id="inputFirstName" placeholder="Όνομα">
+        <input type="text" class="form-control" id="inputFirstName" placeholder="Όνομα" [(ngModel)]="parent.firstName" name="firstName" required>
       </div>
       <div class="form-group col-md-6">
         <label for="inputLastName">Επώνυμο</label>
-        <input type="text" class="form-control" id="inputLastName" placeholder="Επώνυμο">
+        <input type="text" class="form-control" id="inputLastName" placeholder="Επώνυμο" [(ngModel)]="parent.lastName" name="lastName" required>
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputUserName">Username</label>
-        <input type="text" class="form-control" id="inputUserName" placeholder="Username">
+        <input type="text" class="form-control" id="inputUserName" placeholder="Username" [(ngModel)]="parent.username" name="username" required>
       </div>
       <div class="form-group col-md-6">
         <label for="inputPassword">Password</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password" [(ngModel)]="parent.password" name="password" required>
       </div>
     </div>
     <div class="form-group">
       <label for="inputEmail">E-Mail</label>
-      <input type="email" class="form-control" id="inputEmail" placeholder="E-Mail">
+      <input type="email" class="form-control" id="inputEmail" placeholder="E-Mail" [(ngModel)]="parent.email" name="email" required>
     </div>
     <div class="form-group">
       <label for="inputPhoneNumber">Αριθμός Τηλεφώνου</label>
-      <input type="text" class="form-control" id="inputPhoneNumber">
+      <input type="text" class="form-control" id="inputPhoneNumber" [(ngModel)]="parent.phoneNumber" name="phoneNumber" required>
     </div>
     <div class="form-group">
       <label for="inputDebitCard">Αριθμός Χρεωστικής Κάρτας</label>
-      <input type="text" class="form-control" id="inputDebitCard">
+      <input type="text" class="form-control" id="inputDebitCard" [(ngModel)]="parent.debitCard" name="debitCard" required>
     </div>
-    <button type="submit" class="btn btn-primary" routerLink="/parent-events" href="">Υποβολή</button>
+    <button type="submit" class="btn btn-primary">Υποβολή</button>
   </form>
 </div>

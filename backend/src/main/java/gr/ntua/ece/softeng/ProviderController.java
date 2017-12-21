@@ -45,11 +45,14 @@ public class ProviderController {
 		providersRepository.save(n);
 		return "Saved";
 	}
+
+private final static String POST_PARENT_URL = "/addNewProvider";
 	
-	@PostMapping(path="/addNewProvider")
-	public @ResponseBody String test_post (@RequestBody Providers p) {
-		providersRepository.save(p);
-		return "OK with post";
+	@PostMapping(POST_PARENT_URL)
+	public @ResponseBody String createParent(@RequestBody Providers pro) {
+		System.out.println("Creat Parent: " + pro);
+		providersRepository.save(pro);
+		return "ok with post";
 	}
 	
 	@GetMapping(path="/all")

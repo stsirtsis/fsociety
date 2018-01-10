@@ -1,0 +1,404 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/" href="">
+    <img src="/assets/main-toolbar/fsociety_logo_nowords.png" width="30" height="30" alt="logo" >
+    <span style="color: #00b4e6;">Fun Society</span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/" href="">Περιγραφή</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/" href="">Η ομάδα</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/" href="">Επικοινωνία</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="" href="">
+          Αποσύνδεση
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 ">
+            <h4>Αναζήτηση Δραστηριότητας</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 ">
+            <form action="" class="search-form">
+                <div class="form-group has-feedback">
+                    <div class="row">
+            		<label for="search" class="sr-only">Search</label>
+            		<input type="text" class="form-control col-md-8" name="search" id="search" placeholder="search">
+              		<span class="glyphicon glyphicon-search form-control-feedback"></span>
+              		<button type="submit" class="btn btn-primary col-md-2" routerLink="/parent-events" href="">Αναζήτηση</button>
+              		</div>
+            	</div>
+            </form>
+        </div>
+    </div>
+</div>
+ 
+ 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+<div class="container-fluid">
+    <div class="row">
+		<div class="col-xs-6 col-sm-3 col-md-3">
+		
+			<div id="accordion" class="panel panel-primary behclick-panel">
+				<div class="panel-heading">
+					<h4 class="panel-title">Φίλτρα Αναζήτησης</h4>
+				</div>
+				<div class="panel-body" >
+					<div class="panel-heading " >
+						<h6 class="panel-title">
+							<a data-toggle="collapse" href="#collapse0">
+								<i class="indicator fa fa-caret-down" aria-hidden="true"></i> Tiμή
+							</a>
+						</h6>
+					</div>
+					<div id="collapse0" class="panel-collapse collapse in" >
+						<ul class="list-group">
+							<li class="list-group-item">
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" value="c1">
+										0 - 10 fp
+									</label>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="checkbox" >
+									<label>
+										<input type="checkbox" value="c2">
+										10 - 20 fp
+									</label>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="checkbox"  >
+									<label>
+										<input type="checkbox" value="c3">
+										20 - 50 fp
+									</label>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="checkbox"  >
+									<label>
+										<input type="checkbox" value="c4">
+										50+ fp
+									</label>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<div class="panel-heading " >
+						<h6 class="panel-title">
+							<a data-toggle="collapse" href="#collapse1">
+								<i class="indicator fa fa-caret-down" aria-hidden="true"></i> Κατηγορία Δραστηριότητας
+							</a>
+						</h6>
+					</div>
+					<div id="collapse1" class="panel-collapse collapse in" >
+						<ul class="list-group">
+							<li class="list-group-item">
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" value="c5">
+										Αθλητισμός
+									</label>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="checkbox" >
+									<label>
+										<input type="checkbox" value="c6">
+										Καλλιτεχνικά
+									</label>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="checkbox"  >
+									<label>
+										<input type="checkbox" value="c7">
+										Εκπαίδευση
+									</label>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="panel-heading" >
+						<h6 class="panel-title">
+							<a data-toggle="collapse" href="#collapse3"><i class="indicator fa fa-caret-down" aria-hidden="true"></i> Ηλικιακή Κατηγορία</a>
+						</h6>
+					</div>
+					<div id="collapse3" class="panel-collapse collapse in">
+						<ul class="list-group">
+							<li class="list-group-item">
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" value="c8">
+										2-5
+									</label>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="checkbox" >
+									<label>
+										<input type="checkbox" value="c9">
+										5-10
+									</label>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="checkbox"  >
+									<label>
+										<input type="checkbox" value="c10">
+										10-15
+									</label>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="checkbox"  >
+									<label>
+										<input type="checkbox" value="c11">
+										15+
+									</label>
+								</div>
+							</li>
+							
+						</ul>
+					</div>
+					<div class="panel-heading" >
+						<h6 class="panel-title">
+							<a data-toggle="collapse" href="#collapse2"><i class="indicator fa fa-caret-down" aria-hidden="true"></i> Εύρος Περιοχής</a>
+						</h6>
+					</div>
+					<div id="collapse2" class="panel-collapse collapse in">
+						<ul class="list-group">
+							<li class="list-group-item">
+								<div class="radio">
+									<label>
+										<input type="radio" name="op" value="op1">
+										   έως 5χλμ
+									</label>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="radio" >
+									<label>
+										<input type="radio" name="op" value="op2">
+										 έως 8χλμ
+									</label>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="radio">
+									<label>
+										<input type="radio" name="op" value="op3">
+										έως 10χλμ
+									</label>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="radio">
+									<label>
+										<input type="radio" name="op" value="op4">
+										άνω των 10χλμ
+									</label>
+								</div>
+							</li>
+						</ul>
+					</div>
+						<div class="panel-heading" >
+						<h6 class="panel-title">
+							<button type="submit" class="btn btn-primary" routerLink="/parent-events" href="">Υποβολή</button>
+						</h6>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-6 col-sm-9 col-md-9">
+		 <div class="well well-sm">
+        <strong>Display</strong>
+        <div class="btn-group">
+            <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
+            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
+                class="glyphicon glyphicon-th"></span>Grid</a>
+        </div>
+        </div>
+        
+           <div id="products" class="row list-group">
+              <div class="item  col-xs-6 col-sm-9 col-md-9">
+                <div class="row">
+                  <div class="col-md-5 col-sm-5-col-xs-4">
+                  <div class="imgAbt">
+                   <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+                   </div>
+                  </div>
+                  <div class="col-md-7 col-sm-7 col-xs-8 ">
+                        <h4 class="group inner list-group-item-heading">
+                         Κέντρο μουσικής</h4>
+                    <p class="group inner list-group-item-text">
+                        Κιθάρα πιάνο βιολί μπουζούλι τουμπερλέκι,όλα μπορείς να τα βρείς στην καλύτερη μουσική σχολή.Ειδικευόμαστε σε παιδιά όλων των ηλικιν.</p>
+                    <div class="row">
+                        <div class="col-xs-11 col-md-11 col-sm-11">
+                            <p class="lead">
+                                10.000</p>
+                        </div>
+                        <div class="col-xs-1 col-md-1 col-sm-1">
+                            <a class="btn btn-success" href="http://www.jquery2dotnet.com">Κλείσε θέση</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <p></p>
+       <div id="products" class="row list-group">
+        <div class="item  col-xs-6 col-sm-9 col-md-9">
+            <div class="row">
+              <div class="col-md-5 col-sm-5-col-xs-4">
+                <div class="imgAbt">
+                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+                </div>
+               </div>
+               <div class="col-md-7 col-sm-7 col-xs-8 ">
+                    <h4 class="group inner list-group-item-heading">
+                        Product title</h4>
+                    <p class="group inner list-group-item-text">
+                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                    <div class="row">
+                        <div class="col-xs-11 col-md-11 col-sm-11">
+                            <p class="lead">
+                                10.000</p>
+                        </div>
+                        <div class="col-xs-1 col-md-1 col-sm-1">
+                            <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <p></p>
+         <div id="products" class="row list-group">
+        <div class="item  col-xs-6 col-sm-9 col-md-9">
+            <div class="row">
+              <div class="col-md-5 col-sm-5-col-xs-4">
+                <div class="imgAbt">
+                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+                </div>
+               </div>
+               <div class="col-md-7 col-sm-7 col-xs-8 ">
+                    <h4 class="group inner list-group-item-heading">
+                        Product title</h4>
+                    <p class="group inner list-group-item-text">
+                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                    <div class="row">
+                        <div class="col-xs-11 col-md-11 col-sm-11">
+                            <p class="lead">
+                                10.000</p>
+                        </div>
+                        <div class="col-xs-1 col-md-1 col-sm-1">
+                            <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <p></p>
+       <div id="products" class="row list-group">
+        <div class="item  col-xs-6 col-sm-9 col-md-9">
+            <div class="row">
+              <div class="col-md-5 col-sm-5-col-xs-4">
+                <div class="imgAbt">
+                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+                </div>
+               </div>
+               <div class="col-md-7 col-sm-7 col-xs-8 ">
+                    <h4 class="group inner list-group-item-heading">
+                        Κεντρο Δημιουργικής απασχόλησης</h4>
+                    <p class="group inner list-group-item-text">
+                    Εδω κρατάμε τα παιδάκια και κάνουμε ζωγραφιές και μουσική.έχουμε το καλύτερο διδακτικό προσωπικό.τιμή φιλική</p>
+                    <div class="row">
+                        <div class="col-xs-11 col-md-11 col-sm-11">
+                            <p class="lead">
+                                20 ευρω</p>
+                        </div>
+                        <div class="col-xs-1 col-md-1 col-sm-1">
+                            <a class="btn btn-success" href="http://www.jquery2dotnet.com">Κλείσε θέση</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <p></p>
+       <div id="products" class="row list-group">
+        <div class="item  col-xs-6 col-sm-9 col-md-9">
+            <div class="row">
+              <div class="col-md-5 col-sm-5-col-xs-4">
+                <div class="imgAbt">
+                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+                </div>
+               </div>
+               <div class="col-md-7 col-sm-7 col-xs-8 ">
+                    <h4 class="group inner list-group-item-heading">
+                        Παιδότοπος</h4>
+                    <p class="group inner list-group-item-text">
+                        Όλα τα παιδάκια παίζουν με τα φουσκωτά και είναι χαρούμενο.φερε και το δικο σου να περάσει καλά.Βρισκόμαστε επι της Βασιλέως Γεωργίου τηλ 6945954511</p>
+                    <div class="row">
+                        <div class="col-xs-11 col-md-11 col-sm-11">
+                            <p class="lead">
+                                10 ευρώ</p>
+                        </div>
+                        <div class="col-xs-1 col-md-1 col-sm-1">
+                            <a class="btn btn-success" href="http://www.jquery2dotnet.com">Κλείσε εισητήριο</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <p></p>
+    
+    
+		
+	</div>
+</div>
+    
+   </div>
+      <script>
+           
+            $(document).ready(function() {
+            $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
+             $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
+});
+            </script>
+   
+   
+
+
+
+
+

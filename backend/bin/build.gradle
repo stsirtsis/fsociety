@@ -1,0 +1,73 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.9.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+		maven {
+    		url "https://plugins.gradle.org/m2/"
+  		}
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "com.moowork.gradle:gradle-node-plugin:1.1.1"
+	}
+}
+
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin:"com.moowork.node"
+
+group = 'gr.ntua.ece.softeng'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter')
+	compile("org.springframework.boot:spring-boot-starter-web")
+	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+	compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+	
+	runtime('mysql:mysql-connector-java')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+node 
+{
+  version = "6.11.4"
+  download = true
+  nodeModulesDir = file("frontend")
+}
+
+task buildClientDev(type: NpmTask, dependsOn: 'npmInstall') {
+  group = 'build'
+  description = 'Compile client side folder for development'
+  args = ['run','buildDev']
+}
+
+task buildClient(type:NpmTask, dependsOn:'npmInstall') {
+  group = 'build'
+  description = "Compile client side folder for production"
+  args = ['run','build']
+}
+
+task buildClientWatch(type: NpmTask, dependsOn: 'npmInstall') {
+  group = 'application'
+  description = "Build and watches the client side assets for rebuilding"
+  args = ['run','buildWatch']
+}
+
+
+bootRun.dependsOn(buildClientDev)
+jar.dependsOn(buildClient)
+
+
+

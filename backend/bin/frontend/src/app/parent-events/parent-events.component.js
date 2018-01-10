@@ -11,3 +11,6 @@
 	}
 	$('#accordion').on('hidden.bs.collapse', toggleChevron);
 	$('#accordion').on('shown.bs.collapse', toggleChevron);
+	$(document).ready(function() {
+	    $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
+	});

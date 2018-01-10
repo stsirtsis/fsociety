@@ -13,3 +13,4 @@ export class ParentEventsComponent implements OnInit {
   }
 
 }
+

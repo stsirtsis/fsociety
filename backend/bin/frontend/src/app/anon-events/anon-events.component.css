@@ -3,15 +3,15 @@
     -moz-box-shadow: 0 8px 6px -6px #999;
     box-shadow: 0 8px 6px -6px #999;
 }
-.btn{
-	height:35px;
-	background-color:#00b4e6;
-}
 .container{
 	position:relative;
     transition: .5s ease;
     top: 5%;
     left: -6.4%;
+}
+.btn{
+	height:35px;
+	background-color:#00b4e6;
 }
 
     	.behclick-panel  .list-group {

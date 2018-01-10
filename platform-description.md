@@ -180,7 +180,7 @@ MongoDB σε αυτό, η οποία υποστηρίζει και geospatial μ
 
 #### Σύνδεση
 
-![login](./images/sundesh.png "Log in page")
+![login](./images/login.png "Log in page")
 
 #### Εγγραφή Παρόχου
 

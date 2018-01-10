@@ -146,6 +146,8 @@ MongoDB σε αυτό, η οποία υποστηρίζει και geospatial μ
 * To build automation tool στο κομμάτι του backend είναι ο gradle ενώ στο frontend είναι ο npm. Και τα δύο λειτουργούν κάτω από την εποπτεία του Spring Boot με το npm να έχει ορισμένα task στο build.gradle ώστε να ξεκινά το frontend αυτόματα και να παρακολουθεί και να κάνει rebuild τις αλλαγές κατά τη φάση του developpment.
 * Ο IDE της επιλογής μας ήταν ο Eclipse.
 
+
+
 ### Class Diagram
 
 ![class diagram](./images/ClassDiagram.jpg "Class Diagram")

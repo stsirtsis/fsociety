@@ -121,17 +121,17 @@
 
 * Επειδή η εφαρμογή απευθύνεται σε μαμάδες, χρειαζόμαστε εύχρηστο UI και όσο το δυνατόν καλύτερο UX, για να είναι η εφαρμογή προσιτή και ευχάριστη στο κοινό. Επίσης ο
 χρήστης θα είναι σε θέση να ανοίγει την εφαρμογή από οποιαδήποτε συσκευή(κινητό, tablet laptop, ...). Το responsive design θα καλυφθεί με χρήση του Bootstrap framework.
-* Η αγορά εισιτηρίου από το γονέα προυποθέτει να μην πληρώσει κάποιος εισιτήριο που δεν είναι διαθέσιμο. Αυτό παραπέμπει σε consistency σε πεδίο της βάσης και άρα 
+* Η αγορά εισιτηρίου από το γονέα προυποθέτει να μην πληρώσει κάποιος εισιτήριο που δεν είναι διαθέσιμο. Αυτό παραπέμπει σε consistency σε πεδίο της βάσης και άρα
 επιλέγουμε μια βάση που υποστηρίζει ACID(Atomic Consistent Isolation Durability) transactions και συγκεκριμένα τη MySQL.
-* Από την άλλη, η επικοινωνία του συστήματος με το Google Maps API δημιουργεί την ανάγκη για υποστήριξη από το DBMS για geospatial μεταβλητές. Ταυτόχρονα όμως ζητείται 
-και η υλοποίηση ενός full text search, το οποίο για να είναι γρήγορο χρειαζόμαστε μια βάση που έχει πιο γρήγορη αναζήτηση από τη MySQL, όπως μια NoSQL βάση. Επιλέγουμε 
+* Από την άλλη, η επικοινωνία του συστήματος με το Google Maps API δημιουργεί την ανάγκη για υποστήριξη από το DBMS για geospatial μεταβλητές. Ταυτόχρονα όμως ζητείται
+και η υλοποίηση ενός full text search, το οποίο για να είναι γρήγορο χρειαζόμαστε μια βάση που έχει πιο γρήγορη αναζήτηση από τη MySQL, όπως μια NoSQL βάση. Επιλέγουμε
 MongoDB σε αυτό, η οποία υποστηρίζει και geospatial μεταβλητές και γρήγορο search για να είναι η εφαρμογή ευχάριστη στο χρήστη και να μην τον κουράζει.
 * Για την απαίτηση για φορητότητα ικανοποιείται με τη χρήση της Virtual Machine της Java(JVM), όπου ο κώδικας της εφαρμογής γίνεται compile σε ένα μηχάνημα και τρέχει σε όλα όσα έχουν JVM, ανεξαρτήτως λειτουργικού και αρχιτεκτονικής.
 * Σχετικά με την ασφάλεια προσωπικών δεδομένων, χρησιμοποιούμε το πρωτοκόλλο HTTPS, το οποίο προστατεύει τα προσωπικά δεδομένα του κάθε χρήστη που κυκλοφορούν στο δίκτυο και μπορεί να πέσουν στα χέρια κακόβουλων χρηστών.
 
 ### Αρχιτεκτονική του λογισμικού
 
-#### Patterns 
+#### Patterns
 * Η υλοποίηση ακολουθεί το pattern των microservices(συγκεκριμένα Java microservices), όπου processes επικοινωνούν η μία με την άλλη μέσω δικτύου.
 * Πρόκειται για RESTful εφαρμογή, όπου η διαλειτουργικότητα των ξεχωριστών υποσυστημάτων του λογισμικού μας αναπαριστάται με ένα state που δηλώνεται από κάποιο url.
 * Φυσικά, αναφέρουμε ότι κρύβεται η λογική του αρχιτεκτνικού pattern MVC(Model View Controller), ...
@@ -141,6 +141,91 @@ MongoDB σε αυτό, η οποία υποστηρίζει και geospatial μ
 * Όσον αφορά το backend, χρησιμοποιούμε τη Java (v8) ως γλώσσα υλοποίησης στα πλαίσια του Spring Boot Framework. Χρησιμοποιούμε υποσυστήματα που συνεργάζονται με το framework, όπως το hibernate, jpa για την επικοινωνία με τη βάση σύμφωνα με το Object Relational Model(ORM).
   Τη στιγμή συγγραφής του εγγράφου δεν έχει αποφασιστεί ακόμα, ο τρόπος με τον οποίο θα γίνεται το user authentication και authorization. Δεν αποκλείεται η χρήση ενός ακόμα υποσυστήματος, του OAuth2, το οποίο μαζί με το Spring Security θα κάνει τη συγκεκριμένη δουλειά. Ο λόγος που δεν έχει οριστικοποιηθεί είναι γιατί απ' ότι έχουμε καταλάβει γι' αυτό στην παρούσα φάση, ίσως χρειαστεί να αλλάξουμε το layout της βάσης και να προσθέσουμε ένα ακόμα επίπεδο στο backend ώστε να διαχωρίζει τους 4 ρόλους χρηστών που υπάρχουν στην πλατφόρμα. Υπάρχει και ο τρόπος που τα credentials του χρήστη θα είναι attributes στον http header, στο session του κάθε χρήστη.
 * Όσον αφορά το frontend, χρησιμοποιούμε το frontend framework Angular 4 για να κάνουμε consume τα http services που έχουν υλοποιηθεί στο backend και την html των σελίδων που θα εμφανίζονται στον browser. Η γλώσσα που χρησιμοποιούμε είναι η TypeScript που έχει καθιερωθεί από το Angular 2. Επίσης σε συνεργασία με την HTML5 χρησιμποιούμε το bootstrap για πιο όμορφη και ευχάριστη εμπειρία χρήσης καθώς και για υποστήριξη responsive design στην εφαρμογή.
-* To build automation tool στο κομμάτι του backend είναι ο gradle ενώ στο frontend είναι ο npm. Και τα δύο λειτουργούν κάτω από την εποπτεία του Spring Boot με το npm να έχει ορισμένα task στο build.gradle ώστε να ξεκινά το frontend αυτόματα και να παρακολουθεί και να κάνει rebuild τις αλλαγές κατά τη φάση του developpment. 
-* Ο IDE της επιλογής μας ήταν ο Eclipse. 
+* To build automation tool στο κομμάτι του backend είναι ο gradle ενώ στο frontend είναι ο npm. Και τα δύο λειτουργούν κάτω από την εποπτεία του Spring Boot με το npm να έχει ορισμένα task στο build.gradle ώστε να ξεκινά το frontend αυτόματα και να παρακολουθεί και να κάνει rebuild τις αλλαγές κατά τη φάση του developpment.
+* Ο IDE της επιλογής μας ήταν ο Eclipse.
 
+### Class Diagram
+
+![class diagram](./images/ClassDiagram.jpg "Class Diagram")
+
+### Component Diagram
+
+![component diagram](./images/component_diagram.png "Component Diagram")
+
+### E-R Diagram
+
+![er diagram](./images/er.png "E-R Diagram")
+
+### Use Case Diagram
+
+![use case diagram](./images/user-case.png "Use case")
+
+### Wireframes
+
+#### Αρχική Σελίδα
+
+![front page](./images/arxiki.png "Front page")
+
+#### Περιγραφή
+
+![front page](./images/perigrafh.png "Description")
+
+#### Ομάδα
+
+![team](./images/team1.png "Team page")
+
+#### Επικοινωνία
+
+![contact](./images/contact.png "Contact page")
+
+#### Εγγραφή Παρόχου
+
+![provider reg](./images/provider_reg.png "Provider Registration")
+
+#### Εγγραφή Γονέα
+
+![parent reg](./images/parent_reg.png "Parent Registration")
+
+#### Σελίδα Αναζήτησης (Ανώνυμος χρήστης)
+
+![search_anon page](./images/events_anonymou.png "Search_anon page")
+
+![map_anon page](./images/events_anonymou_map.png "Map_anon page")
+
+#### Σελίδα Αναζήτησης (Γονέας)
+
+![search page](./images/events_parent.png "Search page")
+
+![search_parent page](./images/events_parent_map.png "Map_parent page")
+
+#### Κράτηση Γονέα
+
+![event page](./images/one_event_parent.png "Front page")
+
+#### Κράτηση Ανώνυμου
+
+![event_anon page](./images/one_event_anonymou.png "event_anon page")
+
+#### Προφίλ Παρόχου
+
+![provider profile page](./images/providers_prof.png "Provider profile page")
+
+#### Προσθήκη Event
+
+![new event page](./images/addneweventprovider.png "New event page")
+
+#### Προφίλ Γονέα
+
+![parent profile page](./images/my_profile.png "parent profile page")
+
+#### Ιστορικό Κρατήσεων (Γονέα)
+
+![parent history page](./images/my_regs.png "Front page")
+
+#### Ηλεκτρονικό Πορτοφόλι (Γονέα)
+
+![wallet page](./images/my_wallet.png "Wallet page")
+
+#### Σελίδα Διαχειριστή
+
+![admin page](./images/admin_basic_wireframe.png "Admin page")

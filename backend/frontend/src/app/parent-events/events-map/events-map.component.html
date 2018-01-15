@@ -1,0 +1,13 @@
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [fitBounds]="bounds" [zoomControl]="true">
+  <agm-marker
+  *ngFor="let ev of events"
+  [latitude]="ev.latitude"
+  [longitude]="ev.longtitude"
+  [label]="ev.Id.toString()"
+  >
+  <agm-info-window>
+    <p>{{ev.eventName}}</p>
+    <p>{{ev.description}}</p>
+  </agm-info-window>
+</agm-marker>
+</agm-map>

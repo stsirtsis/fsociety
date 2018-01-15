@@ -15,8 +15,11 @@ import { ProviderRegisterPageComponent } from './provider-register-page/provider
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ParentEventsComponent } from './parent-events/parent-events.component';
 import { AnonEventsComponent } from './anon-events/anon-events.component';
-import {ParentService} from './parent.service';
-import {ProvidersService} from './providers.service';
+import { ParentService } from './parent.service';
+import { ProvidersService } from './providers.service';
+import { EventService } from './event.service';
+import { EventsMapComponent } from './parent-events/events-map/events-map.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -28,16 +31,20 @@ import {ProvidersService} from './providers.service';
     ProviderRegisterPageComponent,
     LoginPageComponent,
     ParentEventsComponent,
-    AnonEventsComponent
+    AnonEventsComponent,
+    EventsMapComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     Routing,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyA9VxQECCNE4WGhC94rFT8ly6QMCLbovYY'
+    })
   ],
-  providers: [ParentService, ProvidersService],
+  providers: [ParentService, ProvidersService, EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

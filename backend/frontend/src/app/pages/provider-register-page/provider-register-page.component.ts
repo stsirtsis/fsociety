@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
-import {Providers} from '../providers.interface';
-import {ProvidersService} from '../providers.service';
+import {Providers} from '../../interfaces/providers.interface';
+import {ProvidersService} from '../../services/providers.service';
 
 @Component({
   selector: 'app-provider-register-page',

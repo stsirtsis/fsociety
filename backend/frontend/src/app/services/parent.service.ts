@@ -3,17 +3,17 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
-import {Providers} from './providers.interface';
+import {Parent} from '../interfaces/parent.interface';
 
 @Injectable()
-export class ProvidersService {
+export class ParentService {
 
-  private static readonly POST_URL = '/providers-registration/addNewProvider';
+  private static readonly POST_PARENT_URL = '/parents/addNewParent';
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) {}
 
-  createProvider(providers: Providers): Observable <Providers> {
-    return this.http.post<any>(ProvidersService.POST_URL, providers, {headers: this.headers});
+  createParent(parent: Parent): Observable <Parent> {
+    return this.http.post<any>(ParentService.POST_PARENT_URL, parent, {headers: this.headers});
   }
 }

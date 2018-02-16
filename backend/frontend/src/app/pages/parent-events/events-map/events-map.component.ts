@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Event } from '../../event.interface';
+import { Event } from '../../../interfaces/event.interface';
 import { LatLngBoundsLiteral } from '../LatLngBoundsLiteral'
 
 @Component({

@@ -7,18 +7,17 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { Routing } from './app-routing.module';
-import { MainToolbarComponent } from './main-toolbar/main-toolbar.component';
-import { FrontPageComponent } from './front-page/front-page.component';
-import { FooterComponent } from './footer/footer.component';
-import { ParentRegisterPageComponent } from './parent-register-page/parent-register-page.component';
-import { ProviderRegisterPageComponent } from './provider-register-page/provider-register-page.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { ParentEventsComponent } from './parent-events/parent-events.component';
-import { AnonEventsComponent } from './anon-events/anon-events.component';
-import { ParentService } from './parent.service';
-import { ProvidersService } from './providers.service';
-import { EventService } from './event.service';
-import { EventsMapComponent } from './parent-events/events-map/events-map.component';
+import { MainToolbarComponent } from './etc/main-toolbar/main-toolbar.component';
+import { FrontPageComponent } from './pages/front-page/front-page.component';
+import { FooterComponent } from './etc/footer/footer.component';
+import { ParentRegisterPageComponent } from './pages/parent-register-page/parent-register-page.component';
+import { ProviderRegisterPageComponent } from './pages/provider-register-page/provider-register-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { ParentEventsComponent } from './pages/parent-events/parent-events.component';
+import { ParentService } from './services/parent.service';
+import { ProvidersService } from './services/providers.service';
+import { EventService } from './services/event.service';
+import { EventsMapComponent } from './pages/parent-events/events-map/events-map.component';
 import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
@@ -31,7 +30,6 @@ import { AgmCoreModule } from '@agm/core';
     ProviderRegisterPageComponent,
     LoginPageComponent,
     ParentEventsComponent,
-    AnonEventsComponent,
     EventsMapComponent
   ],
   imports: [

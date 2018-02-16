@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
-import {Parent} from '../parent.interface';
-import {ParentService} from '../parent.service';
+import {Parent} from '../../interfaces/parent.interface';
+import {ParentService} from '../../services/parent.service';
 
 @Component({
   selector: 'app-parent-register-page',

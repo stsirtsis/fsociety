@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Event } from '../event.interface';
-import { EventService } from '../event.service';
+import { Event } from '../../interfaces/event.interface';
+import { EventService } from '../../services/event.service';
 import { LatLngBoundsLiteral } from './LatLngBoundsLiteral'
 
 @Component({

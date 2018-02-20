@@ -1,18 +1,21 @@
 package gr.ntua.ece.softeng.controllers;
 
+import java.util.Arrays;
 
-import java.util.HashSet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import gr.ntua.ece.softeng.entities.Providers;
+import gr.ntua.ece.softeng.entities.Role;
+import gr.ntua.ece.softeng.entities.User;
 import gr.ntua.ece.softeng.repositories.ProvidersRepository;
+import gr.ntua.ece.softeng.repositories.UserRepository;
 
 @Controller 
 @RequestMapping(path="/providers-registration")
@@ -20,42 +23,26 @@ public class ProviderController {
 	@Autowired
 	private ProvidersRepository providersRepository;
 	
-	@GetMapping(path="/add")
-	public @ResponseBody String addNewProvider (@RequestParam String companyName,@RequestParam String firstName,
-			@RequestParam  String lastName, @RequestParam String userName, @RequestParam String password,@RequestParam 
-			String category, @RequestParam  String description, @RequestParam String area,@RequestParam String streetName,
-			@RequestParam  Integer streetNumber, @RequestParam String telNumber, @RequestParam  String mail,@RequestParam String iban) 
-	{
+	@Autowired 
+	private UserRepository userRepository;
+
+
+	private final static String POST_PARENT_URL = "/addNewProvider";
+	@PostMapping(POST_PARENT_URL)
+	public @ResponseBody String createParent(@RequestBody Providers provider) {
+		String username = provider.getUserName();
+		String password = provider.getPassword();
 		
-		Providers n = new Providers();
-		n.setcompanyName(companyName);
-		n.setFirstName(firstName);
-		n.setLastName(lastName);
-		n.setUserName(userName);
-		n.setPassword(password);
-		n.setCategory(category);
-		n.setDescription(description);
-		n.setArea(area);
-		n.setStreetName(streetName);
-		n.setStreetNumber(streetNumber);
-		n.setTelNumber(telNumber);
-		n.setMail(mail);
-		n.setIban(iban);
-		n.setEvents(new HashSet<>());
-		providersRepository.save(n);
-		return "Saved";
+		String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);
+		
+		userRepository.save(new User(username, sha256hex, Arrays.asList(new Role("PARENT"))));
+		provider.setPassword(sha256hex);
+		providersRepository.save(provider);
+		return "ok with post from provider";
 	}
 
-private final static String POST_PARENT_URL = "/addNewProvider";
-	
-	@PostMapping(POST_PARENT_URL)
-	public @ResponseBody String createParent(@RequestBody Providers pro) {
-		System.out.println("Creat Provider: " + pro);
-		providersRepository.save(pro);
-		return "ok with post";
-	}
-	
 	@GetMapping(path="/all")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public @ResponseBody Iterable<Providers> getAllUsers() {
 		return providersRepository.findAll();
 	}

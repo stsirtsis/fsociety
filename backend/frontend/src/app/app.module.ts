@@ -19,6 +19,8 @@ import { ProvidersService } from './services/providers.service';
 import { EventService } from './services/event.service';
 import { EventsMapComponent } from './pages/parent-events/events-map/events-map.component';
 import { AgmCoreModule } from '@agm/core';
+import { EventsListComponent } from './pages/parent-events/events-list/events-list.component';
+import { SingleEventComponent } from './pages/parent-events/events-list/single-event/single-event.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { AgmCoreModule } from '@agm/core';
     ProviderRegisterPageComponent,
     LoginPageComponent,
     ParentEventsComponent,
-    EventsMapComponent
+    EventsMapComponent,
+    EventsListComponent,
+    SingleEventComponent
   ],
   imports: [
     BrowserModule,

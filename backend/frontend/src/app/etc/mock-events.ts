@@ -30,5 +30,20 @@ export const EventsList: Event[] = [
     state: 'OPEN',
     latitude: 38.038815,
     longtitude: 23.833136
+  },
+  {
+    Id: 3,
+    eventName: 'Tatata',
+    description: 'TejhegbfjsdhgfbsdfbsfbsezfjhbsefsaaaaaaaaaaaaaaaaaehfTejhegbfjsdhgfbsdfbsfbsezfjhbsefsaaaaaaaaaaaaaaaaaTejhegbfjsdhgfbsdfbsfbsezfjhbsefsaaaaaaaaaaaaaaaaaTejhegbfjsdhgfbsdfbsfbsezfjhbsefsaaaaaaaaaaaaaaaaaTejhegbfjsdhgfbsdfbsfbsezfjhbsefsaaaaaaaaaaaaaaaaaTejhegbfjsdhgfbsdfbsfbsezfjhbsefsaaaaaaaaaaaaaaaaaTejhegbfjsdhgfbsdfbsfbsezfjhbsefsaaaaaaaaaaaaaaaaaTejhegbfjsdhgfbsdfbsfbsezfjhbsefsaaaaaaaaaaaaaaaaaTejhegbfjsdhgfbsdfbsfbsezfjhbsefsaaaaaaaaaaaaaaaaaTejhegbfjsdhgfbsdfbsfbsezfjhbsefsaaaaaaaaaaaaaaaaaTejhegbfjsdhgfbsdfbsfbsezfjhbsefsaaaaaaaaaaaaaaaaaTejhegbfjsdhgfbsdfbsfbsezfjhbsefsaaaaaaaaaaaaaaaaaTejhegbfjsdhgfbsdfbsfbsezfjhbsefsaaaaaaaaaaaaaaaaaTejhegbfjsdhgfbsdfbsfbsezfjhbsefsaaaaaaaaaaaaaaaaaTejhegbfjsdhgfbsdfbsfbsezfjhbsefsaaaaaaaaaaaaaaaaaTejhegbfjsdhgfbsdfbsfbsezfjhbsefsaaaaaaaaaaaaaaaaaTejhegbfjsdhgfbsdfbsfbsezfjhbsefsaaaaaaaaaaaaaaaaaTejhegbfjsdhgfbsdfbsfbsezfjhbsefsaaaaaaaaaaaaaaaaaTejhegbfjsdhgfbsdfbsfbsezfjhbsefsaaaaaaaaaaaaaaaaaTejhegbfjsdhgfbsdfbsfbsez',
+    Area: 'Hahaua',
+    StreetName: 'Haheeehee',
+    StreetNumber: 42,
+    AgeGroup: 42,
+    capacity: 42,
+    price: 75,
+    category: 'Hehehey',
+    state: 'OPEN',
+    latitude: 38.009815,
+    longtitude: 23.873136
   }
 ];

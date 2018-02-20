@@ -11,6 +11,7 @@ import { LatLngBoundsLiteral } from './LatLngBoundsLiteral'
 export class ParentEventsComponent implements OnInit {
 
   eventsList: Event[];
+  listOrMap: number = 0;  //0 is list, 1 is map
   boundsPar: LatLngBoundsLiteral={
     east: 0.0,
     west: 91.0,

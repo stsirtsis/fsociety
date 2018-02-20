@@ -1,0 +1,11 @@
+<agm-marker
+[latitude]="event.latitude"
+[longitude]="event.longtitude"
+[label]="event.Id.toString()"
+>
+<agm-info-window [maxWidth]="200">
+  <h5>{{event.eventName}}</h5>
+  <p>{{shortDescription}}</p>
+   <a href="#">Δείτε περισσότερα</a>
+</agm-info-window>
+</agm-marker>

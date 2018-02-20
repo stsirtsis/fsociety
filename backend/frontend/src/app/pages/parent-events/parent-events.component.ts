@@ -32,13 +32,11 @@ export class ParentEventsComponent implements OnInit {
 
   setBounds(): void{
     for (var ev in this.eventsList){
-      //console.log(this.eventsList[ev].latitude+"")
       if (this.eventsList[ev].latitude > this.boundsPar.north) this.boundsPar.north = this.eventsList[ev].latitude + 0.001;
       if (this.eventsList[ev].latitude < this.boundsPar.south) this.boundsPar.south = this.eventsList[ev].latitude - 0.001;
       if (this.eventsList[ev].longtitude > this.boundsPar.east) this.boundsPar.east = this.eventsList[ev].longtitude + 0.001;
       if (this.eventsList[ev].longtitude < this.boundsPar.west) this.boundsPar.west = this.eventsList[ev].longtitude - 0.001;
     }
-    //console.log(this.boundsPar);
   }
 
 }

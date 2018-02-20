@@ -21,6 +21,7 @@ import { EventsMapComponent } from './pages/parent-events/events-map/events-map.
 import { AgmCoreModule } from '@agm/core';
 import { EventsListComponent } from './pages/parent-events/events-list/events-list.component';
 import { SingleEventComponent } from './pages/parent-events/events-list/single-event/single-event.component';
+import { EventsMarkerComponent } from './pages/parent-events/events-map/events-marker/events-marker.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SingleEventComponent } from './pages/parent-events/events-list/single-e
     ParentEventsComponent,
     EventsMapComponent,
     EventsListComponent,
-    SingleEventComponent
+    SingleEventComponent,
+    EventsMarkerComponent
   ],
   imports: [
     BrowserModule,

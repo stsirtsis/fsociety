@@ -1,2 +1,9 @@
-<app-single-event *ngFor="let ev of events" [event]="ev">
+<app-single-event *ngFor="let ev of visibleEvents" [event]="ev">
 </app-single-event>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" (click)="changePage(activePage-1)">Previous</a></li>
+    <li *ngFor="let page of pagesList" class="page-item"><a class="page-link" (click)="changePage(page)">{{page}}</a></li>
+    <li class="page-item"><a class="page-link" (click)="changePage(activePage+1)">Next</a></li>
+  </ul>
+</nav>

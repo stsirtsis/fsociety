@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Event } from '../../../../interfaces/event.interface';
 
 @Component({
   selector: 'app-single-event',
@@ -22,9 +23,6 @@ export class SingleEventComponent implements OnInit {
     else{
       this.shortDescription = this.event.description.substring(0,100)+"...";
       this.isLong = true;
+    }
   }
-
-  //getShortDescription(): string{
-
-  //}
 }

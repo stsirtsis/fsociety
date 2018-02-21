@@ -1,0 +1,55 @@
+  <p> </p> 
+  <p>
+        <a class="btn btn-info btn-lg" onclick="history.back(-1)" color:white>
+          <span class="glyphicon glyphicon-chevron-left"> < </span> Back
+        </a>
+  </p>  
+
+
+
+<div class="row">
+<div class="col-xs-1 col-md-1"></div>
+
+<div class="card w-75 col-xs-11 col-md-11">
+<div class="w3-container">
+  <div class="row">
+    <div class="col-xs-3 col-md-3">
+      <p></p>
+      <img class="group myimage" src="http://placehold.it/400x250/000/fff" alt="" routerLink="/one-event" />
+    </div>
+    <div class="col-xs-9 col-md-9">
+      <div class="card-body">
+        <h1 class="card-title" routerLink="/one-event" ><b>{{event.eventName}} </b></h1>
+        <p class="card-text"><b>Περιγραφή Δραστηριότητας: </b>{{event.description}}</p>
+        <p class="card-text"><b>Ηλικιακή κατηγορία Δραστηριότητας: </b>{{event.AgeGroup}}</p>
+        <div class="row">
+        <div class="col-xs-4 col-md-4">
+          <b>Περιοχή :</b> {{event.Area}}
+        </div>
+        <div class="col-xs-4 col-md-4">
+          <b> Οδός :</b> {{event.StreetName}}
+        </div>
+        <div class="col-xs-4 col-md-4">
+          <b> Αριθμός :</b> {{event.StreetNumber}}
+        </div>
+        </div>
+        <p></p>
+        <p class="card-text"><b>Κατηγορία Δραστηριότητας </b> {{event.category}}</p>
+       <p class="card-text"><b>Συνολικές θέσεις Δραστηριότητας </b> {{event.capacity}}</p>
+        <div class="row">
+        <div class="col-xs-8 col-md-8">
+          <b> Τιμή εισιτηρίου: </b> {{event.price}}€
+        </div>
+        <div class="col-xs-4 col-md-4">
+          <a href="#" class="btn btn-primary" >Κράτηση</a>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+

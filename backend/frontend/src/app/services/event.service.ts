@@ -11,7 +11,16 @@ export class EventService {
 
   constructor(private http: HttpClient) { }
 
-  getEvents(): Event[]{
+  getAllEvents(): Event[]{
     return EventsList;
   }
+  
+  getEventById(myId: number): Event{
+    for (var ev of EventsList){
+      if (ev.Id == myId) return ev;
+    }
+    //console.log(EventsList.filter(x => (x.Id===myid)));
+    //return EventsList.filter(x => (x.Id===myid));
+  }
 }
+

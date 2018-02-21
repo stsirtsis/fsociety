@@ -27,7 +27,7 @@ export class ParentEventsComponent implements OnInit {
   }
 
   getEvents(): void{
-    this.eventsList = this.eventService.getEvents();
+    this.eventsList = this.eventService.getAllEvents();
   }
 
   setBounds(): void{

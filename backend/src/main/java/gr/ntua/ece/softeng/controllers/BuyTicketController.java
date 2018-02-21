@@ -2,6 +2,7 @@ package gr.ntua.ece.softeng.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import gr.ntua.ece.softeng.repositories.ParentRepository;
 
 @Controller
 @RequestMapping(path="/buyticket")
+@PreAuthorize("hasAuthority('PARENT') or hasAuthority('ADMIN')")
 public class BuyTicketController {
 
 	@Autowired

@@ -1,51 +1,67 @@
 package gr.ntua.ece.softeng.controllers;
 
-import java.util.Arrays;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import gr.ntua.ece.softeng.entities.E;
+import gr.ntua.ece.softeng.entities.Event;
 import gr.ntua.ece.softeng.entities.Providers;
-import gr.ntua.ece.softeng.entities.Role;
-import gr.ntua.ece.softeng.entities.User;
+import gr.ntua.ece.softeng.repositories.ERepository;
+import gr.ntua.ece.softeng.repositories.EventRepository;
 import gr.ntua.ece.softeng.repositories.ProvidersRepository;
-import gr.ntua.ece.softeng.repositories.UserRepository;
+
 
 @Controller 
-@RequestMapping(path="/providers-registration")
+@RequestMapping(path="/provider")
 public class ProviderController {
+	@Autowired
+	private EventRepository eventRepository;
+	
 	@Autowired
 	private ProvidersRepository providersRepository;
 	
-	@Autowired 
-	private UserRepository userRepository;
+	@Autowired
+	private ERepository eRepository;
+	
 
-
-	private final static String POST_PARENT_URL = "/addNewProvider";
-	@PostMapping(POST_PARENT_URL)
-	public @ResponseBody String createParent(@RequestBody Providers provider) {
-		String username = provider.getUserName();
-		String password = provider.getPassword();
-		
-		String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);
-		
-		userRepository.save(new User(username, sha256hex, Arrays.asList(new Role("PARENT"))));
-		provider.setPassword(sha256hex);
+	@PostMapping(path="/addNewEvent/{providerCompanyName}")
+	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
+	public @ResponseBody String addNewEvent_post (@RequestBody Event e, @PathVariable String providerCompanyName) {
+		Providers provider = providersRepository.findByCompanyName(providerCompanyName);
+		provider.getEvents().add(e);
 		providersRepository.save(provider);
-		return "ok with post from provider";
+		e.setProvider(provider);
+		eventRepository.save(e);
+
+		String eventname = e.getEventname();
+		String description = e.getDescription();
+		String Area = e.getArea();
+		String StreetName = e.getStreetName();
+		String StreetNumber = e.getStreetNumber().toString();
+		String AgeGroup = e.getAgeGroup().toString();
+		String capacity = e.getCapacity().toString();
+		String price = e.getPrice().toString();
+		String category = e.getCategory();
+		String company_name = e.getProvider().getcompanyName();
+		eRepository.save(new E(eventname, description , Area , StreetName , StreetNumber , AgeGroup , capacity , price , category , company_name ));
+
+		return "OK with post from event registration";
+	}
+	
+	@PostMapping(path="/events/{providerCompanyName}")
+	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
+	public @ResponseBody Set<Event> getEvents (@PathVariable String providerCompanyName) {
+		return providersRepository.findByCompanyName(providerCompanyName).getEvents();
 	}
 
-	@GetMapping(path="/all")
-	@PreAuthorize("hasAuthority('ADMIN')")
-	public @ResponseBody Iterable<Providers> getAllUsers() {
-		return providersRepository.findAll();
-	}
 }
 
 

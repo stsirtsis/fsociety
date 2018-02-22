@@ -21,9 +21,11 @@ public class E {
 	private String category;
 	@TextIndexed private String company_name;
 	@TextScore private Float score;
+	private String latitude;
+	private String longitude;
 
 
-	public E(String eventname,String description,String Area,String StreetName,String StreetNumber,String AgeGroup,String capacity,String price, String category,String company_name) {
+	public E(String eventname,String description,String Area,String StreetName,String StreetNumber,String AgeGroup,String capacity,String price, String category,String company_name,String latitude,String longitude) {
 		this.eventname=eventname;
 		this.description=description;
 		this.Area=Area;
@@ -34,6 +36,8 @@ public class E {
 		this.price=price;
 		this.category=category;
 		this.company_name=company_name;
+		this.latitude=latitude;
+		this.longitude=longitude;
 	}
 
 
@@ -162,6 +166,26 @@ public class E {
 
 	public void setScore(Float score) {
 		this.score = score;
+	}
+
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
 	}
 
 }

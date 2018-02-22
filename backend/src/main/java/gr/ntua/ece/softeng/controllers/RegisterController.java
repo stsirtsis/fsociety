@@ -55,7 +55,7 @@ public class RegisterController {
 		
 		String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);
 		
-		userRepository.save(new User(username, sha256hex, Arrays.asList(new Role("PARENT"))));
+		userRepository.save(new User(username, sha256hex, Arrays.asList(new Role("PROVIDER"))));
 		provider.setPassword(sha256hex);
 		providersRepository.save(provider);
 		return "ok with post from provider";

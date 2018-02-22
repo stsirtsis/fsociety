@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Event } from '../../../interfaces/event.interface';
+import { SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-events-list',
@@ -17,6 +18,18 @@ export class EventsListComponent implements OnInit {
 
 
   ngOnInit() {
+    this.activePage=1;
+    this.pagesList = [];
+    for(var i = 0; i<=this.events.length/this.eventsPerPage; i++){
+      this.pagesList.push(i+1);
+    }
+    this.changePage(this.activePage);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.events = changes.events.currentValue;
+    this.activePage=1;
+    this.pagesList = [];
     for(var i = 0; i<=this.events.length/this.eventsPerPage; i++){
       this.pagesList.push(i+1);
     }

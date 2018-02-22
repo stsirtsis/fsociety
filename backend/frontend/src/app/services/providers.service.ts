@@ -8,7 +8,7 @@ import {Providers} from '../interfaces/providers.interface';
 @Injectable()
 export class ProvidersService {
 
-  private static readonly POST_URL = '/providers-registration/addNewProvider';
+  private static readonly POST_URL = '/register/provider';
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) {}

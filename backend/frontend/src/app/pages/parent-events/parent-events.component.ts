@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Event } from '../../interfaces/event.interface';
 import { EventService } from '../../services/event.service';
 import { LatLngBoundsLiteral } from './LatLngBoundsLiteral'
+import { Observable } from 'rxjs/Observable';
+import { Subject }    from 'rxjs/Subject';
+import {
+  debounceTime, distinctUntilChanged, switchMap
+} from 'rxjs/operators';
 
 @Component({
   selector: 'app-parent-events',
@@ -11,32 +16,38 @@ import { LatLngBoundsLiteral } from './LatLngBoundsLiteral'
 export class ParentEventsComponent implements OnInit {
 
   eventsList: Event[];
+  searchText: string = "";
   listOrMap: number = 0;  //0 is list, 1 is map
   boundsPar: LatLngBoundsLiteral={
-    east: 0.0,
-    west: 91.0,
-    north: 0.0,
-    south: 91.0
-  };
+  east: 0.0,
+  west: 91.0,
+  north: 0.0,
+  south: 91.0
+};
 
-  constructor(private eventService: EventService) { }
+constructor(private eventService: EventService) { }
 
-  ngOnInit() {
-    this.getEvents();
-    this.setBounds();
+ngOnInit() {
+  this.getEvents();
+  this.setBounds();
+}
+
+searchEvents(): void{
+  this.eventService.getEventsByText(this.searchText)
+  .subscribe(data => this.eventsList = data);
+}
+
+getEvents(): void{
+  this.eventsList = this.eventService.getAllEvents();
+}
+
+setBounds(): void{
+  for (var ev in this.eventsList){
+    if (this.eventsList[ev].latitude > this.boundsPar.north) this.boundsPar.north = this.eventsList[ev].latitude + 0.001;
+    if (this.eventsList[ev].latitude < this.boundsPar.south) this.boundsPar.south = this.eventsList[ev].latitude - 0.001;
+    if (this.eventsList[ev].longtitude > this.boundsPar.east) this.boundsPar.east = this.eventsList[ev].longtitude + 0.001;
+    if (this.eventsList[ev].longtitude < this.boundsPar.west) this.boundsPar.west = this.eventsList[ev].longtitude - 0.001;
   }
-
-  getEvents(): void{
-    this.eventsList = this.eventService.getAllEvents();
-  }
-
-  setBounds(): void{
-    for (var ev in this.eventsList){
-      if (this.eventsList[ev].latitude > this.boundsPar.north) this.boundsPar.north = this.eventsList[ev].latitude + 0.001;
-      if (this.eventsList[ev].latitude < this.boundsPar.south) this.boundsPar.south = this.eventsList[ev].latitude - 0.001;
-      if (this.eventsList[ev].longtitude > this.boundsPar.east) this.boundsPar.east = this.eventsList[ev].longtitude + 0.001;
-      if (this.eventsList[ev].longtitude < this.boundsPar.west) this.boundsPar.west = this.eventsList[ev].longtitude - 0.001;
-    }
-  }
+}
 
 }

@@ -1,7 +1,15 @@
 package gr.ntua.ece.softeng.controllers;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Scanner;
 import java.util.Set;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -34,24 +42,62 @@ public class ProviderController {
 
 	@PostMapping(path="/addNewEvent/{providerCompanyName}")
 	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
-	public @ResponseBody String addNewEvent_post (@RequestBody Event e, @PathVariable String providerCompanyName) {
+	public @ResponseBody String addNewEvent_post (@RequestBody Event e, @PathVariable String providerCompanyName) throws IOException, JSONException {
 		Providers provider = providersRepository.findByCompanyName(providerCompanyName);
 		provider.getEvents().add(e);
 		providersRepository.save(provider);
 		e.setProvider(provider);
 		eventRepository.save(e);
 
+
 		String eventname = e.getEventname();
 		String description = e.getDescription();
 		String Area = e.getArea();
-		String StreetName = e.getStreetName();
+		String StreetName = e.getStreetName().replaceAll("\\s+","");
+		System.out.println(StreetName);
 		String StreetNumber = e.getStreetNumber().toString();
 		String AgeGroup = e.getAgeGroup().toString();
 		String capacity = e.getCapacity().toString();
 		String price = e.getPrice().toString();
 		String category = e.getCategory();
 		String company_name = e.getProvider().getcompanyName();
-		eRepository.save(new E(eventname, description , Area , StreetName , StreetNumber , AgeGroup , capacity , price , category , company_name ));
+		final String TARGET_URL =
+	               "https://maps.googleapis.com/maps/api/geocode/json?address=";
+		final String help1= "+";
+		final String help2=",";
+		final String API_KEY =
+	               "&key=AIzaSyCi-UTmdLdEpurrr8A5Ou5I17cihpelPcI";
+		URL serverUrl = new URL(TARGET_URL+StreetNumber+help1+StreetName+help2+Area+API_KEY);
+		URLConnection urlConnection = serverUrl.openConnection();
+		HttpURLConnection httpConnection = (HttpURLConnection)urlConnection;
+		httpConnection.setRequestMethod("GET");
+		httpConnection.setRequestProperty("Content-Type", "application/json");
+		httpConnection.setDoOutput(true);
+		String response = httpConnection.getResponseMessage();
+		if (httpConnection.getInputStream() == null) {
+			   System.out.println("No stream");
+		}
+
+		Scanner httpResponseScanner = new Scanner (httpConnection.getInputStream());
+		String resp = "";
+		while (httpResponseScanner.hasNext()) {
+			 String line = httpResponseScanner.nextLine();
+			 resp += line;
+		}
+		httpResponseScanner.close();
+		
+		JSONObject json = new JSONObject(resp);
+		
+		JSONArray results =  json.getJSONArray("results");
+		JSONObject sessionobj=results.getJSONObject(0);
+		JSONObject geometry=sessionobj.getJSONObject("geometry");
+		JSONObject location=geometry.getJSONObject("location");
+		String latitude=location.getString("lat");
+		String longitude=location.getString("lng");
+		
+		eRepository.save(new E(eventname, description , Area , StreetName , StreetNumber , AgeGroup , capacity , price , category , company_name, latitude, longitude ));
+
+
 
 		return "OK with post from event registration";
 	}

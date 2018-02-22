@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {Http, HttpModule} from '@angular/http';
+import {AuthConfig, AuthHttp} from 'angular2-jwt';
+
 
 
 import { AppComponent } from './app.component';
@@ -23,6 +26,22 @@ import { EventsListComponent } from './pages/parent-events/events-list/events-li
 import { SingleEventComponent } from './pages/parent-events/events-list/single-event/single-event.component';
 import { EventsMarkerComponent } from './pages/parent-events/events-map/events-marker/events-marker.component';
 import { OneEventComponent } from './pages/one-event/one-event.component';
+import { AuthenticationService } from './services/authentication/authentication.service';
+import { UserService } from './services/authentication/user.service';
+import { AuthGuardService } from './services/guards/auth-guard.service';
+import { AdminAuthGuardService } from './services/guards/admin-auth-guard.service';
+import { TOKEN_NAME } from './constants/auth.constants';
+
+export function authHttpServiceFactory(http: Http) {
+  return new AuthHttp(new AuthConfig({
+    headerPrefix: 'Bearer',
+    tokenName: TOKEN_NAME,
+    globalHeaders: [{'Content-Type': 'application/json'}],
+    noJwtError: false,
+    noTokenScheme: true,
+    tokenGetter: (() => localStorage.getItem(TOKEN_NAME))
+  }), http);
+}
 
 @NgModule({
   declarations: [
@@ -46,11 +65,22 @@ import { OneEventComponent } from './pages/one-event/one-event.component';
     Routing,
     FormsModule,
     HttpClientModule,
+    HttpModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA9VxQECCNE4WGhC94rFT8ly6QMCLbovYY'
     })
   ],
-  providers: [ParentService, ProvidersService, EventService],
+  providers: [
+    {provide: AuthHttp, useFactory: authHttpServiceFactory, deps: [Http]},
+    ParentService, 
+    ProvidersService, 
+    EventService, 
+    AuthenticationService, 
+    UserService, 
+    AuthGuardService, 
+    AdminAuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

@@ -8,7 +8,7 @@ import {Parent} from '../interfaces/parent.interface';
 @Injectable()
 export class ParentService {
 
-  private static readonly POST_PARENT_URL = '/parents/addNewParent';
+  private static readonly POST_PARENT_URL = '/register/parent';
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) {}

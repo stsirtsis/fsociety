@@ -49,13 +49,13 @@ public class RegisterController {
 	
 	private final static String POST_PROVIDER_URL = "/provider";
 	@PostMapping(POST_PROVIDER_URL)
-	public @ResponseBody String createParent(@RequestBody Providers provider) {
+	public @ResponseBody String createProvider(@RequestBody Providers provider) {
 		String username = provider.getUserName();
 		String password = provider.getPassword();
 		
 		String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);
 		
-		userRepository.save(new User(username, sha256hex, Arrays.asList(new Role("PARENT"))));
+		userRepository.save(new User(username, sha256hex, Arrays.asList(new Role("PROVIDER"))));
 		provider.setPassword(sha256hex);
 		providersRepository.save(provider);
 		return "ok with post from provider";

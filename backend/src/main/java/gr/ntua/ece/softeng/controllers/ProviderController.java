@@ -54,13 +54,14 @@ public class ProviderController {
 		String description = e.getDescription();
 		String Area = e.getArea();
 		String StreetName = e.getStreetName().replaceAll("\\s+","");
-		System.out.println(StreetName);
-		String StreetNumber = e.getStreetNumber().toString();
-		String AgeGroup = e.getAgeGroup().toString();
-		String capacity = e.getCapacity().toString();
-		String price = e.getPrice().toString();
-		String category = e.getCategory();
+		Integer StreetNumber = e.getStreetNumber();
+		Integer AgeGroup = e.getAgeGroup();
+		Integer capacity = e.getCapacity();
+		Integer price = e.getPrice();
+		Integer category = e.getCategory();
 		String company_name = e.getProvider().getcompanyName();
+		String date=e.getDate().toString();
+		String state="OPEN";
 		final String TARGET_URL =
 	               "https://maps.googleapis.com/maps/api/geocode/json?address=";
 		final String help1= "+";
@@ -95,7 +96,7 @@ public class ProviderController {
 		String latitude=location.getString("lat");
 		String longitude=location.getString("lng");
 		
-		eRepository.save(new E(eventname, description , Area , StreetName , StreetNumber , AgeGroup , capacity , price , category , company_name, latitude, longitude ));
+		eRepository.save(new E(eventname, description , Area , StreetName , StreetNumber , AgeGroup , capacity , price , category , company_name, latitude, longitude, date, state ));
 
 
 

@@ -17,6 +17,11 @@ public class Parent {
 	
 	private String firstName;
 	private String lastName;
+	private String Area;
+	private String StreetName;
+	private Integer StreetNumber;
+	private String latitude;
+	private String longitude;
 	private String password;
 	private String email;
 	private String phoneNumber;
@@ -81,6 +86,36 @@ public class Parent {
 	}
 	public void setFpoints(Integer fpoints) {
 		Fpoints = fpoints;
+	}
+	public String getArea() {
+		return Area;
+	}
+	public void setArea(String area) {
+		Area = area;
+	}
+	public String getStreetName() {
+		return StreetName;
+	}
+	public void setStreetName(String streetName) {
+		StreetName = streetName;
+	}
+	public Integer getStreetNumber() {
+		return StreetNumber;
+	}
+	public void setStreetNumber(Integer streetNumber) {
+		StreetNumber = streetNumber;
+	}
+	public String getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(String latitude2) {
+		this.latitude = latitude2;
+	}
+	public String getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
 	}
 	@Override
 	public String toString() {

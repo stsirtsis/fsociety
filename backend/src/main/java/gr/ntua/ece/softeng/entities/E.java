@@ -1,5 +1,7 @@
 package gr.ntua.ece.softeng.entities;
 
+import java.util.Objects;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,42 +12,38 @@ import org.springframework.data.mongodb.core.mapping.TextScore;
 public class E {
 	@Id
 	private String Id;
-	@TextIndexed	private String eventname;
+	@TextIndexed	private String eventName;
 	@TextIndexed    private String description;
     private String Area;
 	private String StreetName;
-	private String StreetNumber;
-	private String AgeGroup;
-	private String capacity;
-	private String price;
-	private String category;
+	private Integer StreetNumber;
+	private Integer ageGroup;
+	private Integer capacity;
+	private Integer price;
+	private Integer category;
 	@TextIndexed private String company_name;
 	@TextScore private Float score;
 	private String latitude;
 	private String longitude;
+	private String date;
+	private String state;
 
 
-	public E(String eventname,String description,String Area,String StreetName,String StreetNumber,String AgeGroup,String capacity,String price, String category,String company_name,String latitude,String longitude) {
-		this.eventname=eventname;
+	public E(String eventName,String description,String Area,String StreetName,Integer StreetNumber,Integer ageGroup,Integer capacity,Integer price, Integer category,String company_name,String latitude,String longitude,String date,String state) {
+		this.eventName=eventName;
 		this.description=description;
 		this.Area=Area;
 		this.StreetName=StreetName;
 		this.StreetNumber=StreetNumber;
-		this.AgeGroup=AgeGroup;
+		this.ageGroup=ageGroup;
 		this.capacity=capacity;
 		this.price=price;
 		this.category=category;
 		this.company_name=company_name;
 		this.latitude=latitude;
 		this.longitude=longitude;
-	}
-
-
-	@Override
-	public String toString() {
-		return String.format(
-				"Event[id=%s, eventname=%s, description=%s, Area=%s, StreetName=%s, StreetNumber=%s, AgeGroup=%s, capacity=%s, price=%s, category=%s, comapany_name=%s]",
-				Id,eventname,description,Area,StreetName,StreetNumber,AgeGroup,capacity,price,category,company_name) ;
+		this.date=date;
+		this.state=state;
 	}
 
 
@@ -60,12 +58,12 @@ public class E {
 
 
 	public String getEventname() {
-		return eventname;
+		return eventName;
 	}
 
 
 	public void setEventname(String eventname) {
-		this.eventname = eventname;
+		this.eventName = eventname;
 	}
 
 
@@ -99,52 +97,72 @@ public class E {
 	}
 
 
-	public String getStreetNumber() {
+	public Integer getStreetNumber() {
 		return StreetNumber;
 	}
 
 
-	public void setStreetNumber(String streetNumber) {
+	public void setStreetNumber( Integer streetNumber) {
 		StreetNumber = streetNumber;
 	}
+	
 
-
-	public String getAgeGroup() {
-		return AgeGroup;
+	@Override
+	public int hashCode() {
+		return Objects.hash(Id);
 	}
 
 
-	public void setAgeGroup(String ageGroup) {
-		AgeGroup = ageGroup;
+	@Override
+	public boolean equals(Object obj) {
+		 if (obj == this) {
+	            return true;
+	        }
+		 else if (obj instanceof E) {
+			  E e = (E) obj;
+			  return Objects.equals(this.Id,e.Id);
+			  
+		 }
+		 else return false;
 	}
 
 
-	public String getCapacity() {
+	public Integer getAgeGroup() {
+		return ageGroup;
+	}
+
+
+	public void setAgeGroup( Integer ageGroup) {
+		this.ageGroup = ageGroup;
+	}
+
+
+	public  Integer getCapacity() {
 		return capacity;
 	}
 
 
-	public void setCapacity(String capacity) {
+	public void setCapacity(Integer capacity) {
 		this.capacity = capacity;
 	}
 
 
-	public String getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
 
 
-	public void setPrice(String price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 
 
-	public String getCategory() {
+	public Integer getCategory() {
 		return category;
 	}
 
 
-	public void setCategory(String category) {
+	public void setCategory(Integer category) {
 		this.category = category;
 	}
 
@@ -186,6 +204,26 @@ public class E {
 
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
+	}
+
+
+	public String getDate() {
+		return date;
+	}
+
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+
+	public String getState() {
+		return state;
+	}
+
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 }

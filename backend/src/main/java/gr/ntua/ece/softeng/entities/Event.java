@@ -1,5 +1,6 @@
 package gr.ntua.ece.softeng.entities;
 
+import java.sql.Date;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -8,14 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 import gr.ntua.ece.softeng.entities.Parent;
 
-enum state { OPEN, IN_PROGRESS, FINISHED }
+enum state { OPEN, FINISHED }
 
 @Entity
 public class Event {
@@ -27,13 +26,15 @@ public class Event {
 	private String Area;
 	private String StreetName;
 	private Integer StreetNumber;
-	private Integer AgeGroup;
+	private Integer ageGroup;
 	private Integer capacity;
 	private Integer price;
-	private String category;
+	private Integer category;
+	private Date date;
 	private state state;	
 	
 	
+
 	@ManyToOne
 	@JsonIgnore
 	private Providers provider;
@@ -77,11 +78,11 @@ public class Event {
 		this.price = price;
 	}
 
-	public String getCategory() {
+	public Integer getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(Integer category) {
 		this.category = category;
 	}
 
@@ -143,11 +144,19 @@ public class Event {
 	}
 
 	public Integer getAgeGroup() {
-		return AgeGroup;
+		return ageGroup;
 	}
 
 	public void setAgeGroup(Integer ageGroup) {
-		AgeGroup = ageGroup;
+		this.ageGroup = ageGroup;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 

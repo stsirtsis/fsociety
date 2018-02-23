@@ -40,7 +40,10 @@ dependencies {
 	compile('org.springframework.security.oauth:spring-security-oauth2')
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile('org.springframework.security:spring-security-jwt')
-	compile('org.json:json')	
+	compile('org.json:json')
+	
+	compile files ('../VisibleTextualWatermark/VisibleTextualWatermark-1.0.jar')
+	
 	runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

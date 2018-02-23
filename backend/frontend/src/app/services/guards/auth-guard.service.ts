@@ -11,11 +11,11 @@ export class AuthGuardService implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (tokenNotExpired(TOKEN_NAME, this.userService.accessToken)) {
-      this.router.navigate(['/'], {queryParams: {redirectTo: state.url}});
+    const isParent = this.userService.isParentUser();
+    if (tokenNotExpired(TOKEN_NAME, this.userService.accessToken) && isParent) {
       return true;
     } else {
-      this.router.navigate(['login'], {queryParams: {redirectTo: state.url}});
+      this.router.navigate(['login']);
       return false;
     }
   }

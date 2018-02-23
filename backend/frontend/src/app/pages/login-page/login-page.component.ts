@@ -51,10 +51,6 @@ export class LoginPageComponent implements OnInit {
   }
 
   private navigateAfterSuccess() {
-    if (this.redirectUrl) {
-      this.router.navigateByUrl(this.redirectUrl);
-    } else {
-      this.router.navigate(['/']);
-    }
+    this.router.navigate(['parent-events']);
   }
 }

@@ -7,6 +7,7 @@ import { Subject }    from 'rxjs/Subject';
 import {
   debounceTime, distinctUntilChanged, switchMap
 } from 'rxjs/operators';
+import { UserService } from '../../services/authentication/user.service';
 
 @Component({
   selector: 'app-parent-events',
@@ -15,6 +16,7 @@ import {
 })
 export class ParentEventsComponent implements OnInit {
 
+  username: string;
   eventsList: Event[];
   searchText: string = "";
   listOrMap: number = 0;  //0 is list, 1 is map
@@ -25,11 +27,12 @@ export class ParentEventsComponent implements OnInit {
   south: 91.0
 };
 
-constructor(private eventService: EventService) { }
+constructor(private eventService: EventService, private userService: UserService) { }
 
 ngOnInit() {
   this.getEvents();
   this.setBounds();
+  this.username = this.userService.getUsername();
 }
 
 searchEvents(): void{

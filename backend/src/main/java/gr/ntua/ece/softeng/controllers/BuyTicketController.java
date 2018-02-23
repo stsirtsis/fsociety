@@ -8,10 +8,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import gr.ntua.ece.softeng.config.PDFConfig;
 import gr.ntua.ece.softeng.entities.Event;
 import gr.ntua.ece.softeng.entities.Parent;
 import gr.ntua.ece.softeng.repositories.EventRepository;
 import gr.ntua.ece.softeng.repositories.ParentRepository;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.mail.internet.MimeMessage;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 
 
 @Controller
@@ -24,6 +42,9 @@ public class BuyTicketController {
 
 	@Autowired
 	private ParentRepository parentRepository;
+	
+	@Autowired
+	private JavaMailSender sender;
 
 	public String book(Event event, Integer capacity) {
 		event.setCapacity(capacity - 1);
@@ -59,5 +80,84 @@ public class BuyTicketController {
 			return "Sorry, event is full";
 
 	}
+	
+    @RequestMapping("/sendEmail")
+    public  @ResponseBody String home(@RequestParam String username) {
+    	try {
+            sendEmail(username);
+            return "Email Sent!";
+        }catch(Exception ex) {
+            return "Error in sending email: "+ex;
+        }
+    }
+
+    public void sendEmail(String username) throws Exception{
+    	Parent parent=parentRepository.findByUsername(username);
+    	String email;
+    	email=parent.getEmail();
+    	
+    	String firstName=parent.getFirstName();
+    	String lastName=parent.getLastName();
+    	
+    	MimeMessage message = sender.createMimeMessage();
+    	ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        // Enable the multipart flag!
+        MimeMessageHelper helper = new MimeMessageHelper(message,true);
+        
+        helper.setTo(email);
+        helper.setText("");
+        helper.setSubject("Ticket-Report");
+        String fileName = "ticket.pdf";
+
+	    try {
+ 
+	        PDFConfig.createPDF(fileName,firstName,lastName);
+	        
+	        baos = convertPDFToByteArrayOutputStream(fileName);
+	       } catch (Exception e1) {
+	        e1.printStackTrace();
+	    }
+        
+        final byte[] data=baos.toByteArray();
+        
+        
+        helper.addAttachment("ticket.pdf",new ByteArrayResource(data));
+        
+        sender.send(message);
+    }
+    
+
+	private ByteArrayOutputStream convertPDFToByteArrayOutputStream(String fileName) {
+ 
+		InputStream inputStream = null;
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		try {
+ 
+			inputStream = new FileInputStream(fileName);
+			byte[] buffer = new byte[1024];
+			baos = new ByteArrayOutputStream();
+ 
+			int bytesRead;
+			while ((bytesRead = inputStream.read(buffer)) != -1) {
+				baos.write(buffer, 0, bytesRead);
+			}
+ 
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (inputStream != null) {
+				try {
+					inputStream.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return baos;
+	}
+	
+	
 
 }

@@ -9,9 +9,10 @@ export class UserService {
   jwtHelper: JwtHelper = new JwtHelper();
   username: string;
   accessToken: string;
-  isAdmin: boolean;
-  isParent: boolean;
-  isProvider: boolean;
+  isAdmin: boolean = false;
+  isParent: boolean = false;
+  isProvider: boolean = false;
+  role: string;
 
   constructor() {
   }
@@ -19,13 +20,14 @@ export class UserService {
   login(accessToken: string) {
     const decodedToken = this.jwtHelper.decodeToken(accessToken);
     console.log(decodedToken);
-      
+
     this.username = decodedToken.user_name;
 
     this.isAdmin     = decodedToken.authorities.some(el => el === 'ADMIN');
     this.isParent    = decodedToken.authorities.some(el => el === 'PARENT');
     this.isProvider  = decodedToken.authorities.some(el => el === 'PROVIDER');
     this.accessToken = accessToken;
+    this.role = decodedToken.authorities[0];
 
     localStorage.setItem(TOKEN_NAME, accessToken);
   }
@@ -45,14 +47,21 @@ export class UserService {
   isParentUser(): boolean {
     return this.isParent;
   }
-    
+
   isProviderUser(): boolean {
     return this.isProvider;
   }
-  
-  getUsername(): string {
-    return this.username;    
-  } 
-    
-}
+  isUser(): boolean {
+    return (this.isProvider||this.isParent)
+  }
 
+  getUsername(): string {
+    return this.username;
+  }
+  getrole(): string {
+    return this.role;
+  }
+
+
+
+}

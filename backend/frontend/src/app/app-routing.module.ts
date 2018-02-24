@@ -10,41 +10,40 @@ import { EventsMapComponent } from './pages/parent-events/events-map/events-map.
 import { OneEventComponent } from './pages/one-event/one-event.component';
 import { AuthGuardService } from './services/guards/auth-guard.service';
 import { AdminAuthGuardService } from './services/guards/admin-auth-guard.service';
+import { ProviderGuardService} from './services/guards/provider-guard.service';
 
 const appRoutes: Routes = [
-  { 
-    path: '', 
-    component: FrontPageComponent 
+  {
+    path: '',
+    component: FrontPageComponent
   },
-  { 
-    path: 'parent-register', 
-    component: ParentRegisterPageComponent 
+  {
+    path: 'parent-register',
+    component: ParentRegisterPageComponent
   },
-  { 
-    path: 'provider-register', 
-    component: ProviderRegisterPageComponent 
+  {
+    path: 'provider-register',
+    component: ProviderRegisterPageComponent
   },
   {
     path: 'login-page',
     component: LoginPageComponent
   },
   {
-    path: 'parent-events', 
-    component: ParentEventsComponent,
-    canActivate: [AuthGuardService]
+    path: 'parent-events',
+    component: ParentEventsComponent
   },
-  { 
-    path: 'map', 
-    component: EventsMapComponent,
-    canActivate: [AuthGuardService]
+  {
+    path: 'map',
+    component: EventsMapComponent
   },
   {
     path: 'one-event/:Id' ,
     component: OneEventComponent,
     canActivate: [AuthGuardService]
   },
-  { 
-    path: '**', 
+  {
+    path: '**',
     redirectTo : ''
   }
 ];

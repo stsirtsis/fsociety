@@ -1,3 +1,5 @@
+<app-main-toolbar></app-main-toolbar>
+
 <div class="container">
   <h2>Εγγραφή Παρόχου</h2>
   <br>
@@ -26,6 +28,9 @@
       <div class="form-group col-md-6">
         <label for="inputPassword">Password</label>
         <input type="password" class="form-control" id="inputPassword" placeholder="Password" [(ngModel)]="providers.password" name="password" required>
+      </div>
+      <div *ngIf="error" class="form-row">
+        <div class="alert alert-danger">{{error}}</div>
       </div>
 
   <p> Κατηγορία Δραστηριότητας     </p> <br>

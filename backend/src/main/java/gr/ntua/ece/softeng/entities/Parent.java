@@ -14,7 +14,7 @@ import gr.ntua.ece.softeng.entities.Event;
 public class Parent {
 	@Id
 	private String username;
-	
+
 	private String firstName;
 	private String lastName;
 	private String Area;
@@ -27,12 +27,13 @@ public class Parent {
 	private String phoneNumber;
 	private String debitCard;
 	private Integer Fpoints;
-	
+	private Integer wallet;
+
 	@ManyToMany
 	@JsonIgnore
 	Set<Event> events;
-	
-	
+
+
 	public Set<Event> getEvents() {
 		return events;
 	}
@@ -117,9 +118,17 @@ public class Parent {
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
+
+	public Integer getWallet() {
+		return wallet;
+	}
+	public void setWallet(Integer wallet) {
+		this.wallet = wallet;
+	}
+
 	@Override
 	public String toString() {
 		return "Parent [firstName=" + firstName + ", lastName=" + lastName + ", username=" + username + " , password=" + password + ", email=" + email + ", phoneNumber=" + phoneNumber + ", debitCard=" + debitCard + " ,Fpoints=" + Fpoints + "]";
 	}
-	
+
 }

@@ -43,10 +43,11 @@ export class LoginPageComponent implements OnInit {
             this.error = 'Username or password is incorrect';
           }
         },
-        error => {
-          this.error = 'Username or password is incorrect';
-          this.loading = false;
-        }
+          error => {
+            this.error = 'Username or password is incorrect';
+            this.loading = false;
+          }
+
       );
   }
 

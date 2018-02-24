@@ -16,4 +16,7 @@ export class ParentService {
   createParent(parent: Parent): Observable <Parent> {
     return this.http.post<any>(this.POST_PARENT_URL, parent, {headers: this.headers});
   }
+  //getParents(): Observable <Parent[]> {
+  //  return this.http.get<Parent[]>(ParentService.GET_PARENT_URL,{headers: this.headers});
+  //}
 }

@@ -15,8 +15,7 @@ import { UserService } from '../../services/authentication/user.service';
   styleUrls: ['./parent-events.component.css']
 })
 export class ParentEventsComponent implements OnInit {
-
-  username: string;
+  isParent: boolean;
   eventsList: Event[];
   searchText: string = "";
   listOrMap: number = 0;  //0 is list, 1 is map
@@ -32,7 +31,7 @@ constructor(private eventService: EventService, private userService: UserService
 ngOnInit() {
   this.getEvents();
   this.setBounds();
-  this.username = this.userService.getUsername();
+  this.isParent = this.userService.isParentUser();
 }
 
 searchEvents(): void{

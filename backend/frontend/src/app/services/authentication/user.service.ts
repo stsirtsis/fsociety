@@ -9,9 +9,10 @@ export class UserService {
   jwtHelper: JwtHelper = new JwtHelper();
   username: string;
   accessToken: string;
-  isAdmin: boolean;
-  isParent: boolean;
-  isProvider: boolean;
+  isAdmin: boolean = false;
+  isParent: boolean = false;
+  isProvider: boolean = false;
+  role: string;
 
   constructor() {
   }
@@ -26,6 +27,7 @@ export class UserService {
     this.isParent    = decodedToken.authorities.some(el => el === 'PARENT');
     this.isProvider  = decodedToken.authorities.some(el => el === 'PROVIDER');
     this.accessToken = accessToken;
+    this.role = decodedToken.authorities[0];
 
     localStorage.setItem(TOKEN_NAME, accessToken);
   }
@@ -49,6 +51,9 @@ export class UserService {
   isProviderUser(): boolean {
     return this.isProvider;
   }
+  isUser(): boolean {
+    return (this.isProvider||this.isParent)
+  }
 
   getUsername(): string {
     return this.username;
@@ -57,5 +62,11 @@ export class UserService {
   getAccessToken(): string {
     return this.accessToken;
   }
+
+  getrole(): string {
+    return this.role;
+  }
+
+
 
 }

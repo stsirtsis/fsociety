@@ -1,22 +1,4 @@
-<!-- <div class="container"> -->
-<!--   <h2>Σύνδεση Χρήστη</h2> -->
-<!--   <br> -->
-<!--   <form> -->
-
-<!--    <div class="form-group col-md-4"> -->
-<!--       <label for="inputUsername">Username</label> -->
-<!--       <input type="text" class="form-control" [(ngModel)]="model.username" id="inputUsername"> -->
-<!--     </div> -->
-
-<!--       <div class="form-group col-md-4"> -->
-<!--         <label for="inputPassword">Password</label> -->
-<!--         <input type="password" class="form-control" [(ngModel)]="model.password" id="inputPassword" placeholder="Password"> -->
-<!--       </div> -->
-<!--       <button type="submit" class="btn btn-primary" href="">Υποβολή</button> -->
-<!--       </form> -->
-<!-- </div> -->
-<!-- console.log(decodedToken); -->
-
+<app-main-toolbar></app-main-toolbar>
 <div class="form-wrapper">
   <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
     <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">

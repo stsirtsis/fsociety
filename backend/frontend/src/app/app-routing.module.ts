@@ -11,6 +11,7 @@ import { OneEventComponent } from './pages/one-event/one-event.component';
 import { AddEventComponent } from './pages/add-event/add-event.component';
 import { AuthGuardService } from './services/guards/auth-guard.service';
 import { AdminAuthGuardService } from './services/guards/admin-auth-guard.service';
+import { ProviderGuardService} from './services/guards/provider-guard.service';
 
 const appRoutes: Routes = [
   {
@@ -31,13 +32,11 @@ const appRoutes: Routes = [
   },
   {
     path: 'parent-events',
-    component: ParentEventsComponent,
-    canActivate: [AuthGuardService]
+    component: ParentEventsComponent
   },
   {
     path: 'map',
-    component: EventsMapComponent,
-    canActivate: [AuthGuardService]
+    component: EventsMapComponent
   },
   {
     path: 'one-event/:Id' ,

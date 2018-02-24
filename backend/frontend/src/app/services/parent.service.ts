@@ -8,12 +8,12 @@ import {Parent} from '../interfaces/parent.interface';
 @Injectable()
 export class ParentService {
 
-  private static readonly POST_PARENT_URL = '/register/parent';
+  private POST_PARENT_URL = '/register/parent';
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) {}
 
   createParent(parent: Parent): Observable <Parent> {
-    return this.http.post<any>(ParentService.POST_PARENT_URL, parent, {headers: this.headers});
+    return this.http.post<any>(this.POST_PARENT_URL, parent, {headers: this.headers});
   }
 }

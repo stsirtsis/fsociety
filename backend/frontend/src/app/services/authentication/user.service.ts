@@ -19,7 +19,7 @@ export class UserService {
   login(accessToken: string) {
     const decodedToken = this.jwtHelper.decodeToken(accessToken);
     console.log(decodedToken);
-      
+
     this.username = decodedToken.user_name;
 
     this.isAdmin     = decodedToken.authorities.some(el => el === 'ADMIN');
@@ -45,14 +45,17 @@ export class UserService {
   isParentUser(): boolean {
     return this.isParent;
   }
-    
+
   isProviderUser(): boolean {
     return this.isProvider;
   }
-  
-  getUsername(): string {
-    return this.username;    
-  } 
-    
-}
 
+  getUsername(): string {
+    return this.username;
+  }
+
+  getAccessToken(): string {
+    return this.accessToken;
+  }
+
+}

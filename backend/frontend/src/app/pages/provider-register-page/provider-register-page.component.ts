@@ -11,13 +11,14 @@ import {ProvidersService} from '../../services/providers.service';
 })
 export class ProviderRegisterPageComponent implements OnInit {
 
-providers: Providers  = { companyName: '', firstName: '', lastName: '', userName: '', password: '', category: '',
+providers: Providers  = { companyName: '', firstName: '', lastName: '', userName: '', password: '',
   description: '', area: '', streetName: '', streetNumber: 0, telNumber: '', mail: '', iban: '', events: []};
 
   constructor(private providerService: ProvidersService) { }
 
   ngOnInit() {
   }
+
   onSubmit() {
     this.providerService.createProvider(this.providers).subscribe(
       value => {

@@ -11,13 +11,13 @@ import {ParentService} from '../../services/parent.service';
 })
 export class ParentRegisterPageComponent implements OnInit {
 
-  parent: Parent  = { firstName: '', lastName: '', username: '', password: '', email: '', phoneNumber: '', debitCard: '', Fpoints: 0};
+  parent: Parent  = { firstName: '', lastName: '', username: '', area:'', streetName:'', streetNumber:0, password: '', email: '', phoneNumber: '', debitCard: '', fpoints: 0};
 
   constructor(private parentService: ParentService) {}
 
   ngOnInit() {
   }
-    onSubmit() {
+  onSubmit() {
     this.parentService.createParent(this.parent).subscribe(
       value => {
         console.log('[POST] create Parent successfully', value);
@@ -25,6 +25,6 @@ export class ParentRegisterPageComponent implements OnInit {
       () => {
         console.log('POST Parent - now completed.');
       });
-  }
+    }
 
-}
+  }

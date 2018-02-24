@@ -4,7 +4,6 @@ export class Providers {
   lastName: string;
   userName: string;
   password: string;
-  category: string;
   description: string;
   area: string;
   streetName: string;

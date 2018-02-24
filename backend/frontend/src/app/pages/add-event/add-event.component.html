@@ -1,0 +1,58 @@
+<div class="container">
+  <h2>Νέα Εκδήλωση</h2>
+  <br>
+  <form #eventForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="inputEventName">Όνομα Εκδήλωσης</label>
+      <input type="text" class="form-control" id="inputEventName" placeholder="Εκδήλωση" [(ngModel)]="event.eventName" name="eventName" required>
+    </div>
+    <div class="form-group">
+      <label for="inputDescription">Περιγραφή Εκδήλωσης</label>
+      <input type="text" class="form-control" id="inputDescription" [(ngModel)]="event.description" name="description" required>
+    </div>
+    <div class="form-group">
+      <label for="inputArea">Περιοχή</label>
+      <input type="text" class="form-control" id="inputArea" [(ngModel)]="event.area" name="Area" required>
+    </div>
+    <div class="form-group">
+      <label for="inputStreetName">Οδός</label>
+      <input type="text" class="form-control" id="inputStreetName" [(ngModel)]="event.streetName" name="StreetName" required>
+    </div>
+    <div class="form-group">
+      <label for="inputStreetNumber">Αριθμός</label>
+      <input type="number" class="form-control" id="inputStreetNumber" [(ngModel)]="event.streetNumber" name="StreetNumber" required>
+    </div>
+
+    <div class="form-group">
+        <label for="inputAgeGroup">Ηλικίες</label>
+        <input type="radio" [(ngModel)]="event.ageGroup" name="inputAgeGroup" [value]="1"> 2-5
+        <input type="radio" [(ngModel)]="event.ageGroup" name="inputAgeGroup" [value]="2"> 5-10
+        <input type="radio" [(ngModel)]="event.ageGroup" name="inputAgeGroup" [value]="3"> 10-15
+        <input type="radio" [(ngModel)]="event.ageGroup" name="inputAgeGroup" [value]="4"> 15+
+    </div>
+
+    <div class="form-group">
+      <label for="inputCapacity">Χωρητικότητα</label>
+      <input type="number" class="form-control" id="inputCapacity" [(ngModel)]="event.capacity" name="capacity" required>
+    </div>
+    <div class="form-group">
+      <label for="inputPrice">Τιμή</label>
+      <input type="number" class="form-control" id="inputPrice" [(ngModel)]="event.price" name="price" required>
+    </div>
+
+    <!--CATEGORY-->
+    <div class="form-group">
+      <label for="inputCategory">Κατηγορία</label>
+      <input type="radio" name="inputCategory" [value]="1" [(ngModel)]="event.category"> Αθλητισμός
+      <input type="radio" name="inputCategory" [value]="2" [(ngModel)]="event.category"> Καλλιτεχνικά
+      <input type="radio" name="inputCategory" [value]="3" [(ngModel)]="event.category"> Εκπαίδευση
+    </div>
+
+    <div class="form-group">
+      <label for="inputDate">Ημερομηνία</label>
+      <input type="date" class="form-control" id="inputDate" [(ngModel)]="event.date" name="date" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Υποβολή</button>
+  </form>
+</div>

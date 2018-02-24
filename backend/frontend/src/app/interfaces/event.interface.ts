@@ -1,5 +1,5 @@
 export class Event {
-  Id: number;
+  id: number;
   eventName: string;
   description: string;
   Area: string;
@@ -10,6 +10,6 @@ export class Event {
   price: number;
   category: string;
   state: string;
-  longtitude: number;
   latitude: number;
+  longtitude: number;
 }

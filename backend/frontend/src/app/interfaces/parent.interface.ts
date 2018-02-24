@@ -3,8 +3,11 @@ export class Parent {
   lastName: string;
   username: string;
   password: string;
+  area: string;
+  streetName: string;
+  streetNumber: number;
   email: string;
   phoneNumber: string;
   debitCard: string;
-  Fpoints: number;
+  fpoints: number;
 }

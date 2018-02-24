@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {Http, HttpModule} from '@angular/http';
 import {AuthConfig, AuthHttp} from 'angular2-jwt';
@@ -25,6 +25,7 @@ import { AgmCoreModule } from '@agm/core';
 import { EventsListComponent } from './pages/parent-events/events-list/events-list.component';
 import { SingleEventComponent } from './pages/parent-events/events-list/single-event/single-event.component';
 import { EventsMarkerComponent } from './pages/parent-events/events-map/events-marker/events-marker.component';
+import { AddEventComponent } from './pages/add-event/add-event.component';
 import { OneEventComponent } from './pages/one-event/one-event.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
 import { UserService } from './services/authentication/user.service';
@@ -57,6 +58,7 @@ export function authHttpServiceFactory(http: Http) {
     EventsListComponent,
     SingleEventComponent,
     EventsMarkerComponent,
+    AddEventComponent,
     OneEventComponent
   ],
   imports: [
@@ -72,12 +74,12 @@ export function authHttpServiceFactory(http: Http) {
   ],
   providers: [
     {provide: AuthHttp, useFactory: authHttpServiceFactory, deps: [Http]},
-    ParentService, 
-    ProvidersService, 
-    EventService, 
-    AuthenticationService, 
-    UserService, 
-    AuthGuardService, 
+    ParentService,
+    ProvidersService,
+    EventService,
+    AuthenticationService,
+    UserService,
+    AuthGuardService,
     AdminAuthGuardService
   ],
   bootstrap: [AppComponent]

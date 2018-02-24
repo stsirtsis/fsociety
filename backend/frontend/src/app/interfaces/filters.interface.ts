@@ -1,4 +1,5 @@
 export class Filters {
+  username: string;
   price: number;
   ageGroup: number;
   category: number;

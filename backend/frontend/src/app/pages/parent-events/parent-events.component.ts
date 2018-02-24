@@ -9,6 +9,7 @@ import {
   debounceTime, distinctUntilChanged, switchMap
 } from 'rxjs/operators';
 import { UserService } from '../../services/authentication/user.service';
+import { FormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-parent-events',
@@ -16,6 +17,13 @@ import { UserService } from '../../services/authentication/user.service';
   styleUrls: ['./parent-events.component.css']
 })
 export class ParentEventsComponent implements OnInit {
+
+  searchForm = new FormGroup({
+    ageGroup: new FormControl(),
+    category: new FormControl(),
+    distance: new FormControl(),
+    price: new FormControl()
+  });
 
   eventsList: Event[];
   listOrMap: number = 0;  //0 is list, 1 is map
@@ -29,10 +37,10 @@ export class ParentEventsComponent implements OnInit {
 
   newSearch: Filters = {
     username: '',
-    price: 1,
-    ageGroup: 1,
-    category: 1,
-    distance: 1,
+    price: 0,
+    ageGroup: 0,
+    category: 0,
+    distance: 0,
     text: ''
   };
 
@@ -45,9 +53,15 @@ ngOnInit() {
 }
 
 searchEvents(): void{
+  console.log(this.newSearch);
+  this.newSearch.username = this.userService.getUsername();
   this.eventService.searchEvents(this.newSearch)
   .subscribe(data => this.eventsList = data);
 }
+
+/*onSubmit() {
+  console.log(this.newSearch);
+}*/
 
 getEvents(): void{
   this.eventsList = this.eventService.getAllEvents();

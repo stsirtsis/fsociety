@@ -3,11 +3,9 @@ import {FormsModule} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../services/authentication/authentication.service'
 
-
 import {Parent} from '../../interfaces/parent.interface';
 import {ParentService} from '../../services/parent.service';
 import {UserService} from '../../services/authentication/user.service';
-
 
 @Component({
   selector: 'app-parent-register-page',
@@ -44,8 +42,6 @@ export class ParentRegisterPageComponent implements OnInit {
     }
 
     onSubmit() {
-      //if()
-      //this.error = 'username already exists';
       this.parentService.createParent(this.parent).subscribe(
       value => {
         console.log('[POST] create Parent successfully', value);

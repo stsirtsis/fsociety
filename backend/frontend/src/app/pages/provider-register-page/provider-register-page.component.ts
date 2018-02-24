@@ -44,8 +44,6 @@ error = '';
   }
 
   onSubmit() {
-    //if()
-  //this.error = 'username already exists';
     this.providerService.createProvider(this.providers).subscribe(
       value => {
         console.log('[POST] create Provider successfully', value);

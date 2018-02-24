@@ -16,7 +16,7 @@ export class ProviderGuardService implements CanActivate {
     if ((tokenNotExpired(TOKEN_NAME, this.userService.accessToken) && isProvider)||isAdmin) {
       return true;
     } else {
-      this.router.navigate(['login']);
+      this.router.navigate(['login-page']);
       return false;
     }
   }

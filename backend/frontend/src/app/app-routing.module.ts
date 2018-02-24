@@ -45,7 +45,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'add-event',
-    component: AddEventComponent
+    component: AddEventComponent,
+    canActivate: [ProviderGuardService]
   },
   {
     path: '**',

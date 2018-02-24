@@ -18,6 +18,7 @@ export class MainToolbarComponent implements OnInit {
   }
   logout() {
     this.userService.logout();
+    this.isuser = false;
     this.router.navigate(['front-page']);
   }
 

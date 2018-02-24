@@ -31,20 +31,22 @@ public class Event {
 	private Integer price;
 	private Integer category;
 	private Date date;
-	private state state;	
-	
-	
+	private state state;
+	private Integer clicks;
+	private Integer initial;
+
+
 
 	@ManyToOne
 	@JsonIgnore
 	private Providers provider;
-	
-	
+
+
 	@ManyToMany(mappedBy = "events")
 	@JsonIgnore
 	private Set<Parent> parents;
-	
-	
+
+
 	public Set<Parent> getParents() {
 		return parents;
 	}
@@ -60,7 +62,7 @@ public class Event {
 	public void setCapacity(Integer capacity) {
 		this.capacity = capacity;
 	}
-	
+
 	public Providers getProvider() {
 		return provider;
 	}
@@ -93,8 +95,8 @@ public class Event {
 	public void setState(state state) {
 		this.state = state;
 	}
-	
-	
+
+
 	public Long getId() {
 		return Id;
 	}
@@ -158,6 +160,22 @@ public class Event {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+
+	public Integer getInitial() {
+		return initial;
+	}
+
+	public void setInitial(Integer capacity) {
+		this.initial = capacity;
+	}
+
+	public Integer getClicks() {
+		return clicks;
+	}
+
+	public void setClicks(Integer clicks) {
+		this.clicks = clicks;
+	}
+
 
 }

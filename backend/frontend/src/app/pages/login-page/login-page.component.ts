@@ -52,6 +52,12 @@ export class LoginPageComponent implements OnInit {
   }
 
   private navigateAfterSuccess() {
-    this.router.navigate(['parent-events']);
+    if(this.userService.isParentUser()){
+      this.router.navigate(['parent-events']);
+    }
+    if(this.userService.isProviderUser()){
+      this.router.navigate(['front-page']);
+    }
+
   }
 }

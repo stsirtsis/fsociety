@@ -13,7 +13,6 @@ export class EventsMapComponent implements OnInit {
   @Input() bounds: LatLngBoundsLiteral;
   lat: number = 38.868973;
   lng: number = 23.751404;
-  //zoom: number = 15;
   draggable: boolean = true;
 
   constructor() { }

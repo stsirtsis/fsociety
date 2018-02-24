@@ -4,6 +4,7 @@ import { EventService } from '../../services/event.service';
 import { LatLngBoundsLiteral } from './LatLngBoundsLiteral'
 import { Observable } from 'rxjs/Observable';
 import { Subject }    from 'rxjs/Subject';
+import { Filters } from '../../interfaces/filters.interface';
 import {
   debounceTime, distinctUntilChanged, switchMap
 } from 'rxjs/operators';
@@ -15,9 +16,8 @@ import { UserService } from '../../services/authentication/user.service';
   styleUrls: ['./parent-events.component.css']
 })
 export class ParentEventsComponent implements OnInit {
-  isParent: boolean;
+
   eventsList: Event[];
-  searchText: string = "";
   listOrMap: number = 0;  //0 is list, 1 is map
   boundsPar: LatLngBoundsLiteral={
   east: 0.0,
@@ -26,16 +26,26 @@ export class ParentEventsComponent implements OnInit {
   south: 91.0
 };
 
+
+  newSearch: Filters = {
+    username: '',
+    price: 1,
+    ageGroup: 1,
+    category: 1,
+    distance: 1,
+    text: ''
+  };
+
 constructor(private eventService: EventService, private userService: UserService) { }
 
 ngOnInit() {
-  this.getEvents();
-  this.setBounds();
-  this.isParent = this.userService.isParentUser();
+  //this.getEvents();
+  //this.setBounds();
+  //this.isParent = this.userService.isParentUser();
 }
 
 searchEvents(): void{
-  this.eventService.getEventsByText(this.searchText)
+  this.eventService.searchEvents(this.newSearch)
   .subscribe(data => this.eventsList = data);
 }
 

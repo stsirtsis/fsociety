@@ -12,7 +12,7 @@
         <div class="form-group has-feedback">
           <div class="row">
             <label for="search" class="sr-only">Search</label>
-            <input type="text" class="form-control col-md-8" [(ngModel)]="searchText" name="search" id="search" placeholder="search">
+            <input type="text" class="form-control col-md-8" [(ngModel)]="newSearch.text" name="search" id="search" placeholder="search">
             <span class="glyphicon glyphicon-search form-control-feedback"></span>
             <button (click)="searchEvents()" type="submit" class="btn btn-primary col-md-2">Αναζήτηση</button>
           </div>

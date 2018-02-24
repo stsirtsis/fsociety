@@ -27,18 +27,18 @@ import gr.ntua.ece.softeng.repositories.EventRepository;
 import gr.ntua.ece.softeng.repositories.ProvidersRepository;
 
 
-@Controller 
+@Controller
 @RequestMapping(path="/provider")
 public class ProviderController {
 	@Autowired
 	private EventRepository eventRepository;
-	
+
 	@Autowired
 	private ProvidersRepository providersRepository;
-	
+
 	@Autowired
 	private ERepository eRepository;
-	
+
 
 	@PostMapping(path="/addNewEvent/{providerCompanyName}")
 	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
@@ -46,6 +46,9 @@ public class ProviderController {
 		Providers provider = providersRepository.findByCompanyName(providerCompanyName);
 		provider.getEvents().add(e);
 		providersRepository.save(provider);
+		Integer initialcap = e.getCapacity();
+		e.setClicks(0);
+		e.setInitial(initialcap);
 		e.setProvider(provider);
 		eventRepository.save(e);
 
@@ -69,14 +72,14 @@ public class ProviderController {
 		final String API_KEY =
 	               "&key=AIzaSyCi-UTmdLdEpurrr8A5Ou5I17cihpelPcI";
 		URL serverUrl = new URL(TARGET_URL+StreetNumber+help1+StreetName+help2+Area+API_KEY);
-		
+
 		URLConnection urlConnection = serverUrl.openConnection();
 		HttpURLConnection httpConnection = (HttpURLConnection)urlConnection;
-		
+
 		httpConnection.setRequestMethod("GET");
 		httpConnection.setRequestProperty("Content-Type", "application/json");
 		httpConnection.setDoOutput(true);
-		
+
 		String response = httpConnection.getResponseMessage();
 		if (httpConnection.getInputStream() == null) {
 			   System.out.println("No stream");
@@ -89,9 +92,9 @@ public class ProviderController {
 			 resp += line;
 		}
 		httpResponseScanner.close();
-		
+
 		JSONObject json = new JSONObject(resp);
-		
+
 		JSONArray results =  json.getJSONArray("results");
 		JSONObject sessionobj=results.getJSONObject(0);
 		JSONObject geometry=sessionobj.getJSONObject("geometry");
@@ -100,14 +103,14 @@ public class ProviderController {
 		Double longit=location.getDouble("lng");
 		String latitude=lat.toString();
 		String longitude=longit.toString();
-		
+
 		eRepository.save(new E(eventname, description , Area , StreetName , StreetNumber , AgeGroup , capacity , price , category , company_name, latitude, longitude, date, state ));
 
 
 
 		return "OK with post from event registration";
 	}
-	
+
 	@PostMapping(path="/events/{providerCompanyName}")
 	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
 	public @ResponseBody Set<Event> getEvents (@PathVariable String providerCompanyName) {
@@ -115,6 +118,3 @@ public class ProviderController {
 	}
 
 }
-
-
-

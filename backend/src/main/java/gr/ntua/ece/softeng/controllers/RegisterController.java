@@ -28,10 +28,10 @@ import gr.ntua.ece.softeng.repositories.UserRepository;
 @RestController
 @RequestMapping(path="/register")
 public class RegisterController {
-	
-	@Autowired 
+
+	@Autowired
 	private ParentRepository parentRepository;
-	
+
 	@Autowired
 	private ProvidersRepository providersRepository;
 
@@ -50,6 +50,7 @@ public class RegisterController {
 
 		parent.setPassword(sha256hex);
 		parent.setFpoints(0);
+		parent.setWallet(0);
 		String Area = parent.getArea();
 		String StreetName = parent.getStreetName().replaceAll("\\s+","");
 		String StreetNumber = parent.getStreetNumber().toString();
@@ -77,9 +78,9 @@ public class RegisterController {
 			 resp += line;
 		}
 		httpResponseScanner.close();
-		
+
 		JSONObject json = new JSONObject(resp);
-		
+
 		JSONArray results =  json.getJSONArray("results");
 		JSONObject sessionobj=results.getJSONObject(0);
 		JSONObject geometry=sessionobj.getJSONObject("geometry");
@@ -91,26 +92,26 @@ public class RegisterController {
 		parent.setLatitude(latitude);
 		parent.setLongitude(longitude);
 		parentRepository.save(parent);
-		
+
 
 		return "ok with post from parent";
 	}
-	
+
 	private final static String POST_PROVIDER_URL = "/provider";
 	@PostMapping(POST_PROVIDER_URL)
 	public @ResponseBody String createParent(@RequestBody Providers provider) {
 		String username = provider.getUserName();
 		String password = provider.getPassword();
-		
+
 		String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);
-		
+
 		userRepository.save(new User(username, sha256hex, Arrays.asList(new Role("PROVIDER"))));
 		provider.setPassword(sha256hex);
 		providersRepository.save(provider);
 		return "ok with post from provider";
 	}
-	
-	
-	
-	
+
+
+
+
 }

@@ -1,8 +1,11 @@
 <app-main-toolbar> </app-main-toolbar>
-<div class="container">
-  <h2>Εγγραφή Γονέα</h2>
-  <br>
-  <form (ngSubmit)="onSubmit()">
+<div class="general">
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <div class="fadeIn first">
+     <h3><b>Εγγραφή γονέα</b></h3>
+     </div>
+    <form (ngSubmit)="onSubmit()">
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputFirstName">Όνομα</label>
@@ -28,17 +31,22 @@
       <label for="inputEmail">E-Mail</label>
       <input type="email" class="form-control" id="inputEmail" placeholder="E-Mail" [(ngModel)]="parent.email" name="email" required>
     </div>
-    <div class="form-group">
+    <div class="form-row">
+    <div class="form-group col-md-6 ">
       <label for="inputArea">Περιοχή</label>
       <input type="text" class="form-control" id="inputArea" placeholder="Area" [(ngModel)]="parent.area" name="inputArea" required>
     </div>
-    <div class="form-group">
+
+    <div class="form-group col-md-4 ">
       <label for="inputStreetName">Οδός</label>
-      <input type="text" class="form-control" id="inputStreetName" placeholder="streetName" [(ngModel)]="parent.streetName" name="inputStreetName" required>
+      <input type="text" class="form-control" id="inputStreetName" placeholder="Name" [(ngModel)]="parent.streetName" name="inputStreetName" required>
     </div>
-    <div class="form-group">
+
+    <div class="form-group col-md-2">
       <label for="inputStreetNumber">Αριθμός</label>
       <input type="text" class="form-control" id="inputStreetNumber" placeholder="streetNumber" [(ngModel)]="parent.streetNumber" name="inputStreetNumber" required>
+    </div>
+
     </div>
     <div class="form-group">
       <label for="inputPhoneNumber">Αριθμός Τηλεφώνου</label>
@@ -48,6 +56,9 @@
       <label for="inputDebitCard">Αριθμός Χρεωστικής Κάρτας</label>
       <input type="text" class="form-control" id="inputDebitCard" [(ngModel)]="parent.debitCard" name="debitCard" required>
     </div>
-    <button type="submit" class="btn btn-primary">Υποβολή</button>
+    <div class="fadeIn fourth">
+    <button type="submit" class="btn btn-primary" >Εγγραφή</button></div>
   </form>
+</div>
+</div>
 </div>

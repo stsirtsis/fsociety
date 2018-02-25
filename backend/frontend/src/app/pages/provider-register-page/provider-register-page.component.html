@@ -1,7 +1,11 @@
 <app-main-toolbar> </app-main-toolbar>
-<div class="container">
-  <h2>Εγγραφή Παρόχου</h2>
-  <br>
+<div class="general">
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <div class="fadeIn first">
+      <h3><b>Εγγραφή Παρόχου</b></h3><br>
+    </div>
+
   <form (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="inputFirstName">Όνομα Επιχείρησης</label>
@@ -29,7 +33,7 @@
     </div>
 
       <div class="form-group">
-        <label for="inputDescription">Περιγραφή Δραστηριότητας</label>
+        <label for="inputDescription">Περιγραφή Επιχείρησης</label>
         <input type="text" class="form-control" id="inputDescription" [(ngModel)]="providers.description" name="description" required>
       </div>
 
@@ -68,6 +72,10 @@
         Αποδέχομαι τους όρους
       </label>
     </div>
-    <button type="submit" class="btn btn-primary">Υποβολή</button>
+    <button type="submit" class="btn btn-primary">Εγγραφή</button>
   </form>
+    <!-- Remind Passowrd -->
+
+  </div>
+</div>
 </div>

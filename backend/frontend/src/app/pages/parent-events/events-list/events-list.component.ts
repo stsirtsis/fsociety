@@ -12,25 +12,21 @@ export class EventsListComponent implements OnInit {
   @Input() events: Event[];
   activePage: number = 1;
   eventsPerPage: number = 2;
-  pagesList: number[] = [];
+  pagesList: number[] = [1];
   visibleEvents: Event[];
   constructor() { }
 
 
   ngOnInit() {
-    this.activePage=1;
-    this.pagesList = [];
-    for(var i = 0; i<=this.events.length/this.eventsPerPage; i++){
-      this.pagesList.push(i+1);
-    }
-    this.changePage(this.activePage);
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
     this.events = changes.events.currentValue;
     this.activePage=1;
     this.pagesList = [];
-    for(var i = 0; i<=this.events.length/this.eventsPerPage; i++){
+
+    for(var i = 0; i<this.events.length/this.eventsPerPage; i++){
       this.pagesList.push(i+1);
     }
     this.changePage(this.activePage);

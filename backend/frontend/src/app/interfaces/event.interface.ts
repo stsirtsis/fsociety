@@ -10,6 +10,6 @@ export class Event {
   price: number;
   category: string;
   state: string;
-  latitude: number;
-  longtitude: number;
+  latitude: string;
+  longitude: string;
 }

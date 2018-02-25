@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Event } from '../../interfaces/event.interface';
 import { EventService } from '../../services/event.service';
-import { LatLngBoundsLiteral } from './LatLngBoundsLiteral'
 import { Observable } from 'rxjs/Observable';
 import { Subject }    from 'rxjs/Subject';
 import { Filters } from '../../interfaces/filters.interface';
@@ -25,15 +24,8 @@ export class ParentEventsComponent implements OnInit {
     price: new FormControl()
   });
 
-  eventsList: Event[];
+  eventsList: Event[] = [];
   listOrMap: number = 0;  //0 is list, 1 is map
-  boundsPar: LatLngBoundsLiteral={
-  east: 0.0,
-  west: 91.0,
-  north: 0.0,
-  south: 91.0
-};
-
 
   newSearch: Filters = {
     username: '',
@@ -56,24 +48,7 @@ searchEvents(): void{
   console.log(this.newSearch);
   this.newSearch.username = this.userService.getUsername();
   this.eventService.searchEvents(this.newSearch)
-  .subscribe(data => this.eventsList = data);
-}
-
-/*onSubmit() {
-  console.log(this.newSearch);
-}*/
-
-getEvents(): void{
-  this.eventsList = this.eventService.getAllEvents();
-}
-
-setBounds(): void{
-  for (var ev in this.eventsList){
-    if (this.eventsList[ev].latitude > this.boundsPar.north) this.boundsPar.north = this.eventsList[ev].latitude + 0.001;
-    if (this.eventsList[ev].latitude < this.boundsPar.south) this.boundsPar.south = this.eventsList[ev].latitude - 0.001;
-    if (this.eventsList[ev].longtitude > this.boundsPar.east) this.boundsPar.east = this.eventsList[ev].longtitude + 0.001;
-    if (this.eventsList[ev].longtitude < this.boundsPar.west) this.boundsPar.west = this.eventsList[ev].longtitude - 0.001;
-  }
+  .subscribe(data => {this.eventsList = data; console.log(this.eventsList);});
 }
 
 }

@@ -9,12 +9,16 @@ import { Event } from '../../../../interfaces/event.interface';
 export class EventsMarkerComponent implements OnInit {
 
   @Input() event: Event;
+  @Input() markerId: number;
+  myLat: number;
+  myLng: number;
   shortDescription: string;
-
   constructor() {
   }
 
   ngOnInit() {
+    this.myLat = parseFloat(this.event.latitude);
+    this.myLng = parseFloat(this.event.longitude);
     if (this.event.description.length < 100) this.shortDescription = this.event.description;
     else this.shortDescription = this.event.description.substring(0,100)+"...";
   }

@@ -6,7 +6,6 @@ import { of } from 'rxjs/observable/of';
 import { Event } from '../interfaces/event.interface';
 import { Filters } from '../interfaces/filters.interface';
 import { newEvent } from '../interfaces/newEvent.interface';
-import { EventsList } from '../etc/mock-events';
 import { UserService } from './authentication/user.service';
 
 @Injectable()
@@ -23,19 +22,13 @@ export class EventService {
     return this.http.post<any>(this.POST_NEW_EVENT_URL, event, {headers: this.headers});
   }
 
-  getAllEvents(): Event[]{
-    return EventsList;
-  }
-
   searchEvents(filters: Filters): Observable<Event[]>{
     this.POST_SEARCH_EVENT_URL = '/search/text/';
     return this.http.post<any>(this.POST_SEARCH_EVENT_URL, filters, {headers: this.headers});
     //return this.http.get<Event[]>(`search/text?text=${term}`, {responseType: 'json'});
   }
-
+  
   getEventById(myId: number): Event{
-    for (var ev of EventsList){
-      if (ev.id == myId) return ev;
-    }
+    return null;
   }
 }

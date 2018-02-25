@@ -1,3 +1,4 @@
+<div *ngIf="events.length!=0">
 <app-single-event *ngFor="let ev of visibleEvents" [event]="ev">
 </app-single-event>
 <nav aria-label="Page navigation example">
@@ -10,3 +11,7 @@
     <li class="page-item my-clickable"><a class="page-link" (click)="changePage(activePage+1)">Next</a></li>
   </ul>
 </nav>
+</div>
+<div *ngIf="events.length==0">
+  <p> #SorryNotSorry </p>
+</div>

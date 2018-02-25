@@ -1,3 +1,8 @@
-<agm-map [latitude]="lat" [longitude]="lng" [fitBounds]="bounds" [zoomControl]="true">
-  <app-events-marker *ngFor="let ev of events" [event]="ev"></app-events-marker>
-</agm-map>
+<div *ngIf="events.length!=0">
+  <agm-map [latitude]="centerLat" [longitude]="centerLng" [fitBounds]="mapBounds" [zoomControl]="true">
+    <app-events-marker *ngFor="let ev of events" [event]="ev" [markerId]="events.indexOf(ev)"></app-events-marker>
+  </agm-map>
+</div>
+<div *ngIf="events.length==0">
+  <p> #SorryNotSorry </p>
+</div>

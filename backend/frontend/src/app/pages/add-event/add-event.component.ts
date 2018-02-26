@@ -17,7 +17,7 @@ export class AddEventComponent implements OnInit {
   });
 
   event: newEvent = {
-    eventName: '',
+    eventname: '',
     description: '',
     area: '',
     streetName: '',

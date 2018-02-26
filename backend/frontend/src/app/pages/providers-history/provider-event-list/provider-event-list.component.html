@@ -1,0 +1,17 @@
+<div *ngIf="events.length!=0">
+<app-provider-single-event  *ngFor="let ev of visibleEvents" [event]="ev">
+</app-provider-single-event>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item my-clickable"><a class="page-link" (click)="changePage(activePage-1)">Previous</a></li>
+    <li *ngFor="let page of pagesList" class="page-item my-clickable">
+      <a *ngIf="activePage==page" class="page-link my-clicked-page" (click)="changePage(page)">{{page}}</a>
+      <a *ngIf="activePage!=page" class="page-link" (click)="changePage(page)">{{page}}</a>
+    </li>
+    <li class="page-item my-clickable"><a class="page-link" (click)="changePage(activePage+1)">Next</a></li>
+  </ul>
+</nav>
+</div>
+<div *ngIf="events.length==0">
+  <p> #SorryNotSorry </p>
+</div>

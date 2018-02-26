@@ -9,13 +9,13 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity 
+@Entity
 public class Providers {
 	@Id
 	private String companyName;
 	private String FirstName;
 	private String LastName;
-	private String UserName;
+	private String userName;
 	private String Password;
 	private String Category;
 	private String Description;
@@ -25,102 +25,102 @@ public class Providers {
 	private String TelNumber;
 	private String Mail;
 	private String Iban;
-	
+
 	@OneToMany(mappedBy = "provider")
 	@JsonIgnore
 	private Set<Event> events;
-	
+
     public Set<Event> getEvents() {
 		return events;
 	}
 	public void setEvents(Set<Event> events) {
 		this.events = events;
 	}
-	
+
 	public String getFirstName() {
 		return FirstName;
 	}
 	public void setFirstName(String firstName) {
 		FirstName = firstName;
 	}
-	
+
 	public String getLastName() {
 		return LastName;
 	}
 	public void setLastName(String lastName) {
 		LastName = lastName;
 	}
-	
+
 	public String getcompanyName() {
 		return companyName;
 	}
 	public void setcompanyName(String companyName) {
 		this.companyName = companyName;
 	}
-	
+
 	public String getUserName() {
-		return UserName;
+		return userName;
 	}
 	public void setUserName(String userName) {
-		UserName = userName;
+		this.userName = userName;
 	}
-	
+
 	public String getPassword() {
 		return Password;
 	}
 	public void setPassword(String password) {
 		Password = password;
 	}
-	
+
 	public String getCategory() {
 		return Category;
 	}
 	public void setCategory(String category) {
 		Category = category;
 	}
-	
+
 	public String getDescription() {
 		return Description;
 	}
 	public void setDescription(String description) {
 		Description = description;
 	}
-	
+
 	public String getArea() {
 		return Area;
 	}
 	public void setArea(String area) {
 		Area = area;
 	}
-	
+
 	public String getStreetName() {
 		return StreetName;
 	}
 	public void setStreetName(String streetName) {
 		StreetName = streetName;
 	}
-	
+
 	public Integer getStreetNumber() {
 		return StreetNumber;
 	}
 	public void setStreetNumber(Integer streetNumber) {
 		StreetNumber = streetNumber;
 	}
-	
+
 	public String getTelNumber() {
 		return TelNumber;
 	}
 	public void setTelNumber(String telNumber) {
 		TelNumber = telNumber;
 	}
-	
+
 	public String getMail() {
 		return Mail;
 	}
 	public void setMail(String Mail) {
 		this.Mail = Mail;
 	}
-	
+
 	public String getIban() {
 		return Iban;
 	}
@@ -129,9 +129,7 @@ public class Providers {
 	}
 	@Override
 	public String toString() {
-		return "Provider [companyName=" + companyName + ",FirstName=" + FirstName + ", LastName=" + LastName + ", UserName=" + UserName + " , Password=" + Password + ", Category= "+Category+", Description= "+Description+" , Area= "+Area+", StreetName= "+StreetName+", StreetNumber= "+StreetNumber+", TelNumber= "+TelNumber+", Mail=" + Mail + ", Iban= "+Iban+"]";
+		return "Provider [companyName=" + companyName + ",FirstName=" + FirstName + ", LastName=" + LastName + ", UserName=" + userName + " , Password=" + Password + ", Category= "+Category+", Description= "+Description+" , Area= "+Area+", StreetName= "+StreetName+", StreetNumber= "+StreetNumber+", TelNumber= "+TelNumber+", Mail=" + Mail + ", Iban= "+Iban+"]";
 	}
-	
+
 }
-
-

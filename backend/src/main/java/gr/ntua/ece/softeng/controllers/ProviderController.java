@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import gr.ntua.ece.softeng.entities.E;
 import gr.ntua.ece.softeng.entities.Event;
@@ -109,10 +110,16 @@ public class ProviderController {
 		return "OK with post from event registration";
 	}
 
-	@PostMapping(path="/events/{providerCompanyName}")
+//	@PostMapping(path="/events/{providerCompanyName}")
+//	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
+//	public @ResponseBody Set<Event> getEvents (@PathVariable String providerCompanyName) {
+//		return providersRepository.findByCompanyName(providerCompanyName).getEvents();
+//	}
+
+	@GetMapping(path="/events/{provider_username}")
 	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
-	public @ResponseBody Set<Event> getEvents (@PathVariable String providerCompanyName) {
-		return providersRepository.findByCompanyName(providerCompanyName).getEvents();
-	}
+	public @ResponseBody Set<Event> getEvents (@PathVariable String provider_username) {
+		return providersRepository.findByUserName(provider_username).getEvents();
+}
 
 }

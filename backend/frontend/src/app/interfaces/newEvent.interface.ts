@@ -11,4 +11,6 @@ export class newEvent {
   date: string;
   state: string;
   parents: any[];
+  clicks: number;
+  initial: number;
 }

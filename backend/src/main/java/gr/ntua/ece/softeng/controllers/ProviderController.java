@@ -99,10 +99,8 @@ public class ProviderController {
 		JSONObject sessionobj=results.getJSONObject(0);
 		JSONObject geometry=sessionobj.getJSONObject("geometry");
 		JSONObject location=geometry.getJSONObject("location");
-		Double lat=location.getDouble("lat");
-		Double longit=location.getDouble("lng");
-		String latitude=lat.toString();
-		String longitude=longit.toString();
+		Double latitude=location.getDouble("lat");
+		Double longitude=location.getDouble("lng");
 
 		eRepository.save(new E(eventname, description , Area , StreetName , StreetNumber , AgeGroup , capacity , price , category , company_name, latitude, longitude, date, state ));
 

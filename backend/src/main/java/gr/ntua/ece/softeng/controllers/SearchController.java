@@ -1,10 +1,8 @@
 package gr.ntua.ece.softeng.controllers;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.concurrent.CopyOnWriteArrayList;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.TextCriteria;
@@ -32,20 +30,20 @@ public class SearchController {
 	
 	
 	
-	public static double distance(double lat1, double lat2, double lon1,
+	public static Double distance(double lat1, double lat2, double lon1,
 	        double lon2, double el1, double el2) {
 
 	    final int R = 6371; // Radius of the earth
 
-	    double latDistance = Math.toRadians(lat2 - lat1);
-	    double lonDistance = Math.toRadians(lon2 - lon1);
-	    double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+	    Double latDistance = Math.toRadians(lat2 - lat1);
+	    Double lonDistance = Math.toRadians(lon2 - lon1);
+	    Double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
 	            + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
 	            * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
-	    double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-	    double distance = R * c * 1000; // convert to meters
+	    Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+	    Double distance = R * c * 1000; // convert to meters
 
-	    double height = el1 - el2;
+	    Double height = el1 - el2;
 
 	    distance = Math.pow(distance, 2) + Math.pow(height, 2);
 
@@ -60,6 +58,12 @@ public class SearchController {
 		List<E> results2;
 		List<E> results3;
 		List<E> results4;
+		List<E> results5=new ArrayList<>();
+		Double lat1;
+		Double lat2;
+		Double long1;
+		Double long2;
+		Double d;
 	    Parent p=pRepository.findByUsername(filters.getUsername());
 		if (filters.getPrice() == 1) 
 			results2= eRepository.findByPriceBetween(-1,11);
@@ -90,35 +94,39 @@ public class SearchController {
 		else 
 			results4=eRepository.findByCategory(4);
 		results1.retainAll(results4);
-		
-		
-		List<E> list = new CopyOnWriteArrayList<E>(results1);
+	
 		
 		if (filters.getDistance() == 1) 
-			for(E e : list) {
-				if ( distance(Double.parseDouble(e.getLatitude()),Double.parseDouble(p.getLatitude()),
-			Double.parseDouble(e.getLongitude()) , Double.parseDouble(p.getLatitude()) ,0,0) > 5)
-					list.remove(e);		
+			for(E e:results1) {
+				lat1=e.getLatitude();
+				lat2=p.getLatitude();
+				long1=e.getLongitude();
+				long2=p.getLongitude();	
+				 d= distance(lat1,lat2,long1,long2,0 ,0 );
+				if ( d > 5000.00) 
+					results5.add(e);	
 			}
-		else if (filters.getDistance() == 2) 
-			for(E e : results1) {
-				if ( distance(Double.parseDouble(e.getLatitude()),Double.parseDouble(p.getLatitude()),
-			Double.parseDouble(e.getLongitude()) , Double.parseDouble(p.getLatitude()) ,0,0) > 8)
-					list.remove(e);	
+		else if (filters.getDistance() == 2)
+			for(E e:results1) {
+				if (distance((e.getLatitude()),(p.getLatitude()),
+			(e.getLongitude()) ,(p.getLongitude()) ,0,0) > 8000.00)
+					results5.add(e);	
 			}
+		
 		else if (filters.getDistance()==3) 
-			for(E e : results1) {
-				if ( distance(Double.parseDouble(e.getLatitude()),Double.parseDouble(p.getLatitude()),
-			Double.parseDouble(e.getLongitude()) , Double.parseDouble(p.getLatitude()) ,0,0) > 10)
-					list.remove(e);	
+			for(E e:results1) {
+				if (distance((e.getLatitude()),(p.getLatitude()),
+			(e.getLongitude()) ,(p.getLongitude()) ,0,0) > 10000.00)
+					results5.add(e);	
 			}
-		else 
-			for(E e : results1) {
-				if ( distance(Double.parseDouble(e.getLatitude()),Double.parseDouble(p.getLatitude()),
-			Double.parseDouble(e.getLongitude()) , Double.parseDouble(p.getLatitude()) ,0,0) <=10)
-					list.remove(e);
+		else 	
+			for(E e:results1) {
+				if (distance((e.getLatitude()),(p.getLatitude()),
+				(e.getLongitude()) ,(p.getLongitude()) ,0,0) <=10000.00)
+					results5.add(e);
 			}
-		return list;
+		results1.removeAll(results5);
+		return results1;
 	}
 	     
 	

@@ -20,8 +20,8 @@ public class Parent {
 	private String Area;
 	private String StreetName;
 	private Integer StreetNumber;
-	private String latitude;
-	private String longitude;
+	private Double latitude;
+	private Double longitude;
 	private String password;
 	private String email;
 	private String phoneNumber;
@@ -106,16 +106,16 @@ public class Parent {
 	public void setStreetNumber(Integer streetNumber) {
 		StreetNumber = streetNumber;
 	}
-	public String getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(String latitude2) {
+	public void setLatitude(Double latitude2) {
 		this.latitude = latitude2;
 	}
-	public String getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(String longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 

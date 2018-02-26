@@ -28,19 +28,23 @@ const appRoutes: Routes = [
   },
   {
     path: 'parent-history',
-    component: ParentHistoryComponent
+    component: ParentHistoryComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'parent-profile',
-    component: ParentProfileComponent
+    component: ParentProfileComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'provider-profile',
-    component: ProviderProfileComponent
+    component: ProviderProfileComponent,
+    canActivate: [ProviderGuardService]
   },
   {
     path: 'providers-history',
-    component: ProvidersHistoryComponent
+    component: ProvidersHistoryComponent,
+    canActivate: [ProviderGuardService]
   },
   {
     path: 'provider-register',

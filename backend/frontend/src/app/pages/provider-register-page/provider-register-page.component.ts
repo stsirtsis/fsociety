@@ -17,6 +17,8 @@ export class ProviderRegisterPageComponent implements OnInit {
 providers: Providers  = { companyName: '', firstName: '', lastName: '', userName: '', password: '',
   description: '', area: '', streetName: '', streetNumber: 0, telNumber: '', mail: '', iban: '', events: []};
 error = '';
+error_mail= '';
+checkbox = false;
 
   constructor(private providerService: ProvidersService, private router: Router,
               private userService: UserService, private auth: AuthenticationService) { }
@@ -31,7 +33,7 @@ error = '';
         result => {
         if (result) {
             this.userService.login(result);
-            this.router.navigate(['front-page']);
+            this.router.navigate(['provider-profile']);
           } else {
             this.error = 'Username or password is incorrect';
           }
@@ -42,8 +44,16 @@ error = '';
 
       );
   }
+  check(){
+    this.checkbox = true;
+  }
 
   onSubmit() {
+    if(this.checkbox){
+    if(this.providers.mail.indexOf("@") == -1){
+      this.error_mail = 'Incorrect email';
+    }
+    else{
     this.providerService.createProvider(this.providers).subscribe(
       value => {
         console.log('[POST] create Provider successfully', value);
@@ -52,7 +62,11 @@ error = '';
         console.log('POST Provider - now completed.');
         this.login();
       });
-
+    }
+  }
+  else{
+    this.router.navigate(['provider-register']);
+  }
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import {newEvent} from '../../interfaces/newEvent.interface';
 import {EventService} from '../../services/event.service'
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-add-event',
@@ -30,7 +31,7 @@ export class AddEventComponent implements OnInit {
     parents: []
   };
 
-  constructor(private eventService: EventService) { }
+  constructor(private eventService: EventService , private router : Router) { }
 
   ngOnInit() {
 
@@ -44,6 +45,7 @@ export class AddEventComponent implements OnInit {
       },
       () => {
         console.log('POST Event - now completed.');
+        this.router.navigate(['front-page']);
       });
     }
 }

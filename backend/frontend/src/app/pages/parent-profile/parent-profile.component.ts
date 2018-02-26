@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/authentication/user.service';
+
 
 @Component({
   selector: 'app-parent-profile',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./parent-profile.component.css']
 })
 export class ParentProfileComponent implements OnInit {
+  username: string;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.username = this.userService.getUsername();
+
   }
 
 }

@@ -33,6 +33,14 @@ import { AuthGuardService } from './services/guards/auth-guard.service';
 import { AdminAuthGuardService } from './services/guards/admin-auth-guard.service';
 import { TOKEN_NAME } from './constants/auth.constants';
 import {ProviderGuardService} from './services/guards/provider-guard.service';
+import { ParentProfileComponent } from './pages/parent-profile/parent-profile.component';
+import { ProviderProfileComponent } from './pages/provider-profile/provider-profile.component';
+import { ProvidersHistoryComponent } from './pages/providers-history/providers-history.component';
+import { ProviderEventListComponent } from './pages/providers-history/provider-event-list/provider-event-list.component';
+import { ProviderSingleEventComponent } from './pages/providers-history/provider-event-list/provider-single-event/provider-single-event.component';
+import { ParentHistoryComponent } from './pages/parent-history/parent-history.component';
+import { ParentHistoryListComponent } from './pages/parent-history/parent-history-list/parent-history-list.component';
+import { ParentSingleEventComponent } from './pages/parent-history/parent-history-list/parent-single-event/parent-single-event.component';
 
 export function authHttpServiceFactory(http: Http) {
   return new AuthHttp(new AuthConfig({
@@ -60,7 +68,15 @@ export function authHttpServiceFactory(http: Http) {
     SingleEventComponent,
     EventsMarkerComponent,
     AddEventComponent,
-    OneEventComponent
+    OneEventComponent,
+    ParentProfileComponent,
+    ProviderProfileComponent,
+    ProvidersHistoryComponent,
+    ProviderEventListComponent,
+    ProviderSingleEventComponent,
+    ParentHistoryComponent,
+    ParentHistoryListComponent,
+    ParentSingleEventComponent
   ],
   imports: [
     BrowserModule,

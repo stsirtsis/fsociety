@@ -1,0 +1,39 @@
+<app-main-toolbar> </app-main-toolbar>
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-12 main-section text-center">
+          <div class="row">
+              <div class="col-lg-12 col-sm-12 col-12 profile-header"></div>
+          </div>
+          <div class="row user-detail">
+              <div class="col-lg-12 col-sm-12 col-12">
+                  <img src="/assets/provider-profile/user-512.png" class="rounded-circle img-thumbnail">
+                  <h5><b>{{username}}</b></h5>
+
+                  <p><i class="fa fa-map-marker" aria-hidden="true"></i> (edw tha mpei h perioxh).</p>
+                  <p><i class="fa fa-envelope" aria-hidden="true"></i> (edw tha mpei to email man).</p>
+
+                  <hr>
+                  <a href="#" class="btn btn-success btn-sm" routerLink="/providers-history"><i class="fa fa-bar-chart" aria-hidden="true"></i><b>Ιστορικό Δραστηριοτήτων</b></a>
+                  <a href="#" class="btn btn-success btn-sm" routerLink="/add-event"><i class="fa fa-plus-square" aria-hidden="true"></i><b>Προσθήκη Δραστηριότητας </b></a>
+
+                  <hr>
+                  <span><b>Παροχος υπηρεσιών</b></span>
+              </div>
+          </div>
+          <div class="row user-social-detail">
+              <div class="col-lg-12 col-sm-12 col-12">
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

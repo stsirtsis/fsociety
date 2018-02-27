@@ -1,5 +1,5 @@
 export class newEvent {
-  eventName: string;
+  eventname: string;
   description: string;
   area: string;
   streetName: string;

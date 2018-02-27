@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import gr.ntua.ece.softeng.entities.E;
 import gr.ntua.ece.softeng.entities.Event;
@@ -99,10 +100,8 @@ public class ProviderController {
 		JSONObject sessionobj=results.getJSONObject(0);
 		JSONObject geometry=sessionobj.getJSONObject("geometry");
 		JSONObject location=geometry.getJSONObject("location");
-		Double lat=location.getDouble("lat");
-		Double longit=location.getDouble("lng");
-		String latitude=lat.toString();
-		String longitude=longit.toString();
+		Double latitude=location.getDouble("lat");
+		Double longitude=location.getDouble("lng");
 
 		eRepository.save(new E(eventname, description , Area , StreetName , StreetNumber , AgeGroup , capacity , price , category , company_name, latitude, longitude, date, state ));
 
@@ -111,10 +110,16 @@ public class ProviderController {
 		return "OK with post from event registration";
 	}
 
-	@PostMapping(path="/events/{providerCompanyName}")
+//	@PostMapping(path="/events/{providerCompanyName}")
+//	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
+//	public @ResponseBody Set<Event> getEvents (@PathVariable String providerCompanyName) {
+//		return providersRepository.findByCompanyName(providerCompanyName).getEvents();
+//	}
+
+	@GetMapping(path="/events/{provider_username}")
 	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
-	public @ResponseBody Set<Event> getEvents (@PathVariable String providerCompanyName) {
-		return providersRepository.findByCompanyName(providerCompanyName).getEvents();
-	}
+	public @ResponseBody Set<Event> getEvents (@PathVariable String provider_username) {
+		return providersRepository.findByUserName(provider_username).getEvents();
+}
 
 }

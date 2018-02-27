@@ -1,0 +1,15 @@
+.general{
+    margin-top:20px;
+    margin-left:20px;
+	min-height:800px;
+	margin-right:20px;
+
+}
+
+.card{
+	color:black;
+	background-color:#F5F5F5;
+	    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+}

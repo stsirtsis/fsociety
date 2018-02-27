@@ -1,6 +1,6 @@
 export class Event {
   id: number;
-  eventName: string;
+  eventname: string;
   description: string;
   Area: string;
   StreetName: string;

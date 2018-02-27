@@ -95,12 +95,11 @@ public class RegisterController {
 			JSONObject sessionobj=results.getJSONObject(0);
 			JSONObject geometry=sessionobj.getJSONObject("geometry");
 			JSONObject location=geometry.getJSONObject("location");
-			Double lat=location.getDouble("lat");
-			Double longit=location.getDouble("lng");
-			String latitude=lat.toString();
-			String longitude=longit.toString();
+			Double latitude=location.getDouble("lat");
+			Double longitude=location.getDouble("lng");
 			parent.setLatitude(latitude);
 			parent.setLongitude(longitude);
+			parentRepository.save(parent);
 
 			parentRepository.save(parent);
 			
@@ -109,6 +108,7 @@ public class RegisterController {
 			return res;
 
 		}
+
 
 	}
 

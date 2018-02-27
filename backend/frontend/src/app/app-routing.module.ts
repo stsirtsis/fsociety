@@ -12,6 +12,10 @@ import { AddEventComponent } from './pages/add-event/add-event.component';
 import { AuthGuardService } from './services/guards/auth-guard.service';
 import { AdminAuthGuardService } from './services/guards/admin-auth-guard.service';
 import { ProviderGuardService} from './services/guards/provider-guard.service';
+import { ProviderProfileComponent} from './pages/provider-profile/provider-profile.component';
+import { ProvidersHistoryComponent} from './pages/providers-history/providers-history.component';
+import { ParentProfileComponent } from './pages/parent-profile/parent-profile.component';
+import { ParentHistoryComponent } from './pages/parent-history/parent-history.component';
 
 const appRoutes: Routes = [
   {
@@ -21,6 +25,26 @@ const appRoutes: Routes = [
   {
     path: 'parent-register',
     component: ParentRegisterPageComponent
+  },
+  {
+    path: 'parent-history',
+    component: ParentHistoryComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'parent-profile',
+    component: ParentProfileComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'provider-profile',
+    component: ProviderProfileComponent,
+    canActivate: [ProviderGuardService]
+  },
+  {
+    path: 'providers-history',
+    component: ProvidersHistoryComponent,
+    canActivate: [ProviderGuardService]
   },
   {
     path: 'provider-register',

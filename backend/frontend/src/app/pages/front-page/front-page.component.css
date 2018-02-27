@@ -1,13 +1,87 @@
-.jumbotron{
-  background-color: white;
-  height: 500px;
-}
-
 .my-jumbo-img{
   height: 500px;
   margin-left: 150px;
 }
-.btn{
-	height:50px;
-	background-color:#00b4e6;
+
+.carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      margin: auto;
+      min-height:200px;
+  }
+
+  h3 {
+    text-align: center;
+    display:inline-block;
+  }
+  h3.inactive {
+    color: #cccccc;
+  }
+
+  h3.active {
+    color: #0d0d0d;
+    border-bottom: 2px solid #5fbae9;
+  }
+  /* Hide the carousel text when the screen is less than 600 pixels wide */
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none;
+    }
+  }
+  p {font-size: 16px;}
+   .margin {
+     margin-top:60px;
+     margin-bottom: 60px;}
+
+   .container {
+       padding-top: 40px;
+   }
+   h2 {
+     font-size: 16px;
+     display:inline-block;
+     color: darkgray;
+   }
+
+   .zoom {
+          transition: transform .1s; /* Animation */
+ }
+
+ .zoom:hover {
+     transform: scale(1.05); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+ }
+
+
+
+   .btn{
+     font-family: "Poppins";
+     background-color: #56baed;
+     border: none;
+     color: white;
+     text-align: center;
+     text-decoration: none;
+     display: inline-block;
+     font-size: 13px;
+     -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+     box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+     -webkit-border-radius: 5px 5px 5px 5px;
+     border-radius: 5px 5px 5px 5px;
+     -webkit-transition: all 0.3s ease-in-out;
+     -moz-transition: all 0.3s ease-in-out;
+     -ms-transition: all 0.3s ease-in-out;
+     -o-transition: all 0.3s ease-in-out;
+     transition: all 0.3s ease-in-out;
+   }
+
+   .btn:hover{
+     background-color: #39ace7;
+   }
+
+   .btn:active{
+     -moz-transform: scale(0.95);
+     -webkit-transform: scale(0.95);
+     -o-transform: scale(0.95);
+     -ms-transform: scale(0.95);
+     transform: scale(0.95);
+   }
+   .container img {
+   border-radius: 3%;
 }

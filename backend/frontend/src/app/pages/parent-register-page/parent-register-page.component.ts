@@ -19,6 +19,7 @@ export class ParentRegisterPageComponent implements OnInit {
   message: string;
   customResponse: CustomResponse
   error = '';
+  error_mail= '';
   constructor(private parentService: ParentService,private router: Router,
     private userService: UserService, private auth: AuthenticationService,
     ) {}
@@ -33,7 +34,7 @@ export class ParentRegisterPageComponent implements OnInit {
           result => {
           if (result) {
               this.userService.login(result);
-              this.router.navigate(['front-page']);
+              this.router.navigate(['parent-events']);
             } else {
               this.error = 'Username or password is incorrect';
             }
@@ -44,21 +45,26 @@ export class ParentRegisterPageComponent implements OnInit {
 
         );
     }
-
     
       onSubmit() {
         this.parentService.createParent(this.parent)
           .subscribe(
           res => {
-           this.customResponse = res.body;
-           this.message = this.customResponse.message;
-           console.log(this.message);
-           if(this.message == 'ok with post from parent')
-                this.login();
+           if(this.parent.email.indexOf("@") == -1){
+                this.error_mail = 'Incorrect email';
+           }
+           else {
+                this.customResponse = res.body;
+                this.message = this.customResponse.message;
+                console.log(this.message);
+                if(this.message == 'ok with post from parent')
+                    this.login();
+           }
           }),
           () => {
             console.log("in ()");
           }
       }
     
-  }
+}
+

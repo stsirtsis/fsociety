@@ -5,8 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import org.hibernate.validator.constraints.Email;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import gr.ntua.ece.softeng.entities.Event;
 
@@ -23,6 +24,7 @@ public class Parent {
 	private String latitude;
 	private String longitude;
 	private String password;
+	@Email
 	private String email;
 	private String phoneNumber;
 	private String debitCard;

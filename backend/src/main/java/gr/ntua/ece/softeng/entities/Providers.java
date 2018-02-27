@@ -6,7 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.validator.constraints.Email;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity 
@@ -23,6 +24,7 @@ public class Providers {
 	private String StreetName;
 	private Integer StreetNumber;
 	private String TelNumber;
+	@Email
 	private String Mail;
 	private String Iban;
 	

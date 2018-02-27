@@ -58,7 +58,7 @@ public class AdminController {
 	            sendPassword(username);
 	            return "Email Sent!";
 	        }catch(Exception ex) {
-	            return "Error in sending email: "+ex;
+	            return "Error in sending emails: "+ex;
 	        }
 	    }
 	 

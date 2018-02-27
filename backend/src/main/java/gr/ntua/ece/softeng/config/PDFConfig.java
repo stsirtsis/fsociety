@@ -9,14 +9,10 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import gr.ntua.ece.softeng.entities.Parent;
-import gr.ntua.ece.softeng.repositories.ParentRepository;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 
 public class PDFConfig {
@@ -24,8 +20,6 @@ public class PDFConfig {
 	private static Font TIME_ROMAN = new Font(Font.FontFamily.TIMES_ROMAN, 18,Font.BOLD);
 	private static Font TIME_ROMAN_SMALL = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
 
-	@Autowired
-	private static ParentRepository parentRepository;
 
     private static String firstname;
     private static String lastname;
@@ -87,9 +81,6 @@ public class PDFConfig {
 		}
 	}
 	private static void createTable(Document document) throws DocumentException {
-		
-		
-		
 		Paragraph paragraph = new Paragraph();
 		creteEmptyLine(paragraph, 2);
 		document.add(paragraph);

@@ -6,6 +6,7 @@ import {AuthenticationService} from '../../services/authentication/authenticatio
 import {Parent} from '../../interfaces/parent.interface';
 import {ParentService} from '../../services/parent.service';
 import {UserService} from '../../services/authentication/user.service';
+import { CustomResponse } from '../../interfaces/customResponse.interface';
 
 @Component({
   selector: 'app-parent-register-page',
@@ -15,9 +16,12 @@ import {UserService} from '../../services/authentication/user.service';
 export class ParentRegisterPageComponent implements OnInit {
 
   parent: Parent  = { firstName: '', lastName: '', username: '', area:'', streetName:'', streetNumber:0, password: '', email: '', phoneNumber: '', debitCard: '', fpoints: 0};
+  message: string;
+  customResponse: CustomResponse
   error = '';
   constructor(private parentService: ParentService,private router: Router,
-    private userService: UserService, private auth: AuthenticationService) {}
+    private userService: UserService, private auth: AuthenticationService,
+    ) {}
 
     ngOnInit(): void {
       this.userService.logout();
@@ -41,16 +45,20 @@ export class ParentRegisterPageComponent implements OnInit {
         );
     }
 
-    onSubmit() {
-      this.parentService.createParent(this.parent).subscribe(
-      value => {
-        console.log('[POST] create Parent successfully', value);
-      },
-      () => {
-        console.log('POST Parent - now completed.');
-        this.login();
-      });
-
-    }
-
+    
+      onSubmit() {
+        this.parentService.createParent(this.parent)
+          .subscribe(
+          res => {
+           this.customResponse = res.body;
+           this.message = this.customResponse.message;
+           console.log(this.message);
+           if(this.message == 'ok with post from parent')
+                this.login();
+          }),
+          () => {
+            console.log("in ()");
+          }
+      }
+    
   }

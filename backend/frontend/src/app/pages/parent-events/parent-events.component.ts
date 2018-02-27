@@ -43,6 +43,10 @@ ngOnInit() {
   //this.setBounds();
   //this.isParent = this.userService.isParentUser();
 }
+    
+onSubmit() {
+    
+}
 
 searchEvents(): void{
   console.log(this.newSearch);

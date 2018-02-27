@@ -7,7 +7,6 @@ import {Http, HttpModule} from '@angular/http';
 import {AuthConfig, AuthHttp} from 'angular2-jwt';
 
 
-
 import { AppComponent } from './app.component';
 import { Routing } from './app-routing.module';
 import { MainToolbarComponent } from './etc/main-toolbar/main-toolbar.component';

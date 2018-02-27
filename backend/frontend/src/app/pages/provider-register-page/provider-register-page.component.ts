@@ -6,6 +6,7 @@ import {ProvidersService} from '../../services/providers.service';
 import {Router} from '@angular/router';
 import {UserService} from '../../services/authentication/user.service';
 import {AuthenticationService} from '../../services/authentication/authentication.service'
+import { CustomResponse } from '../../interfaces/customResponse.interface';
 
 @Component({
   selector: 'app-provider-register-page',
@@ -16,6 +17,8 @@ export class ProviderRegisterPageComponent implements OnInit {
 
 providers: Providers  = { companyName: '', firstName: '', lastName: '', userName: '', password: '',
   description: '', area: '', streetName: '', streetNumber: 0, telNumber: '', mail: '', iban: '', events: []};
+customResponse: CustomResponse;
+message: string;
 error = '';
 
   constructor(private providerService: ProvidersService, private router: Router,
@@ -43,16 +46,20 @@ error = '';
       );
   }
 
-  onSubmit() {
-    this.providerService.createProvider(this.providers).subscribe(
-      value => {
-        console.log('[POST] create Provider successfully', value);
-      },
-      () => {
-        console.log('POST Provider - now completed.');
-        this.login();
-      });
-
-  }
+    
+    onSubmit() {
+        this.providerService.createProvider(this.providers)
+          .subscribe(
+          res => {
+           this.customResponse = res.body;
+           this.message = this.customResponse.message;
+           console.log(this.message);
+           if(this.message == 'ok with post from provider')
+                this.login();
+          }),
+          () => {
+            console.log("in ()");
+          }
+      }
 
 }

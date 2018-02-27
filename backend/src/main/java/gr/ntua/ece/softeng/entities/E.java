@@ -27,9 +27,11 @@ public class E {
 	private Double longitude;
 	private String date;
 	private String state;
+	private String photoUri;
+	private String photoBody;
 
 
-	public E(String eventName,String description,String Area,String StreetName,Integer StreetNumber,Integer ageGroup,Integer capacity,Integer price, Integer category,String company_name,Double latitude,Double longitude,String date,String state) {
+	public E(String eventName,String description,String Area,String StreetName,Integer StreetNumber,Integer ageGroup,Integer capacity,Integer price, Integer category,String company_name,Double latitude,Double longitude,String date,String state,String photoUri,String photoBody) {
 		this.eventName=eventName;
 		this.description=description;
 		this.Area=Area;
@@ -44,6 +46,8 @@ public class E {
 		this.longitude=longitude;
 		this.date=date;
 		this.state=state;
+		this.photoUri=photoUri;
+		this.photoBody=photoBody;
 	}
 
 
@@ -224,6 +228,26 @@ public class E {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+
+	public String getPhotoUri() {
+		return photoUri;
+	}
+
+
+	public void setPhotoUri(String photoUri) {
+		this.photoUri = photoUri;
+	}
+
+
+	public String getPhotoBody() {
+		return photoBody;
+	}
+
+
+	public void setPhotoBody(String photoBody) {
+		this.photoBody = photoBody;
 	}
 
 }

@@ -34,6 +34,7 @@ public class Event {
 	private state state;
 	private Integer clicks;
 	private Integer initial;
+	private String photoUri;
 
 
 
@@ -175,6 +176,14 @@ public class Event {
 
 	public void setClicks(Integer clicks) {
 		this.clicks = clicks;
+	}
+
+	public String getPhotoUri() {
+		return photoUri;
+	}
+
+	public void setPhotoUri(String photoUri) {
+		this.photoUri = photoUri;
 	}
 
 

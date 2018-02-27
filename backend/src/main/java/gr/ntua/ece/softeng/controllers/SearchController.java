@@ -5,7 +5,10 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.data.mongodb.core.query.TextCriteria;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import gr.ntua.ece.softeng.entities.E;
 import gr.ntua.ece.softeng.repositories.ERepository;
 import gr.ntua.ece.softeng.repositories.ParentRepository;
+import gr.ntua.ece.softeng.services.StorageService;
 import gr.ntua.ece.softeng.entities.Filters;
 import gr.ntua.ece.softeng.entities.Parent;
 
@@ -28,7 +32,8 @@ public class SearchController {
 	@Autowired
 	private ParentRepository pRepository;
 	
-	
+	@Autowired
+	StorageService storageService;
 	
 	public static Double distance(double lat1, double lat2, double lon1,
 	        double lon2, double el1, double el2) {
@@ -48,6 +53,14 @@ public class SearchController {
 	    distance = Math.pow(distance, 2) + Math.pow(height, 2);
 
 	    return Math.sqrt(distance);
+	}
+	
+	
+	public ResponseEntity<Resource> getFile( String filename) {
+		Resource file = storageService.loadFile(filename);
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+				.body(file);
 	}
 	
 	@PostMapping(path="/text")
@@ -126,6 +139,10 @@ public class SearchController {
 					results5.add(e);
 			}
 		results1.removeAll(results5);
+		for (E e1:results1) {
+			String thefile=getFile(e1.getPhotoUri()).toString();
+			e1.setPhotoBody(thefile);
+		}
 		return results1;
 	}
 	     

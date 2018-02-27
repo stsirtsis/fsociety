@@ -17,32 +17,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import gr.ntua.ece.softeng.entities.E;
 import gr.ntua.ece.softeng.entities.Event;
 import gr.ntua.ece.softeng.entities.Providers;
 import gr.ntua.ece.softeng.repositories.ERepository;
 import gr.ntua.ece.softeng.repositories.EventRepository;
 import gr.ntua.ece.softeng.repositories.ProvidersRepository;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
@@ -73,15 +64,18 @@ public class ProviderController {
 		Providers provider = providersRepository.findByCompanyName(providerCompanyName);
 		ObjectMapper mapper = new ObjectMapper();
 		Event e = mapper.readValue(str, Event.class);
-		provider.getEvents().add(e);
-		providersRepository.save(provider);
 		Integer initialcap = e.getCapacity();
 		e.setClicks(0);
 		e.setInitial(initialcap);
 		e.setProvider(provider);
+		System.out.println(e.getEventname());
+		provider.getEvents().add(e);
+		providersRepository.save(provider);
+		
 		String message = "";
 			try {
 				storageService.store(file);
+				e.setPhotoUri(file.getOriginalFilename());
 				files.add(file.getOriginalFilename());
 
 				message = "You successfully uploaded " + file.getOriginalFilename() + "!";
@@ -101,6 +95,7 @@ public class ProviderController {
 		String company_name = e.getProvider().getcompanyName();
 		String date=e.getDate().toString();
 		String state="OPEN";
+		String photoUri=e.getPhotoUri();
 		final String TARGET_URL =
 	               "https://maps.googleapis.com/maps/api/geocode/json?address=";
 		final String help1= "+";
@@ -138,7 +133,7 @@ public class ProviderController {
 		Double latitude=location.getDouble("lat");
 		Double longitude=location.getDouble("lng");
 
-		eRepository.save(new E(eventname, description , Area , StreetName , StreetNumber , AgeGroup , capacity , price , category , company_name, latitude, longitude, date, state ));
+		eRepository.save(new E(eventname, description , Area , StreetName , StreetNumber , AgeGroup , capacity , price , category , company_name, latitude, longitude, date, state, photoUri ));
 
 		return ResponseEntity.status(HttpStatus.OK).body(message);
 			}

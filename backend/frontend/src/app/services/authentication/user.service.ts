@@ -40,6 +40,9 @@ export class UserService {
     this.isAdmin = false;
     this.isParent = false;
     this.isProvider = false;
+    this.role = null;
+    this.username = null;
+    this.providerCompanyName = null;
     localStorage.removeItem(TOKEN_NAME);
   }
 

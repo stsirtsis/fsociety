@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import org.json.JSONArray;
@@ -131,8 +133,11 @@ public class RegisterController {
 				return res;
 			}
 				
-
-			userRepository.save(new User(username, sha256hex, Arrays.asList(new Role("PROVIDER"), new Role(companyName))));
+			List<Role> list = new ArrayList<Role>();
+			list.add(new Role("PROVIDER"));
+			list.add(new Role(companyName));
+			
+			userRepository.save(new User(username, sha256hex, list));
 			
 			providersRepository.save(provider);
 			CustomResponse res = new CustomResponse();

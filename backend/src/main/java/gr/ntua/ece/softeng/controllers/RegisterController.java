@@ -118,7 +118,8 @@ public class RegisterController {
 	public @ResponseBody CustomResponse createParent(@RequestBody Providers provider) {
 		String username = provider.getUserName();
 		String password = provider.getPassword();
-
+		String companyName = provider.getcompanyName();
+		
 		String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);
 
 
@@ -131,7 +132,8 @@ public class RegisterController {
 			}
 				
 
-			userRepository.save(new User(username, sha256hex, Arrays.asList(new Role("PROVIDER"))));
+			userRepository.save(new User(username, sha256hex, Arrays.asList(new Role("PROVIDER"), new Role(companyName))));
+			
 			providersRepository.save(provider);
 			CustomResponse res = new CustomResponse();
 			res.setMessage("ok with post from provider"); 

@@ -13,6 +13,7 @@ export class UserService {
   isParent: boolean = false;
   isProvider: boolean = false;
   role: string;
+  providerCompanyName: string;
 
   constructor() {
   }
@@ -28,6 +29,8 @@ export class UserService {
     this.isProvider  = decodedToken.authorities.some(el => el === 'PROVIDER');
     this.accessToken = accessToken;
     this.role = decodedToken.authorities[0];
+    if(this.role == 'PROVIDER')
+        this.providerCompanyName = decodedToken.authorities[1];
 
     localStorage.setItem(TOKEN_NAME, accessToken);
   }
@@ -67,6 +70,9 @@ export class UserService {
     return this.role;
   }
 
+  getProviderCompanyName() :string {
+    return this.providerCompanyName;    
+  }
 
 
 }

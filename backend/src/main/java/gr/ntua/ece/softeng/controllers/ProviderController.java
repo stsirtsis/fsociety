@@ -81,7 +81,6 @@ public class ProviderController {
 		httpConnection.setRequestProperty("Content-Type", "application/json");
 		httpConnection.setDoOutput(true);
 
-		String response = httpConnection.getResponseMessage();
 		if (httpConnection.getInputStream() == null) {
 			   System.out.println("No stream");
 		}
@@ -110,11 +109,11 @@ public class ProviderController {
 		return "OK with post from event registration";
 	}
 
-//	@PostMapping(path="/events/{providerCompanyName}")
-//	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
-//	public @ResponseBody Set<Event> getEvents (@PathVariable String providerCompanyName) {
-//		return providersRepository.findByCompanyName(providerCompanyName).getEvents();
-//	}
+	@PostMapping(path="/eventsByCompany/{providerCompanyName}")
+	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
+	public @ResponseBody Set<Event> getEventsByCompanyName (@PathVariable String providerCompanyName) {
+		return providersRepository.findByCompanyName(providerCompanyName).getEvents();
+	}
 
 	@GetMapping(path="/events/{provider_username}")
 	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")

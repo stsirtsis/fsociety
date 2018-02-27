@@ -18,7 +18,7 @@ export class EventService {
   constructor(private http: HttpClient, private userService: UserService) { }
 
   createEvent(event: newEvent): Observable<newEvent> {
-    this.POST_NEW_EVENT_URL = '/provider/addNewEvent/'+this.userService.getUsername()+'/'+'?access_token='+this.userService.getAccessToken();
+    this.POST_NEW_EVENT_URL = '/provider/addNewEvent/'+this.userService.getProviderCompanyName()+'?access_token='+this.userService.getAccessToken();
     return this.http.post<any>(this.POST_NEW_EVENT_URL, event, {headers: this.headers});
   }
 

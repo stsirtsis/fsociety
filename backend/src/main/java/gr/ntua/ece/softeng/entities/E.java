@@ -29,7 +29,8 @@ public class E {
 	private String state;
 
 
-	public E(String eventName,String description,String Area,String StreetName,Integer StreetNumber,Integer ageGroup,Integer capacity,Integer price, Integer category,String company_name,Double latitude,Double longitude,String date,String state) {
+	public E(String id, String eventName,String description,String Area,String StreetName,Integer StreetNumber,Integer ageGroup,Integer capacity,Integer price, Integer category,String company_name,Double latitude,Double longitude,String date,String state) {
+		this.Id=id;
 		this.eventName=eventName;
 		this.description=description;
 		this.Area=Area;
@@ -105,7 +106,7 @@ public class E {
 	public void setStreetNumber( Integer streetNumber) {
 		StreetNumber = streetNumber;
 	}
-	
+
 
 	@Override
 	public int hashCode() {
@@ -121,7 +122,7 @@ public class E {
 		 else if (obj instanceof E) {
 			  E e = (E) obj;
 			  return Objects.equals(this.Id,e.Id);
-			  
+
 		 }
 		 else return false;
 	}

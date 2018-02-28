@@ -60,7 +60,8 @@ public class ProviderController {
 		e.setProvider(provider);
 		eventRepository.save(e);
 
-
+    Long myid = e.getId();
+		String id = Long.toString(myid); 
 		String eventname = e.getEventname();
 		String description = e.getDescription();
 		String Area = e.getArea();
@@ -109,7 +110,7 @@ public class ProviderController {
 		Double latitude=location.getDouble("lat");
 		Double longitude=location.getDouble("lng");
 
-		eRepository.save(new E(eventname, description , Area , StreetName , StreetNumber , AgeGroup , capacity , price , category , company_name, latitude, longitude, date, state ));
+		eRepository.save(new E(id, eventname, description , Area , StreetName , StreetNumber , AgeGroup , capacity , price , category , company_name, latitude, longitude, date, state ));
 
 
 
@@ -127,57 +128,57 @@ public class ProviderController {
 	public @ResponseBody Set<Event> getEvents (@PathVariable String provider_username) {
 		return providersRepository.findByUserName(provider_username).getEvents();
 }
-	
-	
+
+
 
 	@SuppressWarnings("deprecation")
 	@GetMapping(path="/monthly/{provider_username}")
 	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
 	public @ResponseBody List<Event> getEventsByDate(@PathVariable String provider_username) {
-		
+
 		LocalDate today = LocalDate.now();
 		int month=today.getMonthValue();
-		int dayofmonth=today.getDayOfMonth();	
+		int dayofmonth=today.getDayOfMonth();
 		Set<Event> all_events=providersRepository.findByUserName(provider_username).getEvents();
-		
-		
+
+
 		Map<Object, List<Event>> Events= all_events.stream().collect(Collectors.groupingBy(Event->Event.getDate().getMonth()));
 		//Return events this month!
 		List<Event> MonthlyEvents= Events.get(month-1);
 		//Return events until today!
 		List <Event> EventsByDay= MonthlyEvents.stream().filter(Event->Event.getDate().getDate()<=dayofmonth).collect(Collectors.toList());
-		
+
 		return EventsByDay;
 	}
-	
-	
-	
+
+
+
 	@GetMapping(path="/AgeGroup/{provider_username}")
 	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
 	public @ResponseBody List<Event> getEventsByAge(@PathVariable String provider_username,@RequestParam Integer Age) {
-		
+
 		Set<Event> all_events=providersRepository.findByUserName(provider_username).getEvents();
 		Map<Integer, List<Event>> EventsByAge= all_events.stream().collect(groupingBy(Event::getAgeGroup));
 		return EventsByAge.get(Age);
-		
+
 	}
-	
+
 
 
 	@GetMapping(path="/CategoryGroup/{provider_username}")
 	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
 	public @ResponseBody List<Event> getEventsByCategory(@PathVariable String provider_username,@RequestParam Integer Category) {
-		
+
 		Set<Event> all_events=providersRepository.findByUserName(provider_username).getEvents();
 		Map<Integer, List<Event>> EventsByCategory= all_events.stream().collect(groupingBy(Event::getCategory));
 		return EventsByCategory.get(Category);
-		
+
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 
 }

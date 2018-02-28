@@ -51,7 +51,8 @@ public class RegisterController {
 		String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);
 
 		synchronized(this) {
-			if(parentRepository.findByUsername(parent.getUsername()) != null) {
+			if(parentRepository.findByUsername(parent.getUsername()) != null ||
+					userRepository.findByUsername(username) != null) {
 				CustomResponse res = new CustomResponse();
 				res.setMessage("Username already exists"); 
 				return res;
@@ -127,7 +128,8 @@ public class RegisterController {
 
 		provider.setPassword(sha256hex);
 		synchronized(this) {
-			if(providersRepository.findByCompanyName(provider.getcompanyName()) != null) {
+			if(providersRepository.findByCompanyName(provider.getcompanyName()) != null || 
+					userRepository.findByUsername(username) != null) {
 				CustomResponse res = new CustomResponse();
 				res.setMessage("username already exists"); 
 				return res;

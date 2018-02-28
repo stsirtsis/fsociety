@@ -105,20 +105,16 @@ export class ParentRegisterPageComponent implements OnInit {
       this.error_iban= 'Incorrect Iban (16 digits needed)';
       this.a=0;
     }
-       else if (this.a==1){
-         this.parentService.createParent(this.parent)
+     if (this.a==1){
+      this.parentService.createParent(this.parent)
              .subscribe(
              res => {
-              if(this.parent.email.indexOf("@") == -1){
-                   this.error_mail = 'Incorrect email';
-              }
-              else {
                    this.customResponse = res.body;
                    this.message = this.customResponse.message;
                    console.log(this.message);
                    if(this.message == 'ok with post from parent')
                        this.login();
-              }
+              
              }),
              () => {
                console.log("in ()");

@@ -58,6 +58,12 @@ node
   nodeModulesDir = file("frontend")
 }
 
+task runClientDev(type: NpmTask, dependsOn: 'npmInstall') {
+	group = 'application'
+	description = 'Run frontend in localhost:4200 under http and watch client assets for rebuilding'
+	args = ['run', 'startDev']
+}
+
 task buildClientDev(type: NpmTask, dependsOn: 'npmInstall') {
   group = 'build'
   description = 'Compile client side folder for development'
@@ -76,8 +82,6 @@ task buildClientWatch(type: NpmTask, dependsOn: 'npmInstall') {
   args = ['run','buildWatch']
 }
 
-
-bootRun.dependsOn(buildClientDev)
 jar.dependsOn(buildClient)
 
 

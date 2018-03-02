@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "start": "ng serve --open",
+    "startDev": "ng serve --proxy-config ./src/proxy.conf.json --watch=true",
     "ng": "ng",
-    "start": "ng serve",
     "buildDev": "ng build",
     "buildWatch": "ng build --watch=true",
     "build": "ng build --prod",

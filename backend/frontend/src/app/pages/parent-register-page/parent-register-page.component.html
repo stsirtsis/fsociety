@@ -1,123 +1,141 @@
-<app-main-toolbar> </app-main-toolbar>
+<app-main-toolbar></app-main-toolbar>
 <div class="general">
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-    <div class="fadeIn first">
-     <h3><b>Εγγραφή γονέα</b></h3>
-     </div>
-    <form (ngSubmit)="onSubmit()">
-    <div class="form-row">
-      <div class="form-group col-md-6">
-         <div *ngIf="!error_fir then content1 else other_content1"></div>
-        <ng-template #content1><label for="inputFirstName">Όνομα</label>
-        <input type="text" class="form-control" id="inputFirstName" placeholder="Όνομα" [(ngModel)]="parent.firstName" name="firstName" required>
-      </ng-template>
-      <ng-template #other_content1><label for="inputFirstName">Όνομα</label>
-      <input type="text" style="border: 1.4px solid red;" class="form-control" id="inputFirstName" placeholder="Όνομα" [(ngModel)]="parent.firstName" name="firstName" required>
-    </ng-template>
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <div class="fadeIn first">
+        <h3><b>Εγγραφή γονέα</b></h3>
       </div>
-      <div class="form-group col-md-6">
-        <div *ngIf="!error_las then content2 else other_content2"></div>
-        <ng-template #content2><label for="inputLastName">Επώνυμο</label>
-        <input type="text" class="form-control" id="inputLastName" placeholder="Επώνυμο" [(ngModel)]="parent.lastName" name="lastName" required>
-      </ng-template>
-      <ng-template #other_content2><label for="inputLastName">Επώνυμο</label>
-      <input type="text" style="border: 1.4px solid red;" class="form-control" id="inputLastName" placeholder="Επώνυμο" [(ngModel)]="parent.lastName" name="lastName" required>
-    </ng-template>
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-          <div *ngIf="!error_user && !error then content3 else other_content3"></div>
-         <ng-template #content3><label for="inputUserName">Username</label>
-        <input type="text" class="form-control" id="inputUserName" placeholder="Username" [(ngModel)]="parent.username" name="username" required>
-      </ng-template>
-      <ng-template #other_content3><label for="inputUserName">Username</label>
-     <input type="text" style="border: 1.4px solid red;" class="form-control" id="inputUserName" placeholder="Username" [(ngModel)]="parent.username" name="username" required>
-   </ng-template>
-      </div>
-      <div class="form-group col-md-6">
-        <div *ngIf="!error_pass && !error then content4 else other_content4"></div>
-        <ng-template #content4>
-        <label for="inputPassword">Password</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password" [(ngModel)]="parent.password" name="password" required>
-      </ng-template>
-      <ng-template #other_content4>
-      <label for="inputPassword">Password</label>
-      <input type="password" style="border: 1.4px solid red;" class="form-control" id="inputPassword" placeholder="Password" [(ngModel)]="parent.password" name="password" required>
-    </ng-template>
-      </div>
-    </div>
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <div *ngIf="!error_fir then content1 else other_content1"></div>
+            <ng-template #content1><label for="inputFirstName">Όνομα</label>
+              <input type="text" class="form-control" id="inputFirstName" placeholder="Όνομα"
+                     [(ngModel)]="parent.firstName" name="firstName" required>
+            </ng-template>
+            <ng-template #other_content1><label for="inputFirstName">Όνομα</label>
+              <input type="text" style="border: 1.4px solid red;" class="form-control" id="inputFirstName"
+                     placeholder="Όνομα" [(ngModel)]="parent.firstName" name="firstName" required>
+            </ng-template>
+          </div>
+          <div class="form-group col-md-6">
+            <div *ngIf="!error_las then content2 else other_content2"></div>
+            <ng-template #content2><label for="inputLastName">Επώνυμο</label>
+              <input type="text" class="form-control" id="inputLastName" placeholder="Επώνυμο"
+                     [(ngModel)]="parent.lastName" name="lastName" required>
+            </ng-template>
+            <ng-template #other_content2><label for="inputLastName">Επώνυμο</label>
+              <input type="text" style="border: 1.4px solid red;" class="form-control" id="inputLastName"
+                     placeholder="Επώνυμο" [(ngModel)]="parent.lastName" name="lastName" required>
+            </ng-template>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <div *ngIf="!error_user && !error then content3 else other_content3"></div>
+            <ng-template #content3><label for="inputUserName">Username</label>
+              <input type="text" class="form-control" id="inputUserName" placeholder="Username"
+                     [(ngModel)]="parent.username" name="username" required>
+            </ng-template>
+            <ng-template #other_content3><label for="inputUserName">Username</label>
+              <input type="text" style="border: 1.4px solid red;" class="form-control" id="inputUserName"
+                     placeholder="Username" [(ngModel)]="parent.username" name="username" required>
+            </ng-template>
+          </div>
+          <div class="form-group col-md-6">
+            <div *ngIf="!error_pass && !error then content4 else other_content4"></div>
+            <ng-template #content4>
+              <label for="inputPassword">Password</label>
+              <input type="password" class="form-control" id="inputPassword" placeholder="Password"
+                     [(ngModel)]="parent.password" name="password" required>
+            </ng-template>
+            <ng-template #other_content4>
+              <label for="inputPassword">Password</label>
+              <input type="password" style="border: 1.4px solid red;" class="form-control" id="inputPassword"
+                     placeholder="Password" [(ngModel)]="parent.password" name="password" required>
+            </ng-template>
+          </div>
+        </div>
 
-    <div class="form-group">
-      <div *ngIf="!error_mail then content5 else other_content5"></div>
-      <ng-template #content5>
-      <label for="inputEmail">E-Mail</label>
-      <input type="email" class="form-control" id="inputEmail" placeholder="E-Mail" [(ngModel)]="parent.email" name="email" required>
-    </ng-template>
-    <ng-template #other_content5>
-    <label for="inputEmail">E-Mail</label>
-    <input type="email"  style="border: 1.4px solid red;" class="form-control" id="inputEmail" placeholder="E-Mail" [(ngModel)]="parent.email" name="email" required>
-  </ng-template>
-    </div>
-    <div class="form-row">
-    <div class="form-group col-md-6 ">
-      <label for="inputArea">Περιοχή</label>
-      <input type="text" class="form-control" id="inputArea" placeholder="Area" [(ngModel)]="parent.area" name="inputArea" required>
-    </div>
+        <div class="form-group">
+          <div *ngIf="!error_mail then content5 else other_content5"></div>
+          <ng-template #content5>
+            <label for="inputEmail">E-Mail</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="E-Mail" [(ngModel)]="parent.email"
+                   name="email" required>
+          </ng-template>
+          <ng-template #other_content5>
+            <label for="inputEmail">E-Mail</label>
+            <input type="email" style="border: 1.4px solid red;" class="form-control" id="inputEmail"
+                   placeholder="E-Mail" [(ngModel)]="parent.email" name="email" required>
+          </ng-template>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6 ">
+            <label for="inputArea">Περιοχή</label>
+            <input type="text" class="form-control" id="inputArea" placeholder="Area" [(ngModel)]="parent.area"
+                   name="inputArea" required>
+          </div>
 
-    <div class="form-group col-md-4 ">
-      <label for="inputStreetName">Οδός</label>
-      <input type="text" class="form-control" id="inputStreetName" placeholder="Name" [(ngModel)]="parent.streetName" name="inputStreetName" required>
-    </div>
+          <div class="form-group col-md-4 ">
+            <label for="inputStreetName">Οδός</label>
+            <input type="text" class="form-control" id="inputStreetName" placeholder="Name"
+                   [(ngModel)]="parent.streetName" name="inputStreetName" required>
+          </div>
 
-    <div class="form-group col-md-2">
-      <label for="inputStreetNumber">Αριθμός</label>
-      <input type="number" class="form-control" id="inputStreetNumber" placeholder="streetNumber" [(ngModel)]="parent.streetNumber" name="inputStreetNumber" required>
-    </div>
+          <div class="form-group col-md-2">
+            <label for="inputStreetNumber">Αριθμός</label>
+            <input type="number" class="form-control" id="inputStreetNumber" placeholder="streetNumber"
+                   [(ngModel)]="parent.streetNumber" name="inputStreetNumber" required>
+          </div>
 
-    </div>
-    <div class="form-group">
-        <div *ngIf="!error_tel then content6 else other_content6"></div>
-      <ng-template #content6>
-      <label for="inputPhoneNumber">Αριθμός Τηλεφώνου</label>
-      <input type="text" class="form-control" id="inputPhoneNumber" [(ngModel)]="parent.phoneNumber" name="phoneNumber" required>
-    </ng-template>
-    <ng-template #other_content6>
-    <label for="inputPhoneNumber">Αριθμός Τηλεφώνου</label>
-    <input type="text" style="border: 1.4px solid red;" class="form-control" id="inputPhoneNumber" [(ngModel)]="parent.phoneNumber" name="phoneNumber" required>
-  </ng-template>
+        </div>
+        <div class="form-group">
+          <div *ngIf="!error_tel then content6 else other_content6"></div>
+          <ng-template #content6>
+            <label for="inputPhoneNumber">Αριθμός Τηλεφώνου</label>
+            <input type="text" class="form-control" id="inputPhoneNumber" [(ngModel)]="parent.phoneNumber"
+                   name="phoneNumber" required>
+          </ng-template>
+          <ng-template #other_content6>
+            <label for="inputPhoneNumber">Αριθμός Τηλεφώνου</label>
+            <input type="text" style="border: 1.4px solid red;" class="form-control" id="inputPhoneNumber"
+                   [(ngModel)]="parent.phoneNumber" name="phoneNumber" required>
+          </ng-template>
 
+        </div>
+        <div class="form-group">
+          <div *ngIf="!error_iban then content7 else other_content7"></div>
+          <ng-template #content7>
+            <label for="inputDebitCard">Αριθμός Χρεωστικής Κάρτας</label>
+            <input type="text" class="form-control" id="inputDebitCard" [(ngModel)]="parent.debitCard" name="debitCard"
+                   required>
+          </ng-template>
+          <ng-template #other_content7>
+            <label for="inputDebitCard">Αριθμός Χρεωστικής Κάρτας</label>
+            <input type="text" style="border: 1.4px solid red;" class="form-control" id="inputDebitCard"
+                   [(ngModel)]="parent.debitCard" name="debitCard" required>
+          </ng-template>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" (click)="check()" class="form-check-input">
+            Αποδέχομαι τους όρους
+          </label>
+        </div>
+        <div class="fadeIn fourth">
+          <button type="submit" class="btn btn-primary">Εγγραφή</button>
+        </div>
+        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+        <div *ngIf="error_mail" class="alert alert-danger">{{error_mail}}</div>
+        <div *ngIf="error_tel" class="alert alert-danger">{{error_tel}}</div>
+        <div *ngIf="error_iban" class="alert alert-danger">{{error_iban}}</div>
+        <div *ngIf="error_ch" class="alert alert-danger">{{error_ch}}</div>
+        <div *ngIf="error_fir" class="alert alert-danger">{{error_fir}}</div>
+        <div *ngIf="error_las" class="alert alert-danger">{{error_las}}</div>
+        <div *ngIf="error_user" class="alert alert-danger">{{error_user}}</div>
+        <div *ngIf="error_pass" class="alert alert-danger">{{error_pass}}</div>
+      </form>
     </div>
-    <div class="form-group">
-        <div *ngIf="!error_iban then content7 else other_content7"></div>
-      <ng-template #content7>
-      <label for="inputDebitCard">Αριθμός Χρεωστικής Κάρτας</label>
-      <input type="text" class="form-control" id="inputDebitCard" [(ngModel)]="parent.debitCard" name="debitCard" required>
-    </ng-template>
-    <ng-template #other_content7>
-    <label for="inputDebitCard">Αριθμός Χρεωστικής Κάρτας</label>
-    <input type="text" style="border: 1.4px solid red;" class="form-control" id="inputDebitCard" [(ngModel)]="parent.debitCard" name="debitCard" required>
-  </ng-template>
-    </div>
-    <div class="form-check">
-      <label class="form-check-label">
-        <input type="checkbox" (click)="check()" class="form-check-input">
-        Αποδέχομαι τους όρους
-      </label>
-    </div>
-    <div class="fadeIn fourth">
-    <button type="submit" class="btn btn-primary" >Εγγραφή</button></div>
-    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-    <div *ngIf="error_mail" class="alert alert-danger">{{error_mail}}</div>
-    <div *ngIf="error_tel" class="alert alert-danger">{{error_tel}}</div>
-    <div *ngIf="error_iban" class="alert alert-danger">{{error_iban}}</div>
-    <div *ngIf="error_ch" class="alert alert-danger">{{error_ch}}</div>
-    <div *ngIf="error_fir" class="alert alert-danger">{{error_fir}}</div>
-    <div *ngIf="error_las" class="alert alert-danger">{{error_las}}</div>
-    <div *ngIf="error_user" class="alert alert-danger">{{error_user}}</div>
-    <div *ngIf="error_pass" class="alert alert-danger">{{error_pass}}</div>
-  </form>
-</div>
-</div>
+  </div>
 </div>

@@ -15,10 +15,10 @@ export class ParentService {
   constructor(private http: HttpClient) {}
 
   createParent(parent: Parent): Observable <any> {
-    return this.http.post<any>(this.POST_PARENT_URL, parent, {observe : 'response'})// {headers: this.headers});
+    return this.http.post<any>(this.POST_PARENT_URL, parent, {observe : 'response'});
   }
-  
-  //getParents(): Observable <Parent[]> {
+
+  // getParents(): Observable <Parent[]> {
   //  return this.http.get<Parent[]>(ParentService.GET_PARENT_URL,{headers: this.headers});
-  //}
+  // }
 }

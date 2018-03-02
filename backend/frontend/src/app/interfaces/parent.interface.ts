@@ -10,4 +10,5 @@ export class Parent {
   phoneNumber: string;
   debitCard: string;
   fpoints: number;
+  wallet: number;
 }

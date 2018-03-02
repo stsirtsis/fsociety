@@ -1,13 +1,13 @@
 package gr.ntua.ece.softeng.error;
 
-public class CustomResponse {
-	private String message;
+public class CustomResponse<T> {
+	private T message;
 
-	public String getMessage() {
+	public T getMessage() {
 		return message;
 	}
 
-	public void setMessage(String message) {
+	public void setMessage(T message) {
 		this.message = message;
 	}
 	

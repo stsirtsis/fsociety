@@ -1,4 +1,4 @@
 export class CustomResponse {
-  message: string;  
+  message: any;
 
 }

@@ -14,4 +14,5 @@ public interface ERepository extends MongoRepository<E, String> {
 	List<E> findByPriceBetween(int from, int to);
 	List<E> findByAgeGroup(int age);
 	List<E> findByCategory(int cat);
+	List<E> findAll();
 }

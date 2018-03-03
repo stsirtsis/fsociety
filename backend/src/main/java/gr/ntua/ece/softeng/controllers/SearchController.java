@@ -11,8 +11,6 @@ import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.data.mongodb.core.query.TextCriteria;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -60,18 +58,6 @@ public class SearchController {
 	}
 
 
-	public Resource getFile( String filename) {
-		Resource file = storageService.loadFile(filename);
-		return file;
-	}
-
-	
-	/* public static void main(String[] args) {
-
-         File f =  new File("C:/Users/SETU BASAK/Desktop/a.jpg");
-           String encodstring = encodeFileToBase64Binary(f);
-           System.out.println(encodstring);
-     }*/
 
      private static String encodeFileToBase64Binary(File file){
           String encodedfile = null;
@@ -94,9 +80,15 @@ public class SearchController {
 	
 	@PostMapping(path="/text")
 	public @ResponseBody List<E> textsearch(@RequestBody Filters filters)
-	{
-		TextCriteria criteria = TextCriteria.forDefaultLanguage().matchingAny(filters.getText());
-	    List<E> results1 = eRepository.findAllByOrderByScoreDesc(criteria);
+	{	
+		List<E> results1;
+		if (filters.getText()=="") {
+			results1=eRepository.findAll();
+		}
+		else {
+			TextCriteria criteria = TextCriteria.forDefaultLanguage().matchingAny(filters.getText());
+			results1 = eRepository.findAllByOrderByScoreDesc(criteria);
+		}
 		List<E> results2;
 		List<E> results3;
 		List<E> results4;
@@ -113,8 +105,9 @@ public class SearchController {
 			results2=eRepository.findByPriceBetween(9,21);
 		else if (filters.getPrice()==3)
 			results2=eRepository.findByPriceBetween(19,51);
-		else
+		else if (filters.getPrice()==4)
 			results2=eRepository.findByPriceBetween(49,10000);
+		else results2=results1;
 		results1.retainAll(results2);
 
 		if (filters.getAgeGroup() == 1)
@@ -123,8 +116,9 @@ public class SearchController {
 			results3=eRepository.findByAgeGroup(2);
 		else if (filters.getAgeGroup()==3)
 			results3=eRepository.findByAgeGroup(3);
-		else
+		else if (filters.getAgeGroup()==4)
 			results3=eRepository.findByAgeGroup(4);
+		else results3=results1;
 		results1.retainAll(results3);
 
 		if (filters.getCategory() == 1)
@@ -133,8 +127,9 @@ public class SearchController {
 			results4=eRepository.findByCategory(2);
 		else if (filters.getCategory()==3)
 			results4=eRepository.findByCategory(3);
-		else
+		else if (filters.getCategory()==4)
 			results4=eRepository.findByCategory(4);
+		else results4=results1;
 		results1.retainAll(results4);
 
 
@@ -161,12 +156,13 @@ public class SearchController {
 			(e.getLongitude()) ,(p.getLongitude()) ,0,0) > 10000.00)
 					results5.add(e);
 			}
-		else
+		else if (filters.getCategory()==4)
 			for(E e:results1) {
 				if (distance((e.getLatitude()),(p.getLatitude()),
 				(e.getLongitude()) ,(p.getLongitude()) ,0,0) <=10000.00)
 					results5.add(e);
 			}
+		else results5=null;
 		results1.removeAll(results5);
 		for (E e1:results1) {
 			String uri=e1.getPhotoUri();

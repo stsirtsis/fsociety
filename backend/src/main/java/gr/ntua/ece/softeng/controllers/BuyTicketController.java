@@ -46,6 +46,10 @@ public class BuyTicketController {
 	@Autowired
 	private JavaMailSender sender;
 
+	private static Integer eventprice;
+	private static String eventname;
+	
+	
 	public String book(Event event, Integer capacity) {
 		event.setCapacity(capacity - 1);
 		eventRepository.save(event);
@@ -59,6 +63,9 @@ public class BuyTicketController {
 	public synchronized @ResponseBody String buynewticket (@PathVariable String parent_username,
 			@PathVariable Long event_id) {
 		Event event      = eventRepository.findOne(event_id) ;
+		eventname=event.getEventname();
+		eventprice=event.getPrice();
+		
 		Parent parent    = parentRepository.findByUsername(parent_username);
 		Integer capacity;
 
@@ -108,7 +115,7 @@ public class BuyTicketController {
 			return "Sorry, event is full";
 
 	}
-
+	
     @RequestMapping("/sendEmail")
     public  @ResponseBody String home(@RequestParam String username) {
     	try {
@@ -139,7 +146,7 @@ public class BuyTicketController {
 
 	    try {
 
-	        PDFConfig.createPDF(fileName,firstName,lastName);
+	        PDFConfig.createPDF(fileName,firstName,lastName,eventname,eventprice);
 
 	        baos = convertPDFToByteArrayOutputStream(fileName);
 	       } catch (Exception e1) {

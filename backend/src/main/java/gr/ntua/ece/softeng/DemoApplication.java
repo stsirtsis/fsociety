@@ -8,8 +8,8 @@ import gr.ntua.ece.softeng.services.StorageService;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
-	
-	
+
+
 	@Resource
 	StorageService storageService;
 	public static void main(String[] args) {
@@ -17,6 +17,7 @@ public class DemoApplication implements CommandLineRunner {
 	}
 	@Override
 	public void run(String... arg) throws Exception {
+		storageService.deleteAll();
 		storageService.init();
 	}
 }

@@ -67,15 +67,5 @@ export class AddEventComponent implements OnInit {
       }
     })
 
-    this.selectedFiles = undefined
-
-    /*this.eventService.createEvent(this.event).subscribe(
-      value => {
-        console.log('[POST] create Event successfully', value);
-      },
-      () => {
-        console.log('POST Event - now completed.');
-        this.router.navigate(['front-page']);
-      });*/
-    }
+  }
 }

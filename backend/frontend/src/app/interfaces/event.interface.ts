@@ -12,4 +12,6 @@ export class Event {
   state: string;
   latitude: string;
   longitude: string;
+  photoUri: string;
+  photoBody: string;
 }

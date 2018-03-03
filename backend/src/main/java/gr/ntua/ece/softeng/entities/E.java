@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.TextScore;
-
+import org.springframework.core.io.Resource;
 
 @Document(collection = "events")
 public class E {
@@ -28,10 +28,10 @@ public class E {
 	private String date;
 	private String state;
 	private String photoUri;
-	private String photoBody;
+	private Resource photoBody;
 
 
-	public E(String eventName,String description,String Area,String StreetName,Integer StreetNumber,Integer ageGroup,Integer capacity,Integer price, Integer category,String company_name,Double latitude,Double longitude,String date,String state,String photoUri,String photoBody) {
+	public E(String eventName,String description,String Area,String StreetName,Integer StreetNumber,Integer ageGroup,Integer capacity,Integer price, Integer category,String company_name,Double latitude,Double longitude,String date,String state,String photoUri,Resource photoBody) {
 		this.eventName=eventName;
 		this.description=description;
 		this.Area=Area;
@@ -109,7 +109,7 @@ public class E {
 	public void setStreetNumber( Integer streetNumber) {
 		StreetNumber = streetNumber;
 	}
-	
+
 
 	@Override
 	public int hashCode() {
@@ -125,7 +125,7 @@ public class E {
 		 else if (obj instanceof E) {
 			  E e = (E) obj;
 			  return Objects.equals(this.Id,e.Id);
-			  
+
 		 }
 		 else return false;
 	}
@@ -241,12 +241,12 @@ public class E {
 	}
 
 
-	public String getPhotoBody() {
+	public Resource getPhotoBody() {
 		return photoBody;
 	}
 
 
-	public void setPhotoBody(String photoBody) {
+	public void setPhotoBody(Resource photoBody) {
 		this.photoBody = photoBody;
 	}
 

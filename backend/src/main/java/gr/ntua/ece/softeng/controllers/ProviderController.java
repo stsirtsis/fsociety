@@ -71,7 +71,7 @@ public class ProviderController {
 		System.out.println(e.getEventname());
 		provider.getEvents().add(e);
 		providersRepository.save(provider);
-		
+
 		String message = "";
 			try {
 				storageService.store(file);
@@ -96,6 +96,7 @@ public class ProviderController {
 		String date=e.getDate().toString();
 		String state="OPEN";
 		String photoUri=e.getPhotoUri();
+		Resource photoBody=null;
 		final String TARGET_URL =
 	               "https://maps.googleapis.com/maps/api/geocode/json?address=";
 		final String help1= "+";
@@ -133,7 +134,7 @@ public class ProviderController {
 		Double latitude=location.getDouble("lat");
 		Double longitude=location.getDouble("lng");
 
-		eRepository.save(new E(eventname, description , Area , StreetName , StreetNumber , AgeGroup , capacity , price , category , company_name, latitude, longitude, date, state, photoUri ));
+		eRepository.save(new E(eventname, description , Area , StreetName , StreetNumber , AgeGroup , capacity , price , category , company_name, latitude, longitude, date, state, photoUri, photoBody ));
 
 		return ResponseEntity.status(HttpStatus.OK).body(message);
 			}

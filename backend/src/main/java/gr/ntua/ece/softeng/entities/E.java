@@ -13,7 +13,7 @@ public class E {
 	private String Id;
 	@TextIndexed	private String eventName;
 	@TextIndexed    private String description;
-    private String Area;
+	private String Area;
 	private String StreetName;
 	private Integer StreetNumber;
 	private Integer ageGroup;
@@ -30,7 +30,10 @@ public class E {
 	private String photoBody;
 
 
-	public E(String eventName,String description,String Area,String StreetName,Integer StreetNumber,Integer ageGroup,Integer capacity,Integer price, Integer category,String company_name,Double latitude,Double longitude,String date,String state,String photoUri,String photoBody) {
+	public E(String id, String eventName,String description,String Area,String StreetName,Integer StreetNumber,Integer ageGroup,Integer capacity,Integer price, Integer category,String company_name,Double latitude,Double longitude,String date,String state,String photoUri,String photoBody) {
+		this.Id=id;
+
+
 		this.eventName=eventName;
 		this.description=description;
 		this.Area=Area;
@@ -118,15 +121,15 @@ public class E {
 
 	@Override
 	public boolean equals(Object obj) {
-		 if (obj == this) {
-	            return true;
-	        }
-		 else if (obj instanceof E) {
-			  E e = (E) obj;
-			  return Objects.equals(this.Id,e.Id);
+		if (obj == this) {
+			return true;
+		}
+		else if (obj instanceof E) {
+			E e = (E) obj;
+			return Objects.equals(this.Id,e.Id);
 
-		 }
-		 else return false;
+		}
+		else return false;
 	}
 
 
@@ -249,4 +252,4 @@ public class E {
 		this.photoBody = photoBody;
 	}
 
-}
+	}

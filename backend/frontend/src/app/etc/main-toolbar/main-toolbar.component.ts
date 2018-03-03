@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/authentication/user.service';
-import {Router} from '@angular/router'
+import {Component, OnInit} from '@angular/core';
+import {UserService} from '../../services/authentication/user.service';
+import {Router} from '@angular/router';
+import {TOKEN_NAME} from '../../constants/auth.constants';
+
 
 @Component({
   selector: 'app-main-toolbar',
@@ -9,17 +11,26 @@ import {Router} from '@angular/router'
 })
 export class MainToolbarComponent implements OnInit {
   username: string;
-  isuser: boolean = false ;
-  isparent: boolean = false ;
-  isprovider: boolean = false ;
-  constructor(private userService: UserService, private router: Router) { }
+  isuser = false;
+  isparent = false;
+  isprovider = false;
+
+  constructor(private userService: UserService, private router: Router) {
+  }
 
   ngOnInit() {
+    if (localStorage.getItem(TOKEN_NAME) == null) {
+      console.log('not logged in');
+    }
+    else {
+      this.userService.login(localStorage.getItem(TOKEN_NAME));
+    }
     this.username = this.userService.getUsername();
     this.isuser = this.userService.isUser();
     this.isparent = this.userService.isParentUser();
     this.isprovider = this.userService.isProviderUser();
   }
+
   logout() {
     this.userService.logout();
     this.isuser = false;

@@ -9,10 +9,11 @@ export class UserService {
   jwtHelper: JwtHelper = new JwtHelper();
   username: string;
   accessToken: string;
-  isAdmin: boolean = false;
-  isParent: boolean = false;
-  isProvider: boolean = false;
+  isAdmin = false;
+  isParent = false;
+  isProvider = false;
   role: string;
+  providerCompanyName: string;
 
   constructor() {
   }
@@ -28,6 +29,8 @@ export class UserService {
     this.isProvider  = decodedToken.authorities.some(el => el === 'PROVIDER');
     this.accessToken = accessToken;
     this.role = decodedToken.authorities[0];
+    if (this.role == 'PROVIDER')
+        this.providerCompanyName = decodedToken.authorities[1];
 
     localStorage.setItem(TOKEN_NAME, accessToken);
   }
@@ -37,6 +40,9 @@ export class UserService {
     this.isAdmin = false;
     this.isParent = false;
     this.isProvider = false;
+    this.role = null;
+    this.username = null;
+    this.providerCompanyName = null;
     localStorage.removeItem(TOKEN_NAME);
   }
 
@@ -52,7 +58,7 @@ export class UserService {
     return this.isProvider;
   }
   isUser(): boolean {
-    return (this.isProvider||this.isParent)
+    return (this.isProvider || this.isParent);
   }
 
   getUsername(): string {
@@ -67,6 +73,9 @@ export class UserService {
     return this.role;
   }
 
+  getProviderCompanyName(): string {
+    return this.providerCompanyName;
+  }
 
 
 }

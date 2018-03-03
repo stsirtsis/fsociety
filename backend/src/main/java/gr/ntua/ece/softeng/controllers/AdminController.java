@@ -26,76 +26,76 @@ import gr.ntua.ece.softeng.repositories.ProvidersRepository;
 public class AdminController {
 	@Autowired
 	private ProvidersRepository providersRepository;
-	
+
 	@Autowired 
 	private ParentRepository parentRepository;
-    
-    @Autowired
-    private JavaMailSender sender;
-	
+
+	@Autowired
+	private JavaMailSender sender;
+
 	@GetMapping(path="/all_providers")
 	public @ResponseBody Iterable<Providers> getAllUsers() {
 		return providersRepository.findAll();
 	}
-	
+
 	@GetMapping(path="/all_parents")
 	public @ResponseBody List<Parent> getAllParents() {
 		return parentRepository.findAll();
 	}
-	
-	
-    private static SecureRandom random = new SecureRandom();
-    private static final String ALPHA_CAPS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private static final String ALPHA = "abcdefghijklmnopqrstuvwxyz";
-    private static final String NUMERIC = "0123456789";
-    
 
-    
-	 @GetMapping(path="/resetpassword")
-	 public  @ResponseBody String PasswordGenerator(@RequestParam String username) {
-		 
-			try {
-	            sendPassword(username);
-	            return "Email Sent!";
-	        }catch(Exception ex) {
-	            return "Error in sending email: "+ex;
-	        }
-	    }
-	 
-	 public void sendPassword(String username) throws Exception{
-		 
-	    	Parent parent=parentRepository.findByUsername(username);
-	    	String email=parent.getEmail();
-	    	String password=generatePassword(10,ALPHA_CAPS+ALPHA+NUMERIC);
-	    	parent.setPassword(password);
-	    	parentRepository.save(parent);
-	    	
-	    	
-	    	MimeMessage message = sender.createMimeMessage();
-	        MimeMessageHelper helper = new MimeMessageHelper(message,true);
 
-	        helper.setTo(email);
-	        helper.setSubject("Αλλαγή κωδικού");
-	        helper.setText("Ο νέος σας κωδικός είναι: "+password);
-	        sender.send(message);
+	private static SecureRandom random = new SecureRandom();
+	private static final String ALPHA_CAPS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	private static final String ALPHA = "abcdefghijklmnopqrstuvwxyz";
+	private static final String NUMERIC = "0123456789";
 
-		 
-		 
-		 
-	 }
-	 
-	 
-	 
-	 public static String generatePassword(int len, String dic) {
-			String result = "";
-			for (int i = 0; i < len; i++) {
-			    int index = random.nextInt(dic.length());
-			    result += dic.charAt(index);
-			}
-			return result;
-		    }
 
-	
-	
-	
+
+	@GetMapping(path="/resetpassword")
+	public  @ResponseBody String PasswordGenerator(@RequestParam String username) {
+
+		try {
+			sendPassword(username);
+			return "Email Sent!";
+		}catch(Exception ex) {
+			return "Error in sending emails: "+ex;
+		}
+	}
+
+	public void sendPassword(String username) throws Exception{
+
+		Parent parent=parentRepository.findByUsername(username);
+		String email=parent.getEmail();
+		String password=generatePassword(10,ALPHA_CAPS+ALPHA+NUMERIC);
+		parent.setPassword(password);
+		parentRepository.save(parent);
+
+
+		MimeMessage message = sender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message,true);
+
+		helper.setTo(email);
+		helper.setSubject("Αλλαγή κωδικού");
+		helper.setText("Ο νέος σας κωδικός είναι: "+password);
+		sender.send(message);
+
+
+
+
+	}
+
+
+
+	public static String generatePassword(int len, String dic) {
+		String result = "";
+		for (int i = 0; i < len; i++) {
+			int index = random.nextInt(dic.length());
+			result += dic.charAt(index);
+		}
+		return result;
+	}
+
+
+
+
 }

@@ -3,10 +3,10 @@ import { HttpClient, HttpHeaders, HttpEvent, HttpResponse, HttpRequest, HttpEven
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
-import { Event } from '../interfaces/event.interface';
-import { Filters } from '../interfaces/filters.interface';
-import { newEvent } from '../interfaces/newEvent.interface';
-import { UserService } from './authentication/user.service';
+import {Event} from '../interfaces/event.interface';
+import {Filters} from '../interfaces/filters.interface';
+import {newEvent} from '../interfaces/newEvent.interface';
+import {UserService} from './authentication/user.service';
 
 @Injectable()
 export class EventService {
@@ -15,7 +15,8 @@ export class EventService {
   private POST_SEARCH_EVENT_URL;
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
-  constructor(private http: HttpClient, private userService: UserService) { }
+  constructor(private http: HttpClient, private userService: UserService) {
+  }
 
   createEvent(event: newEvent, file: File): Observable<HttpEvent<{}>> {
 
@@ -35,7 +36,7 @@ export class EventService {
 
   }
 
-  searchEvents(filters: Filters): Observable<Event[]>{
+  searchEvents(filters: Filters): Observable<Event[]> {
     this.POST_SEARCH_EVENT_URL = '/search/text/';
     return this.http.post<any>(this.POST_SEARCH_EVENT_URL, filters, {headers: this.headers});
   }

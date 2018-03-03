@@ -6,7 +6,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.TextScore;
-import org.springframework.core.io.Resource;
 
 @Document(collection = "events")
 public class E {
@@ -28,10 +27,10 @@ public class E {
 	private String date;
 	private String state;
 	private String photoUri;
-	private Resource photoBody;
+	private String photoBody;
 
 
-	public E(String eventName,String description,String Area,String StreetName,Integer StreetNumber,Integer ageGroup,Integer capacity,Integer price, Integer category,String company_name,Double latitude,Double longitude,String date,String state,String photoUri,Resource photoBody) {
+	public E(String eventName,String description,String Area,String StreetName,Integer StreetNumber,Integer ageGroup,Integer capacity,Integer price, Integer category,String company_name,Double latitude,Double longitude,String date,String state,String photoUri,String photoBody) {
 		this.eventName=eventName;
 		this.description=description;
 		this.Area=Area;
@@ -241,12 +240,12 @@ public class E {
 	}
 
 
-	public Resource getPhotoBody() {
+	public String getPhotoBody() {
 		return photoBody;
 	}
 
 
-	public void setPhotoBody(Resource photoBody) {
+	public void setPhotoBody(String photoBody) {
 		this.photoBody = photoBody;
 	}
 

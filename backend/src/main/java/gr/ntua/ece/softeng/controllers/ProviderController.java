@@ -96,7 +96,7 @@ public class ProviderController {
 		String date=e.getDate().toString();
 		String state="OPEN";
 		String photoUri=e.getPhotoUri();
-		Resource photoBody=null;
+		String photoBody="";
 		final String TARGET_URL =
 	               "https://maps.googleapis.com/maps/api/geocode/json?address=";
 		final String help1= "+";

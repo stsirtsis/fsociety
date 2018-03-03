@@ -1,9 +1,13 @@
 package gr.ntua.ece.softeng.controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.data.mongodb.core.query.TextCriteria;
@@ -61,6 +65,33 @@ public class SearchController {
 		return file;
 	}
 
+	
+	/* public static void main(String[] args) {
+
+         File f =  new File("C:/Users/SETU BASAK/Desktop/a.jpg");
+           String encodstring = encodeFileToBase64Binary(f);
+           System.out.println(encodstring);
+     }*/
+
+     private static String encodeFileToBase64Binary(File file){
+          String encodedfile = null;
+          try {
+              FileInputStream fileInputStreamReader = new FileInputStream(file);
+              byte[] bytes = new byte[(int)file.length()];
+              fileInputStreamReader.read(bytes);
+              encodedfile = new String(Base64.encodeBase64(bytes), "UTF-8");
+          } catch (FileNotFoundException e) {
+              // TODO Auto-generated catch block
+              e.printStackTrace();
+          } catch (IOException e) {
+              // TODO Auto-generated catch block
+              e.printStackTrace();
+          }
+
+          return encodedfile;
+      }
+	
+	
 	@PostMapping(path="/text")
 	public @ResponseBody List<E> textsearch(@RequestBody Filters filters)
 	{
@@ -138,8 +169,10 @@ public class SearchController {
 			}
 		results1.removeAll(results5);
 		for (E e1:results1) {
-			Resource thefile=getFile(e1.getPhotoUri());
-			e1.setPhotoBody(thefile);
+			String uri=e1.getPhotoUri();
+			String relpath="./upload-dir/";
+			File thefile=new File(relpath+uri);
+			e1.setPhotoBody(encodeFileToBase64Binary(thefile));
 		}
 		return results1;
 	}

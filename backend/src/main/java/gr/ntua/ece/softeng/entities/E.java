@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.TextScore;
 @Document(collection = "events")
 public class E {
 	@Id
-	private String Id;
+	private String id;
 	@TextIndexed	private String eventName;
 	@TextIndexed    private String description;
 	private String Area;
@@ -31,9 +31,7 @@ public class E {
 
 
 	public E(String id, String eventName,String description,String Area,String StreetName,Integer StreetNumber,Integer ageGroup,Integer capacity,Integer price, Integer category,String company_name,Double latitude,Double longitude,String date,String state,String photoUri,String photoBody) {
-		this.Id=id;
-
-
+		this.id=id;
 		this.eventName=eventName;
 		this.description=description;
 		this.Area=Area;
@@ -54,12 +52,12 @@ public class E {
 
 
 	public String getId() {
-		return Id;
+		return id;
 	}
 
 
 	public void setId(String id) {
-		Id = id;
+		this.id = id;
 	}
 
 
@@ -115,7 +113,7 @@ public class E {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(Id);
+		return Objects.hash(id);
 	}
 
 
@@ -126,7 +124,7 @@ public class E {
 		}
 		else if (obj instanceof E) {
 			E e = (E) obj;
-			return Objects.equals(this.Id,e.Id);
+			return Objects.equals(this.id,e.id);
 
 		}
 		else return false;

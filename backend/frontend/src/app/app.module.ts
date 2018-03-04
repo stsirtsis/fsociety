@@ -5,6 +5,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {Http, HttpModule} from '@angular/http';
 import {AuthConfig, AuthHttp} from 'angular2-jwt';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 import {AppComponent} from './app.component';
@@ -86,6 +87,7 @@ export function authHttpServiceFactory(http: Http) {
     FormsModule,
     HttpClientModule,
     HttpModule,
+    NgbModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA9VxQECCNE4WGhC94rFT8ly6QMCLbovYY'
     })

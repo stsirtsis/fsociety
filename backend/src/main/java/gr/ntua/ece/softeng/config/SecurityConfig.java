@@ -75,7 +75,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	@Primary //Making this primary to avoid any accidental duplication with another token service instance of the same name
+	@Primary // Making this primary to avoid any accidental duplication
+			 // with another token service instance of the same name
 	public DefaultTokenServices tokenServices() {
 		DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
 		defaultTokenServices.setTokenStore(tokenStore());

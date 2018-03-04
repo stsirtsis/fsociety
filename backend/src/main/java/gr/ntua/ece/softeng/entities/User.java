@@ -1,6 +1,7 @@
 package gr.ntua.ece.softeng.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -9,7 +10,9 @@ public class User {
 	@Id
 	@GeneratedValue
 	private Long id;
+	@NotNull
 	private String username;
+	@NotNull
 	private String password;
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)

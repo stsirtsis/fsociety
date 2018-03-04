@@ -25,7 +25,7 @@ export class ProvidersHistoryComponent implements OnInit {
   });
 
   eventsList: Event[] = [];
-  listOrMap: number = 0;  //0 is list, 1 is map
+  listOrMap: number = 0;  // 0 is list, 1 is map
 
   newSearch: Filters = {
     username: '',

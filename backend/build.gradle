@@ -31,11 +31,13 @@ repositories {
 
 
 dependencies {
+    compile('org.springframework.boot:spring-boot-starter-jdbc')
 	compile('org.springframework.boot:spring-boot-devtools')
 	compile('org.springframework.boot:spring-boot-starter')
 	compile("org.springframework.boot:spring-boot-starter-web")
 	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
 	compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+
 	compile 'com.itextpdf:itextpdf:5.5.4'
 	compile('org.springframework.boot:spring-boot-starter-mail')
 	

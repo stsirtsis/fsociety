@@ -1,5 +1,6 @@
 package gr.ntua.ece.softeng.controllers;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,6 @@ import gr.ntua.ece.softeng.entities.Event;
 import gr.ntua.ece.softeng.entities.Parent;
 import gr.ntua.ece.softeng.repositories.EventRepository;
 import gr.ntua.ece.softeng.repositories.ParentRepository;
-
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,14 +21,19 @@ import java.io.InputStream;
 
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 
 
 @Controller
-@RequestMapping(path = "/buyticket")
+@RequestMapping(path="/buyticket")
 @PreAuthorize("hasAuthority('PARENT') or hasAuthority('ADMIN')")
 public class BuyTicketController {
 
@@ -41,26 +46,32 @@ public class BuyTicketController {
     @Autowired
     private JavaMailSender sender;
 
+    private static Integer eventprice;
+    private static String eventname;
+
+
     public String book(Event event, Integer capacity) {
         event.setCapacity(capacity - 1);
         eventRepository.save(event);
-        if (capacity <= 0)
+        if(capacity <= 0)
             return "Sorry, event is full";
         return "OK, ticket bought\t" + event.getCapacity() + " left. Hurry!";
     }
 
 
-    @RequestMapping(path = "/new/{parent_username}/{event_id}")
-    public synchronized @ResponseBody
-    String buynewticket(@PathVariable String parent_username,
-                        @PathVariable Long event_id) {
-        Event event = eventRepository.findOne(event_id);
-        Parent parent = parentRepository.findByUsername(parent_username);
+    @RequestMapping(path="/new/{parent_username}/{event_id}")
+    public synchronized @ResponseBody String buynewticket (@PathVariable String parent_username,
+                                                           @PathVariable Long event_id) {
+        Event event      = eventRepository.findOne(event_id) ;
+        eventname=event.getEventname();
+        eventprice=event.getPrice();
+
+        Parent parent    = parentRepository.findByUsername(parent_username);
         Integer capacity;
 
 
         capacity = event.getCapacity();
-        if (capacity > 0) {
+        if(capacity > 0) {
 
             Integer price = event.getPrice();
             Integer wallet = parent.getWallet();
@@ -70,14 +81,16 @@ public class BuyTicketController {
 
             Integer new_capacity = capacity - 1;
 
-            if (wallet > 0) {
+            if (wallet>0) {
                 Integer new_wallet = wallet - price;
                 if (new_wallet < 0) {
                     Integer rest = price - wallet;
                     finwallet = 0;
                     new_Fpoints = Fpoints + (10 * rest);
-                } else finwallet = new_wallet;
-            } else {
+                }
+                else finwallet = new_wallet;
+            }
+            else {
                 new_Fpoints = Fpoints + (10 * price);
             }
             Integer result1 = new_Fpoints / 1000;
@@ -94,37 +107,37 @@ public class BuyTicketController {
 
             parent.getEvents().add(event);
             parentRepository.save(parent);
-            if (new_capacity <= 0)
+            if(new_capacity <= 0)
                 return "OK, ticket bought and now event is full! You have \t" + new_Fpoints + " Fpoints and\t" + finwallet + "$ in your wallet";
             return "OK, ticket bought\t" + new_capacity + " left. Hurry! You have \t" + new_Fpoints + " Fpoints and\t" + finwallet + "$ in your wallet";
-        } else
+        }
+        else
             return "Sorry, event is full";
 
     }
 
     @RequestMapping("/sendEmail")
-    public @ResponseBody
-    String home(@RequestParam String username) {
+    public  @ResponseBody String home(@RequestParam String username) {
         try {
             sendEmail(username);
             return "Email Sent!";
-        } catch (Exception ex) {
-            return "Error in sending email: " + ex;
+        }catch(Exception ex) {
+            return "Error in sending email: "+ex;
         }
     }
 
-    public void sendEmail(String username) throws Exception {
-        Parent parent = parentRepository.findByUsername(username);
+    public void sendEmail(String username) throws Exception{
+        Parent parent=parentRepository.findByUsername(username);
         String email;
-        email = parent.getEmail();
+        email=parent.getEmail();
 
-        String firstName = parent.getFirstName();
-        String lastName = parent.getLastName();
+        String firstName=parent.getFirstName();
+        String lastName=parent.getLastName();
 
         MimeMessage message = sender.createMimeMessage();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         // Enable the multipart flag!
-        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+        MimeMessageHelper helper = new MimeMessageHelper(message,true);
 
         helper.setTo(email);
         helper.setText("");
@@ -133,17 +146,17 @@ public class BuyTicketController {
 
         try {
 
-            PDFConfig.createPDF(fileName, firstName, lastName);
+            PDFConfig.createPDF(fileName,firstName,lastName,eventname,eventprice);
 
             baos = convertPDFToByteArrayOutputStream(fileName);
         } catch (Exception e1) {
             e1.printStackTrace();
         }
 
-        final byte[] data = baos.toByteArray();
+        final byte[] data=baos.toByteArray();
 
 
-        helper.addAttachment("ticket.pdf", new ByteArrayResource(data));
+        helper.addAttachment("ticket.pdf",new ByteArrayResource(data));
 
         sender.send(message);
     }
@@ -179,6 +192,7 @@ public class BuyTicketController {
         }
         return baos;
     }
+
 
 
 }

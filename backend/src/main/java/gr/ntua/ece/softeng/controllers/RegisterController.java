@@ -4,19 +4,26 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.mail.internet.MimeMessage;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,6 +49,9 @@ public class RegisterController {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private JavaMailSender sender;
 
 	private final static String POST_PARENT_URL = "/parent";
 	@PostMapping(POST_PARENT_URL)
@@ -148,6 +158,92 @@ public class RegisterController {
 			
 		}
 
+	}
+	
+
+	
+
+	private static SecureRandom random = new SecureRandom();
+	private static final String ALPHA_CAPS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	private static final String ALPHA = "abcdefghijklmnopqrstuvwxyz";
+	private static final String NUMERIC = "0123456789";
+	private static Boolean flag=false;
+	private static String email=null;
+	private static String password=null;
+	
+	@GetMapping(path="/reset_password")
+	public  @ResponseBody CustomResponse PasswordGenerator(@RequestParam String username) throws Exception {
+		
+		
+		try {
+			Parent parent=parentRepository.findByUsername(username);
+			CustomResponse<String>cr = new CustomResponse<>();
+			cr.setMessage("Your password has been reset.Please check your emails.");
+			flag=true;
+			sendPassword(username);
+			return cr;
+
+			
+		
+			}catch (NullPointerException ex) {
+		
+				try {	
+					Providers provider=providersRepository.findByUserName(username);
+					CustomResponse<String>cr2 = new CustomResponse<>();
+					cr2.setMessage("Your password has been reset.Please check your emails.");
+					sendPassword(username);
+					return cr2;
+				
+				}catch (NullPointerException e) {
+					
+					CustomResponse<String>cr3 = new CustomResponse<>();
+					cr3.setMessage("Please insert a valid username");
+					return cr3;
+				}
+			
+			
+			
+			}	
+		
+	}	
+	
+	public void sendPassword(String username) throws Exception{
+			if(flag==true) {
+				flag=false;
+				Parent parent=parentRepository.findByUsername(username);
+				email=parent.getEmail();
+				password=generatePassword(10,ALPHA_CAPS+ALPHA+NUMERIC);
+				String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);
+				parent.setPassword(sha256hex);
+				parentRepository.save(parent);
+			}
+			else {
+				Providers provider=providersRepository.findByUserName(username);
+				email=provider.getMail();
+				password=generatePassword(10,ALPHA_CAPS+ALPHA+NUMERIC);
+				String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);
+				provider.setPassword(sha256hex);
+				providersRepository.save(provider);
+				}
+				
+
+			MimeMessage message = sender.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(message,true);
+
+			helper.setTo(email);
+			helper.setSubject("Αλλαγή κωδικού");
+			helper.setText("Ο νέος σας κωδικός είναι: "+password);
+			sender.send(message);
+
+		}
+
+	public static String generatePassword(int len, String dic) {
+		String result = "";
+		for (int i = 0; i < len; i++) {
+			int index = random.nextInt(dic.length());
+			result += dic.charAt(index);
+		}
+		return result;
 	}
 	
 	

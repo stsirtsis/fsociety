@@ -62,10 +62,6 @@ public class AdminController {
     }
 
 
-    private static SecureRandom random = new SecureRandom();
-    private static final String ALPHA_CAPS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private static final String ALPHA = "abcdefghijklmnopqrstuvwxyz";
-    private static final String NUMERIC = "0123456789";
 
     @GetMapping(path = "/lock_user")
     @Transactional
@@ -127,46 +123,6 @@ public class AdminController {
     }
 
 
-    @GetMapping(path = "/reset_password")
-    public @ResponseBody
-    String PasswordGenerator(@RequestParam String username) {
-
-        try {
-            sendPassword(username);
-            return "Email Sent!";
-        } catch (Exception ex) {
-            return "Error in sending emails: " + ex;
-        }
-    }
-
-    public void sendPassword(String username) throws Exception {
-
-        Parent parent = parentRepository.findByUsername(username);
-        String email = parent.getEmail();
-        String password = generatePassword(10, ALPHA_CAPS + ALPHA + NUMERIC);
-        parent.setPassword(password);
-        parentRepository.save(parent);
-
-
-        MimeMessage message = sender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message, true);
-
-        helper.setTo(email);
-        helper.setSubject("Αλλαγή κωδικού");
-        helper.setText("Ο νέος σας κωδικός είναι: " + password);
-        sender.send(message);
-
-    }
-
-
-    public static String generatePassword(int len, String dic) {
-        String result = "";
-        for (int i = 0; i < len; i++) {
-            int index = random.nextInt(dic.length());
-            result += dic.charAt(index);
-        }
-        return result;
-    }
 
 
 }

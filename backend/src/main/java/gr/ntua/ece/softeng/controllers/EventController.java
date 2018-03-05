@@ -32,21 +32,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class EventController {
-	
+
 	@Autowired
 	private EventRepository eventRepository;
-	
+
 	@RequestMapping(path="/event_click/{event_id}")
 	public synchronized @ResponseBody void countclicks (@PathVariable Long event_id) {
-		
+
 		Event event = eventRepository.findOne(event_id);
 		Integer clicks;
-		
+
 		clicks=event.getClicks();
-		clicks++;	
-		event.setClicks(clicks);		
+		clicks++;
+		event.setClicks(clicks);
 		eventRepository.save(event);
 	}
-	
+
+	@RequestMapping(path="{eventId}")
+	public @ResponseBody Event findEvent (@PathVariable Long eventId) {
+		return eventRepository.findOne(eventId);
+	}
 
 }

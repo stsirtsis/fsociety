@@ -24,7 +24,6 @@ public class Providers {
 	private String userName;
 	@NotNull
 	private String Password;
-	private String Category;
 	@NotNull
 	private String Description;
 	@NotNull
@@ -87,13 +86,6 @@ public class Providers {
 		Password = password;
 	}
 
-	public String getCategory() {
-		return Category;
-	}
-	public void setCategory(String category) {
-		Category = category;
-	}
-
 	public String getDescription() {
 		return Description;
 	}
@@ -144,7 +136,7 @@ public class Providers {
 	}
 	@Override
 	public String toString() {
-		return "Provider [companyName=" + companyName + ",FirstName=" + FirstName + ", LastName=" + LastName + ", UserName=" + userName + " , Password=" + Password + ", Category= "+Category+", Description= "+Description+" , Area= "+Area+", StreetName= "+StreetName+", StreetNumber= "+StreetNumber+", TelNumber= "+TelNumber+", Mail=" + Mail + ", Iban= "+Iban+"]";
+		return "Provider [companyName=" + companyName + ",FirstName=" + FirstName + ", LastName=" + LastName + ", UserName=" + userName + " , Password=" + Password + ", Description= "+Description+" , Area= "+Area+", StreetName= "+StreetName+", StreetNumber= "+StreetNumber+", TelNumber= "+TelNumber+", Mail=" + Mail + ", Iban= "+Iban+"]";
 	}
 
 }

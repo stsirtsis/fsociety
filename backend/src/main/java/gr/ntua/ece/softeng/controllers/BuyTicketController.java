@@ -50,19 +50,11 @@ public class BuyTicketController {
     private static String eventname;
 
 
-    public String book(Event event, Integer capacity) {
-        event.setCapacity(capacity - 1);
-        eventRepository.save(event);
-        if(capacity <= 0)
-            return "Sorry, event is full";
-        return "OK, ticket bought\t" + event.getCapacity() + " left. Hurry!";
-    }
-
-
-    @RequestMapping(path="/new/{parent_username}/{event_id}")
-    public synchronized @ResponseBody String buynewticket (@PathVariable String parent_username,
-                                                           @PathVariable Long event_id) {
-        Event event      = eventRepository.findOne(event_id) ;
+    @RequestMapping(path="/new")
+    public synchronized @ResponseBody String buynewticket (@RequestParam String parent_username,
+                                                           @RequestParam Long event_id,
+                                                           @RequestParam Integer quantity) {
+        Event event = eventRepository.findOne(event_id) ;
         eventname=event.getEventname();
         eventprice=event.getPrice();
 
@@ -78,20 +70,20 @@ public class BuyTicketController {
             Integer Fpoints = parent.getFpoints();
             Integer finwallet = wallet;
             Integer new_Fpoints = Fpoints;
-
-            Integer new_capacity = capacity - 1;
+            Integer new_price = price * quantity;
+            Integer new_capacity = capacity - quantity;
 
             if (wallet>0) {
-                Integer new_wallet = wallet - price;
+                Integer new_wallet = wallet - new_price;
                 if (new_wallet < 0) {
-                    Integer rest = price - wallet;
+                    Integer rest = new_price - wallet;
                     finwallet = 0;
                     new_Fpoints = Fpoints + (10 * rest);
                 }
                 else finwallet = new_wallet;
             }
             else {
-                new_Fpoints = Fpoints + (10 * price);
+                new_Fpoints = Fpoints + (10 * new_price);
             }
             Integer result1 = new_Fpoints / 1000;
             if (result1 > 0) {

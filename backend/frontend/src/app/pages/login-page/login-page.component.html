@@ -1,35 +1,40 @@
-<app-main-toolbar> </app-main-toolbar>
+<app-main-toolbar></app-main-toolbar>
 
 <div class="general">
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-    <div class="fadeIn first">
-     <h3><b>Σύνδεση</b></h3>
-    </div>
-    <div class="form-wrapper">
-      <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-        <div class="fadeIn second">
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-          <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel"
-                 required placeholder="Username"/>
-          <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
-        </div>
-       </div>
-        <div class="fadeIn third">
-        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-          <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel"
-                 required placeholder="Password"/>
-          <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
-        </div>
-        </div>
-        <div class="fadeIn fourth">
-        <div class="form-group">
-          <button [disabled]="loading" class="btn btn-primary">Συνδεση</button>
-        </div>
-        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <div class="fadeIn first">
+        <h3><b>Σύνδεση</b></h3>
       </div>
-      </form>
+      <div class="form-wrapper">
+        <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+          <div class="fadeIn second">
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+              <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel"
+                     required placeholder="Username"/>
+              <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+            </div>
+          </div>
+          <div class="fadeIn third">
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+              <input type="password" class="form-control" name="password" [(ngModel)]="model.password"
+                     #password="ngModel"
+                     required placeholder="Password"/>
+              <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+            </div>
+          </div>
+          <div class="fadeIn fourth">
+            <div class="form-group">
+              <button [disabled]="loading" class="btn btn-primary">Συνδεση</button>
+            </div>
+            <div *ngIf="blocked" class="alert alert-danger">
+              Έχετε μπλοκαριστεί από τον admin.<br/>
+              (Επικοινωνία: admin@funsociety.gr)
+            </div>
+            <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 </div>

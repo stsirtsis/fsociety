@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 
 import {AuthenticationService} from '../../services/authentication/authentication.service';
 import {UserService} from '../../services/authentication/user.service';
-
 
 
 @Component({
@@ -16,6 +15,7 @@ export class LoginPageComponent implements OnInit {
   loading = false;
   error = '';
   redirectUrl: string;
+  blocked = false;
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -37,25 +37,28 @@ export class LoginPageComponent implements OnInit {
           this.loading = false;
 
           if (result) {
-            this.userService.login(result);
+            if (!this.userService.login(result)) {
+              this.blocked = true;
+              return;
+            }
+
             this.navigateAfterSuccess();
           } else {
             this.error = 'Username or password is incorrect';
           }
         },
-          error => {
-            this.error = 'Username or password is incorrect';
-            this.loading = false;
-          }
-
+        error => {
+          this.error = 'Username or password is incorrect';
+          this.loading = false;
+        }
       );
   }
 
   private navigateAfterSuccess() {
-    if(this.userService.isParentUser()){
+    if (this.userService.isParentUser()) {
       this.router.navigate(['parent-events']);
     }
-    if(this.userService.isProviderUser()){
+    if (this.userService.isProviderUser()) {
       this.router.navigate(['front-page']);
     }
 

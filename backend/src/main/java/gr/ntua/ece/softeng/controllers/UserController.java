@@ -29,27 +29,29 @@ public class UserController {
     private ProvidersRepository providersRepository;
 
     @GetMapping(path="/user_info")
-    @PreAuthorize("hasAnyAuthority('PARENT') or hasAuthority('PROVIDER') or hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('PARENT') or hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
     public @ResponseBody CustomResponse userInfo(@RequestParam String username) {
         User user = userRepository.findByUsername(username);
         if(user != null) {
             List<Role> roles;
             roles = user.getRoles();
 
-            if(roles.get(0).getName().equals("PARENT")) {
-                CustomResponse<Parent> cr = new CustomResponse<>();
-                cr.setMessage(parentRepository.findByUsername(username));
-                return cr;
-            }
-            else if(roles.get(0).getName().equals("PROVIDER")) {
-                CustomResponse<Providers> cr = new CustomResponse<>();
-                cr.setMessage(providersRepository.findByUserName(username));
-                return cr;
-            }
-            else {
-                CustomResponse<String> cr = new CustomResponse<>();
-                cr.setMessage("Something's wrong with providers' roles");
-                return cr;
+            switch (roles.get(0).getName()) {
+                case "PARENT": {
+                    CustomResponse<Parent> cr = new CustomResponse<>();
+                    cr.setMessage(parentRepository.findByUsername(username));
+                    return cr;
+                }
+                case "PROVIDER": {
+                    CustomResponse<Providers> cr = new CustomResponse<>();
+                    cr.setMessage(providersRepository.findByUserName(username));
+                    return cr;
+                }
+                default: {
+                    CustomResponse<String> cr = new CustomResponse<>();
+                    cr.setMessage("Something's wrong with providers' roles");
+                    return cr;
+                }
             }
 
         }

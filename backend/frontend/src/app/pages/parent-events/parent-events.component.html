@@ -1,4 +1,4 @@
-<app-main-toolbar> </app-main-toolbar>
+<app-main-toolbar></app-main-toolbar>
 <div class="container">
   <div class="row">
     <div class="col-md-4 ">
@@ -11,7 +11,8 @@
         <div class="form-group has-feedback">
           <div class="row">
             <label for="search" class="sr-only">Search</label>
-            <input type="text" class="form-control col-md-8" [(ngModel)]="newSearch.text" name="search" id="search" placeholder="search">
+            <input type="text" class="form-control col-md-8" [(ngModel)]="newSearch.text" name="search" id="search"
+                   placeholder="search">
             <span class="glyphicon glyphicon-search form-control-feedback"></span>
             <button (click)="searchEvents()" type="submit" class="btn btn-primary col-md-2">Αναζήτηση</button>
           </div>
@@ -28,58 +29,73 @@
         <div class="form-group">
           <label for="inputAgeGroup">Ηλικιακή Κατηγορία</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup" value="1">2-5
+            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup"
+                   value="1">2-5
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup" value="2">5-10
+            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup"
+                   value="2">5-10
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup" value="3">10-15
+            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup"
+                   value="3">10-15
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup" value="4">15+
+            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup"
+                   value="4">15+
           </div>
         </div>
         <div class="form-group">
           <label for="inputCategory">Κατηγορία Δραστηριότητας</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.category" name="inputCategory" value="1">Αθλητισμός
+            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.category" name="inputCategory"
+                   value="1">Αθλητισμός
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.category" name="inputCategory" value="2">Καλλιτεχνικά
+            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.category" name="inputCategory"
+                   value="2">Καλλιτεχνικά
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.category" name="inputCategory" value="3">Εκπαίδευση
+            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.category" name="inputCategory"
+                   value="3">Εκπαίδευση
           </div>
         </div>
         <div class="form-group">
           <label for="inputDistance">Απόσταση</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance" value="1">Έως 5χλμ
+            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance"
+                   value="1">Έως 5χλμ
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance" value="2">Έως 8χλμ
+            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance"
+                   value="2">Έως 8χλμ
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance" value="3">Έως 10χλμ
+            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance"
+                   value="3">Έως 10χλμ
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance" value="4">Πάνω από 10χλμ
+            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance"
+                   value="4">Πάνω από 10χλμ
           </div>
         </div>
         <div class="form-group">
           <label for="inputAgeGroup">Τιμή</label>
           <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.price" name="inputPrice" value="1">5-10 Ευρά
+            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.price" name="inputPrice" value="1">5-10
+            Ευρά
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.price" name="inputPrice" value="2">10-20 Ευρά
+            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.price" name="inputPrice" value="2">10-20
+            Ευρά
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.price" name="inputPrice" value="3">20-50 Ευρά
+            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.price" name="inputPrice" value="3">20-50
+            Ευρά
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.price" name="inputPrice" value="4">50+ Ευρά
+            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.price" name="inputPrice" value="4">50+
+            Ευρά
           </div>
         </div>
       </form>

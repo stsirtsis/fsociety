@@ -1,9 +1,11 @@
 package gr.ntua.ece.softeng.entities;
 
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 
@@ -16,19 +18,31 @@ public class Parent {
 	@Id
 	private String username;
 
+	@NotNull
 	private String firstName;
+	@NotNull
 	private String lastName;
+	@NotNull
 	private String Area;
+	@NotNull
 	private String StreetName;
+	@NotNull
 	private Integer StreetNumber;
+
 	private Double latitude;
 	private Double longitude;
+	@NotNull
 	private String password;
 	@Email
+	@NotNull
 	private String email;
+	@NotNull
 	private String phoneNumber;
+	@NotNull
 	private String debitCard;
+	@NotNull
 	private Integer Fpoints;
+	@NotNull
 	private Integer wallet;
 
 	@ManyToMany

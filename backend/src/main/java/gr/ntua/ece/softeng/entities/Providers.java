@@ -2,9 +2,11 @@ package gr.ntua.ece.softeng.entities;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 
@@ -14,21 +16,32 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Providers {
 	@Id
 	private String companyName;
+	@NotNull
 	private String FirstName;
+	@NotNull
 	private String LastName;
+	@NotNull
 	private String userName;
+	@NotNull
 	private String Password;
 	private String Category;
+	@NotNull
 	private String Description;
+	@NotNull
 	private String Area;
+	@NotNull
 	private String StreetName;
+	@NotNull
 	private Integer StreetNumber;
+	@NotNull
 	private String TelNumber;
 	@Email
+	@NotNull
 	private String Mail;
+	@NotNull
 	private String Iban;
 
-	@OneToMany(mappedBy = "provider")
+	@OneToMany(mappedBy = "provider", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Set<Event> events;
 

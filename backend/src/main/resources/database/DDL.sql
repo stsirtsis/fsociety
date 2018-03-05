@@ -1,4 +1,6 @@
-CREATE DATABASE softengdb;
+CREATE DATABASE softengdb IF NOT EXISTS ;
+create user 'user'@'localhost' identified by 'user' if not exists;
+grant all on softengdb.* to 'user'@'localhost';
 
 DROP TABLE IF EXISTS `event`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

@@ -1,38 +1,3 @@
-LOCK TABLES `event` WRITE;
-/*!40000 ALTER TABLE `event`
-  DISABLE KEYS */;
-INSERT INTO `event` VALUES
-  (1, 'Athens', 'Stadiou', 20, 4, 54, 1, 0, '2018-03-18', 'Party non stop', 'Athens party', 100, 5, 0, 'unboxholics'),
-  (2, 'Thessaloniki', 'Tsimiski', 25, 4, 0, 2, 0, '2018-03-15', 'Photography lessons', 'My lessons', 20, 10, 0, 'unboxholics'),
-  (3, 'Thessaloniki', 'Tsimiski', 5, 2, 3, 2, 0, '2018-03-11', 'My video tech', 'Video lessons', 15, 15, 0, 'unboxholics'),
-  (4, 'zografou', 'papagou', 16, 1, 3, 1, 0, '2018-02-20', 'kjagdkjhdqkjwhkj', 'hsdgjhdg', 8, 7, 0, 'unboxholics'),
-  (5, 'zografou', 'PAPAGOU', 98, 1, 62, 1, 0, '2018-02-28', 'HFUWE', 'WEHUWHEFU', 89, 7, 0, 'unboxholics'),
-  (6, 'dohu', 'lsdijl', 89, 1, 890, 1, 0, '2018-07-19', 'uwghow', 'seifho', 890, 78, 0, 'unboxholics'),
-  (7, 'Zografou', 'Kousidi', 75, 2, 19, 3, 0, '2018-03-22', 'Mathima Algo', 'Mathima', 20, 15, 0, 'Didaskalia'),
-  (8, 'Zografou', 'Papagou', 40, 3, 22, 3, 0, '2018-04-20', 'Java lesson', 'Didaskalia prog', 30, 20, 0, 'Mathimata'),
-  (9, 'Ampelokipoi', 'Pouliou', 4, 4, 27, 3, 0, '2018-05-14', 'Nikh se dikasthrio', 'Dikh', 30, 100, 0, 'Dikigoros'),
-  (10, 'Larissa', 'Kouma', 4, 3, 243, 1, 0, '2018-03-24', 'Kypello Elladas', 'Agwnas AEL-AEK', 250, 15, 0, 'Dikigoros'),
-  (11, 'Nea Smirni', 'Omirou', 45, 2, 28, 3, 0, '2018-03-21', 'Idiaitero mathima', 'Mathima SHE', 30, 20, 0, 'Didaskalia'),
-  (12, 'Gkazi', 'Iera Odos', 23, 2, 29, 3, 0, '2018-03-15', 'Tmhma Enisxytikhs', 'Mathima Stoxastikwn', 30, 8, 0,
-   'Didaskalia'),
-  (13, 'Pangrati', 'Filolaou', 33, 2, 34, 2, 0, '2018-03-21', 'Tmhma mousikhs', 'Mathima kitharas', 40, 20, 0,
-   'Didaskalia'),
-  (14, 'Marousi', 'Salaminas', 12, 3, 69, 3, 0, '2018-03-23', 'Tmhma programmatismou', 'Didaskalia Haskel', 70, 15, 0,
-   'Mathimata'),
-  (15, 'Marousi', 'Thiseos', 20, 4, 47, 3, 0, '2018-03-20', 'Tmhma proxwrhmenwn', 'Mathima C++', 50, 40, 0,
-   'Mathimata'), (16, 'Larissa', 'Asklipiou', 60, 2, 20, 1, 0, '2018-04-21', 'Pws trexw', 'Taxythta', 20, 5, 0, 'Run'),
-  (17, 'Glyfada', 'Zamanou', 5, 2, 80, 2, 0, '2018-03-22', 'Laikos', 'Tragoudi', 80, 12, 0, 'Athinwn Arena'),
-  (18, 'Ilioupoli', 'Kotzia', 8, 1, 200, 2, 0, '2018-04-07', 'Live ola', 'Live party', 200, 20, 0, 'Pista'),
-  (19, 'Larissa', 'Kouma', 12, 3, 50, 2, 0, '2018-04-28', 'Pinakes', 'Art lesson', 50, 18, 0, 'Autokinhsh'),
-  (20, 'Ilisia', 'Ilision', 40, 4, 90, 2, 0, '2018-05-23', 'Asteia me mena', 'Asteia', 90, 10, 0, 'Skoupa');
-/*!40000 ALTER TABLE `event`
-  ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE = @OLD_TIME_ZONE */;
-
-LOCK TABLES `parent` WRITE;
-/*!40000 ALTER TABLE `parent`
-  DISABLE KEYS */;
 INSERT INTO `parent` VALUES
   ('aggelosdani', 'Larissa', 470, 'Seferi', 40, '7894561230789456', 'dani@mail.com', 'Aggelos', 'Daniil', 39.6434466,
                   22.4277134, '28b2120efbbe4f265670134fa6d4f5499c172d5b5d879c2ba5315e663acf9714', '6932850210', 0),
@@ -60,29 +25,7 @@ INSERT INTO `parent` VALUES
   ('xristospier', 'Zografou', 680, 'Papagou', 2, '7898745654123215', 'pier@mail.com', 'Xristos', 'Pierrakos',
                   37.9802082, 23.761499, '38fadeedb947c89d4b10644c4a3c04cef554e97c8689f052cd93be8165dbc0a7',
    '6944556677', 0);
-/*!40000 ALTER TABLE `parent`
-  ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE = @OLD_TIME_ZONE */;
 
-LOCK TABLES `parent_events` WRITE;
-/*!40000 ALTER TABLE `parent_events`
-  DISABLE KEYS */;
-INSERT INTO `parent_events`
-VALUES ('aggelosdani', 1), ('dimalex95', 1), ('eimaixontros', 1), ('gpapama95', 1), ('vaggosagoro', 1),
-  ('aggelosdani', 2), ('eimaixontros', 2), ('gpapama95', 2), ('xristospier', 2), ('eimaixontros', 3), ('gpapama95', 3),
-  ('aggelosdani', 4), ('eimaixontros', 4), ('vaggosagoro', 4), ('xristospier', 4), ('eimaixontros', 5),
-  ('gpapama95', 5), ('vaggosagoro', 5), ('xristospier', 5), ('sentra1234', 7), ('amyna1234', 8), ('dimalex95', 8),
-  ('sentra1234', 8), ('sentra1234', 9), ('trexantiri', 9), ('dimalex95', 10), ('sentra1234', 10), ('dimalex95', 11),
-  ('trexantiri', 12), ('amyna1234', 13), ('trexantiri', 13), ('trexantiri', 14), ('amyna1234', 15);
-/*!40000 ALTER TABLE `parent_events`
-  ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE = @OLD_TIME_ZONE */;
-
-LOCK TABLES `providers` WRITE;
-/*!40000 ALTER TABLE `providers`
-  DISABLE KEYS */;
 INSERT INTO `providers` VALUES
   ('Athinwn Arena', 'Glyfada', NULL, 'Diaskedash', 'Antonis', '1122336655889740', 'Remos', 'rem@mail.com',
                     '45dafcf67f6db9309795bab8cbfeb5217894536c6ec786137adba81d93981278', 'Semelis', 8, '6987120045',
@@ -109,14 +52,40 @@ INSERT INTO `providers` VALUES
   ('unboxholics', 'Thessaloniki', NULL, 'Entertainement', 'Sakis', '0321456987456321', 'Karpas', 'mama@mail.com',
                   '7d128c4c536c2a9a92bc42d8196a4694dd30cf75e32476be3ed1a3a925c631e4', 'Tsimiski', 100, '6987453210',
    'braveheart');
-/*!40000 ALTER TABLE `providers`
-  ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE = @OLD_TIME_ZONE */;
 
-LOCK TABLES `role` WRITE;
-/*!40000 ALTER TABLE `role`
-  DISABLE KEYS */;
+INSERT INTO `event` VALUES
+  (1, 'Athens', 'Stadiou', 20, 4, 54, 1, 0, '2018-03-18', 'Party non stop', 'Athens party', 100, 5, 0, 'unboxholics'),
+  (2, 'Thessaloniki', 'Tsimiski', 25, 4, 0, 2, 0, '2018-03-15', 'Photography lessons', 'My lessons', 20, 10, 0, 'unboxholics'),
+  (3, 'Thessaloniki', 'Tsimiski', 5, 2, 3, 2, 0, '2018-03-11', 'My video tech', 'Video lessons', 15, 15, 0, 'unboxholics'),
+  (4, 'zografou', 'papagou', 16, 1, 3, 1, 0, '2018-02-20', 'kjagdkjhdqkjwhkj', 'hsdgjhdg', 8, 7, 0, 'unboxholics'),
+  (5, 'zografou', 'PAPAGOU', 98, 1, 62, 1, 0, '2018-02-28', 'HFUWE', 'WEHUWHEFU', 89, 7, 0, 'unboxholics'),
+  (6, 'dohu', 'lsdijl', 89, 1, 890, 1, 0, '2018-07-19', 'uwghow', 'seifho', 890, 78, 0, 'unboxholics'),
+  (7, 'Zografou', 'Kousidi', 75, 2, 19, 3, 0, '2018-03-22', 'Mathima Algo', 'Mathima', 20, 15, 0, 'Didaskalia'),
+  (8, 'Zografou', 'Papagou', 40, 3, 22, 3, 0, '2018-04-20', 'Java lesson', 'Didaskalia prog', 30, 20, 0, 'Mathimata'),
+  (9, 'Ampelokipoi', 'Pouliou', 4, 4, 27, 3, 0, '2018-05-14', 'Nikh se dikasthrio', 'Dikh', 30, 100, 0, 'Dikigoros'),
+  (10, 'Larissa', 'Kouma', 4, 3, 243, 1, 0, '2018-03-24', 'Kypello Elladas', 'Agwnas AEL-AEK', 250, 15, 0, 'Dikigoros'),
+  (11, 'Nea Smirni', 'Omirou', 45, 2, 28, 3, 0, '2018-03-21', 'Idiaitero mathima', 'Mathima SHE', 30, 20, 0, 'Didaskalia'),
+  (12, 'Gkazi', 'Iera Odos', 23, 2, 29, 3, 0, '2018-03-15', 'Tmhma Enisxytikhs', 'Mathima Stoxastikwn', 30, 8, 0,
+   'Didaskalia'),
+  (13, 'Pangrati', 'Filolaou', 33, 2, 34, 2, 0, '2018-03-21', 'Tmhma mousikhs', 'Mathima kitharas', 40, 20, 0,
+   'Didaskalia'),
+  (14, 'Marousi', 'Salaminas', 12, 3, 69, 3, 0, '2018-03-23', 'Tmhma programmatismou', 'Didaskalia Haskel', 70, 15, 0,
+   'Mathimata'),
+  (15, 'Marousi', 'Thiseos', 20, 4, 47, 3, 0, '2018-03-20', 'Tmhma proxwrhmenwn', 'Mathima C++', 50, 40, 0,
+   'Mathimata'), (16, 'Larissa', 'Asklipiou', 60, 2, 20, 1, 0, '2018-04-21', 'Pws trexw', 'Taxythta', 20, 5, 0, 'Run'),
+  (17, 'Glyfada', 'Zamanou', 5, 2, 80, 2, 0, '2018-03-22', 'Laikos', 'Tragoudi', 80, 12, 0, 'Athinwn Arena'),
+  (18, 'Ilioupoli', 'Kotzia', 8, 1, 200, 2, 0, '2018-04-07', 'Live ola', 'Live party', 200, 20, 0, 'Pista'),
+  (19, 'Larissa', 'Kouma', 12, 3, 50, 2, 0, '2018-04-28', 'Pinakes', 'Art lesson', 50, 18, 0, 'Autokinhsh'),
+  (20, 'Ilisia', 'Ilision', 40, 4, 90, 2, 0, '2018-05-23', 'Asteia me mena', 'Asteia', 90, 10, 0, 'Skoupa');
+
+INSERT INTO `parent_events`
+VALUES ('aggelosdani', 1), ('dimalex95', 1), ('eimaixontros', 1), ('gpapama95', 1), ('vaggosagoro', 1),
+  ('aggelosdani', 2), ('eimaixontros', 2), ('gpapama95', 2), ('xristospier', 2), ('eimaixontros', 3), ('gpapama95', 3),
+  ('aggelosdani', 4), ('eimaixontros', 4), ('vaggosagoro', 4), ('xristospier', 4), ('eimaixontros', 5),
+  ('gpapama95', 5), ('vaggosagoro', 5), ('xristospier', 5), ('sentra1234', 7), ('amyna1234', 8), ('dimalex95', 8),
+  ('sentra1234', 8), ('sentra1234', 9), ('trexantiri', 9), ('dimalex95', 10), ('sentra1234', 10), ('dimalex95', 11),
+  ('trexantiri', 12), ('amyna1234', 13), ('trexantiri', 13), ('trexantiri', 14), ('amyna1234', 15);
+
 INSERT INTO `role`
 VALUES (1, 'PROVIDER'), (2, 'unboxholics'), (3, 'PARENT'), (4, 'PARENT'), (5, 'PROVIDER'), (6, 'Akphotos'),
   (7, 'PARENT'), (8, 'PARENT'), (9, 'PARENT'), (10, 'PROVIDER'), (11, 'Didaskalia'), (12, 'PROVIDER'),
@@ -124,10 +93,6 @@ VALUES (1, 'PROVIDER'), (2, 'unboxholics'), (3, 'PARENT'), (4, 'PARENT'), (5, 'P
   (19, 'PARENT'), (20, 'PARENT'), (21, 'PARENT'), (22, 'PARENT'), (23, 'PARENT'), (24, 'PARENT'), (25, 'PARENT'),
   (26, 'PROVIDER'), (27, 'Run'), (28, 'PROVIDER'), (29, 'Athinwn Arena'), (30, 'PROVIDER'), (31, 'Pista'),
   (32, 'PROVIDER'), (33, 'Autokinhsh'), (34, 'PROVIDER'), (35, 'Skoupa');
-/*!40000 ALTER TABLE `role`
-  ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE = @OLD_TIME_ZONE */;
 
 INSERT INTO `user` VALUES (1, '7d128c4c536c2a9a92bc42d8196a4694dd30cf75e32476be3ed1a3a925c631e4', 'braveheart'),
   (2, '3c9f6476cf6cb34079e60b1006f8bd0ddba7a59d2726bc80eaf8129525b49f2d', 'eimaixontros'),
@@ -154,19 +119,9 @@ INSERT INTO `user` VALUES (1, '7d128c4c536c2a9a92bc42d8196a4694dd30cf75e32476be3
   (23, '8b99ed65f2d1160c2562cd092dfe7b7ed53a037f93d6bf89e554f97db533d7ed', 'oikono1234'),
   (24, '5b739380144734cab29cf5b2c08b565c3cb9e1bd619fb9b9c8e36dff82ff20c8', 'infoka123'),
   (25, '555ef741f1dcec81fc3d4ae4e358baaff7fb16c753380e3f28d14fcda13259ff', 'salas123');
-/*!40000 ALTER TABLE `user`
-  ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE = @OLD_TIME_ZONE */;
 
-LOCK TABLES `user_roles` WRITE;
-/*!40000 ALTER TABLE `user_roles`
-  DISABLE KEYS */;
 INSERT INTO `user_roles`
 VALUES (1, 1), (1, 2), (2, 3), (3, 4), (4, 5), (4, 6), (5, 7), (6, 8), (7, 9), (8, 10), (8, 11), (9, 12), (9, 13),
   (10, 14), (11, 15), (12, 16), (12, 17), (13, 18), (14, 19), (15, 20), (16, 21), (17, 22), (18, 23), (19, 24),
   (20, 25), (21, 26), (21, 27), (22, 28), (22, 29), (23, 30), (23, 31), (24, 32), (24, 33), (25, 34), (25, 35);
-/*!40000 ALTER TABLE `user_roles`
-  ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE = @OLD_TIME_ZONE */;
+

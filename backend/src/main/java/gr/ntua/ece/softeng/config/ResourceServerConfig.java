@@ -20,18 +20,20 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        resources.resourceId(resourceIds).tokenServices(tokenServices);
+        resources
+                .resourceId(resourceIds)
+                .tokenServices(tokenServices);
     }
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-                http
+        http
                 .requestMatchers()
                 .and()
                 .authorizeRequests()
                 .antMatchers("/actuator/**", "/api-docs/**", "/register/**", "/login/**", "/search/**")
                 .permitAll()
-                .antMatchers("/admin/**", "/parent/**", "/provider/**", "/buyticket/**" )
+                .antMatchers("/admin/**", "/parent/**", "/provider/**", "/buyticket/**")
                 .authenticated();
     }
 }

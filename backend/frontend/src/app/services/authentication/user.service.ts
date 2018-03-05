@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
-import { JwtHelper } from 'angular2-jwt';
+import {JwtHelper} from 'angular2-jwt';
 
-import { TOKEN_NAME } from '../../constants/auth.constants';
+import {TOKEN_NAME} from '../../constants/auth.constants';
 
 @Injectable()
 export class UserService {
@@ -12,27 +12,39 @@ export class UserService {
   isAdmin = false;
   isParent = false;
   isProvider = false;
+  isBlocked = false;
   role: string;
   providerCompanyName: string;
 
   constructor() {
   }
 
-  login(accessToken: string) {
+  login(accessToken: string): boolean {
     const decodedToken = this.jwtHelper.decodeToken(accessToken);
     console.log(decodedToken);
 
     this.username = decodedToken.user_name;
 
-    this.isAdmin     = decodedToken.authorities.some(el => el === 'ADMIN');
-    this.isParent    = decodedToken.authorities.some(el => el === 'PARENT');
-    this.isProvider  = decodedToken.authorities.some(el => el === 'PROVIDER');
+    this.isAdmin = decodedToken.authorities.some(el => el === 'ADMIN');
+    this.isParent = decodedToken.authorities.some(el => el === 'PARENT');
+    this.isProvider = decodedToken.authorities.some(el => el === 'PROVIDER');
     this.accessToken = accessToken;
-    this.role = decodedToken.authorities[0];
-    if (this.role == 'PROVIDER')
-        this.providerCompanyName = decodedToken.authorities[1];
+    const len = decodedToken.authorities.length;
 
-    localStorage.setItem(TOKEN_NAME, accessToken);
+    this.role = decodedToken.authorities[0];
+
+    this.isBlocked = decodedToken.authorities.some(el => el === 'BLOCKED');
+
+    if (this.role === 'PROVIDER')
+      this.providerCompanyName = decodedToken.authorities[1];
+
+    if (this.isBlocked) {
+      return false;
+    }
+    else {
+      localStorage.setItem(TOKEN_NAME, accessToken);
+      return true;
+    }
   }
 
   logout() {
@@ -57,6 +69,7 @@ export class UserService {
   isProviderUser(): boolean {
     return this.isProvider;
   }
+
   isUser(): boolean {
     return (this.isProvider || this.isParent);
   }

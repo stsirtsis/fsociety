@@ -1,7 +1,7 @@
 .gradle
 /build/
 !gradle/wrapper/gradle-wrapper.jar
-./src/main/resources/static
+src/main/resources/static/
 
 ### STS ###
 .apt_generated
@@ -12,7 +12,7 @@
 .springBeans
 
 ### IntelliJ IDEA ###
-./out
+out/
 .idea
 *.iws
 *.iml

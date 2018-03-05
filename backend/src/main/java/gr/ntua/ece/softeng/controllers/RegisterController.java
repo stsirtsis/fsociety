@@ -30,6 +30,7 @@ import gr.ntua.ece.softeng.repositories.ProvidersRepository;
 import gr.ntua.ece.softeng.repositories.UserRepository;
 
 @RestController
+@Transactional
 @RequestMapping(path="/register")
 public class RegisterController {
 
@@ -102,7 +103,6 @@ public class RegisterController {
 			Double longitude=location.getDouble("lng");
 			parent.setLatitude(latitude);
 			parent.setLongitude(longitude);
-			parentRepository.save(parent);
 
 			parentRepository.save(parent);
 			

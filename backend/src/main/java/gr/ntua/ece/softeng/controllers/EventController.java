@@ -48,7 +48,7 @@ public class EventController {
 		eventRepository.save(event);
 	}
 
-	@RequestMapping(path="{eventId}")
+	@RequestMapping(path="/eventById/{eventId}")
 	public @ResponseBody Event findEvent (@PathVariable Long eventId) {
 		return eventRepository.findOne(eventId);
 	}

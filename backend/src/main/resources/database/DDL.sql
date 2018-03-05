@@ -68,7 +68,6 @@ DROP TABLE IF EXISTS `providers`;
 CREATE TABLE `providers` (
   `company_name` varchar(255) NOT NULL,
   `area` varchar(255) DEFAULT NULL,
-  `category` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `first_name` varchar(255) DEFAULT NULL,
   `iban` varchar(255) DEFAULT NULL,

@@ -1,4 +1,4 @@
-/*INSERT INTO `parent` VALUES
+INSERT INTO `parent` VALUES
   ('aggelosdani', 'Larissa', 470, 'Seferi', 40, '7894561230789456', 'dani@mail.com', 'Aggelos', 'Daniil', 39.6434466,
                   22.4277134, '28b2120efbbe4f265670134fa6d4f5499c172d5b5d879c2ba5315e663acf9714', '6932850210', 0),
   ('amyna1234', 'Kifisia', 200, 'Artakis', 80, '9876541230213645', 'gk@mail.com', 'Nikos', 'Gkolias', 40.6078173,
@@ -27,32 +27,32 @@
    '6944556677', 0);
 
 INSERT INTO `providers` VALUES
-  ('Athinwn Arena', 'Glyfada', NULL, 'Diaskedash', 'Antonis', '1122336655889740', 'Remos', 'rem@mail.com',
+  ('Athinwn Arena', 'Glyfada', 'Diaskedash', 'Antonis', '1122336655889740', 'Remos', 'rem@mail.com',
                     '45dafcf67f6db9309795bab8cbfeb5217894536c6ec786137adba81d93981278', 'Semelis', 8, '6987120045',
-   'aremovic1'), ('Autokinhsh', 'Larissa', NULL, 'Plhrofories', 'Alex', '3210008879654525', 'Karatzas', 'kar@mail.com',
+   'aremovic1'), ('Autokinhsh', 'Larissa',  'Plhrofories', 'Alex', '3210008879654525', 'Karatzas', 'kar@mail.com',
                                 '5b739380144734cab29cf5b2c08b565c3cb9e1bd619fb9b9c8e36dff82ff20c8', 'Kouma', 1,
                   '6999774410', 'infoka123'),
-  ('Didaskalia', 'Zografou', NULL, 'Happy lessons', 'Stratis', '0316497852013256', 'Tsirtsis', 'stratos@mail.com',
+  ('Didaskalia', 'Zografou', 'Happy lessons', 'Stratis', '0316497852013256', 'Tsirtsis', 'stratos@mail.com',
                  '8c963a181bf5024ba72e747e39f75d6a922bdd3fb4e57437ce01c716533870a9', 'Kousidi', 78, '6978451230',
    'stsirtsis'),
-  ('Dikigoros', 'Kolonaki', NULL, 'Poulaw psemata', 'Alexis', '9854320167954786', 'Kougias', 'kontos@mail.com',
+  ('Dikigoros', 'Kolonaki', 'Poulaw psemata', 'Alexis', '9854320167954786', 'Kougias', 'kontos@mail.com',
                 'da95038333b0fa5f910b157c7d2ea48b17b2a5d0e05d1c22e72a24528544a476', 'Tsakalof', 5, '6932587417',
    'eimaikontos'),
-  ('Mathimata', 'Zografou', NULL, 'Didagmata ', 'Panagioths', '4569871230321478', 'Bougoulias', 'bou@mail.com',
+  ('Mathimata', 'Zografou', 'Didagmata ', 'Panagioths', '4569871230321478', 'Bougoulias', 'bou@mail.com',
                 '1e58e562b289623a3c1b9d4cebec5307a9eb2e084d2871b0143bedcb442b8ebc', 'Papagou', 50, '6985456321',
    'panosbou'),
-  ('Pista', 'Ilioupoli', NULL, 'Live tragoudi', 'Nikos', '7744110022563987', 'Oikonomopoulos', 'oiko@mail.com',
+  ('Pista', 'Ilioupoli', 'Live tragoudi', 'Nikos', '7744110022563987', 'Oikonomopoulos', 'oiko@mail.com',
             '8b99ed65f2d1160c2562cd092dfe7b7ed53a037f93d6bf89e554f97db533d7ed', 'Kotzia', 7, '6874331120',
-   'oikono1234'), ('Run', 'Larissa', NULL, 'Agility', 'Giannis', '2031456978546320', 'Masouras', 'mas@mail.com',
+   'oikono1234'), ('Run', 'Larissa', 'Agility', 'Giannis', '2031456978546320', 'Masouras', 'mas@mail.com',
                           'c5dba0c0c284262267bbabf3ccac58c6782c4a095c30442106ce5ed735de6aa0', 'Kiprou', 60,
                    '6479513046', 'monotrexw'),
-  ('Skoupa', 'Ilisia', NULL, 'Asteia', 'Kostas', '1220549786315468', 'Salas', 'sal@mail.com',
+  ('Skoupa', 'Ilisia', 'Asteia', 'Kostas', '1220549786315468', 'Salas', 'sal@mail.com',
              '555ef741f1dcec81fc3d4ae4e358baaff7fb16c753380e3f28d14fcda13259ff', 'Ilision', 45, '6985541230',
    'salas123'),
-  ('unboxholics', 'Thessaloniki', NULL, 'Entertainement', 'Sakis', '0321456987456321', 'Karpas', 'mama@mail.com',
+  ('unboxholics', 'Thessaloniki', 'Entertainement', 'Sakis', '0321456987456321', 'Karpas', 'mama@mail.com',
                   '7d128c4c536c2a9a92bc42d8196a4694dd30cf75e32476be3ed1a3a925c631e4', 'Tsimiski', 100, '6987453210',
    'braveheart');
-
+/*
 INSERT INTO `event` VALUES
   (1, 'Athens', 'Stadiou', 20, 4, 54, 1, 0, '2018-03-18', 'Party non stop', 'Athens party', 100, 5, 0, 'unboxholics'),
   (2, 'Thessaloniki', 'Tsimiski', 25, 4, 0, 2, 0, '2018-03-15', 'Photography lessons', 'My lessons', 20, 10, 0, 'unboxholics'),
@@ -85,7 +85,7 @@ VALUES ('aggelosdani', 1), ('dimalex95', 1), ('eimaixontros', 1), ('gpapama95', 
   ('gpapama95', 5), ('vaggosagoro', 5), ('xristospier', 5), ('sentra1234', 7), ('amyna1234', 8), ('dimalex95', 8),
   ('sentra1234', 8), ('sentra1234', 9), ('trexantiri', 9), ('dimalex95', 10), ('sentra1234', 10), ('dimalex95', 11),
   ('trexantiri', 12), ('amyna1234', 13), ('trexantiri', 13), ('trexantiri', 14), ('amyna1234', 15);
-
+*/
 INSERT INTO `role`
 VALUES (1, 'PROVIDER'), (2, 'unboxholics'), (3, 'PARENT'), (4, 'PARENT'), (5, 'PROVIDER'), (6, 'Akphotos'),
   (7, 'PARENT'), (8, 'PARENT'), (9, 'PARENT'), (10, 'PROVIDER'), (11, 'Didaskalia'), (12, 'PROVIDER'),
@@ -125,4 +125,4 @@ VALUES (1, 1), (1, 2), (2, 3), (3, 4), (4, 5), (4, 6), (5, 7), (6, 8), (7, 9), (
   (10, 14), (11, 15), (12, 16), (12, 17), (13, 18), (14, 19), (15, 20), (16, 21), (17, 22), (18, 23), (19, 24),
   (20, 25), (21, 26), (21, 27), (22, 28), (22, 29), (23, 30), (23, 31), (24, 32), (24, 33), (25, 34), (25, 35);
 
-*/
+

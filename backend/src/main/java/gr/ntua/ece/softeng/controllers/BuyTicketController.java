@@ -48,7 +48,8 @@ public class BuyTicketController {
 
     private static Integer eventprice;
     private static String eventname;
-
+    private static Integer TotalPrice;
+    private static Integer Tickets;
 
     @RequestMapping(path="/new")
     public synchronized @ResponseBody String buynewticket (@RequestParam String parent_username,
@@ -57,7 +58,8 @@ public class BuyTicketController {
         Event event = eventRepository.findOne(event_id) ;
         eventname=event.getEventname();
         eventprice=event.getPrice();
-
+        TotalPrice=eventprice*quantity;
+        Tickets=quantity;
         Parent parent    = parentRepository.findByUsername(parent_username);
         Integer capacity;
 
@@ -138,7 +140,7 @@ public class BuyTicketController {
 
         try {
 
-            PDFConfig.createPDF(fileName,firstName,lastName,eventname,eventprice);
+            PDFConfig.createPDF(fileName,firstName,lastName,eventname,Tickets,TotalPrice);
 
             baos = convertPDFToByteArrayOutputStream(fileName);
         } catch (Exception e1) {

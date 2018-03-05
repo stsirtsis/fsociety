@@ -29,16 +29,17 @@ public class PDFConfig {
     private static String firstname;
     private static String lastname;
 	private static String eventName;
-	private static Integer eventPrice;
+	private static Integer Price;
+	private static Integer tickets;
 	
-	
-	public static Document createPDF(String file,String firstName,String lastName, String eventname, Integer eventprice) {
+	public static Document createPDF(String file,String firstName,String lastName, String eventname,Integer Tickets, Integer TotalPrice) {
 
 		Document document = null;
 		firstname=firstName;
 		lastname=lastName;
 		eventName=eventname;
-		eventPrice=eventprice;
+		Price=TotalPrice;
+		tickets=Tickets;
 	
 		try {
 			document = new Document();
@@ -93,7 +94,7 @@ public class PDFConfig {
 		Paragraph paragraph = new Paragraph();
 		creteEmptyLine(paragraph, 2);
 		document.add(paragraph);
-		PdfPTable table = new PdfPTable(4);
+		PdfPTable table = new PdfPTable(5);
  
 		PdfPCell c1 = new PdfPCell(new Phrase("First Name"));
 		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -108,7 +109,12 @@ public class PDFConfig {
 		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 		table.addCell(c1);
 		
-		c1 = new PdfPCell(new Phrase("Price"));
+
+		c1 = new PdfPCell(new Phrase("Number of Tickets"));
+		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		table.addCell(c1);
+		
+		c1 = new PdfPCell(new Phrase("Total Price"));
 		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 		table.addCell(c1);
 		
@@ -119,7 +125,8 @@ public class PDFConfig {
 		table.addCell(firstname);
 		table.addCell(lastname);
 		table.addCell(eventName);
-		table.addCell(eventPrice.toString());
+		table.addCell(tickets.toString());
+		table.addCell(Price.toString());
 		
  
 		document.add(table);

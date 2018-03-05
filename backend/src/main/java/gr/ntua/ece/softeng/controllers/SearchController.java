@@ -4,10 +4,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.data.mongodb.core.query.TextCriteria;
@@ -81,6 +87,50 @@ public class SearchController {
 	@PostMapping(path="/text")
 	public @ResponseBody List<E> textsearch(@RequestBody Filters filters)
 	{	
+		Double latitude;
+		Double longitude;
+		if (filters.getUsername()=="") {
+			String Area =filters.getArea();
+			String StreetName =filters.getStreetName().replaceAll("\\s+","");
+			String StreetNumber =filters.getStreetNumber().toString();
+			final String TARGET_URL =
+				"https://maps.googleapis.com/maps/api/geocode/json?address=";
+			final String help1= "+";
+			final String help2=",";
+			final String API_KEY =
+					"&key=AIzaSyCi-UTmdLdEpurrr8A5Ou5I17cihpelPcI";
+			URL serverUrl = new URL(TARGET_URL+StreetNumber+help1+StreetName+help2+Area+API_KEY);
+			URLConnection urlConnection = serverUrl.openConnection();
+			HttpURLConnection httpConnection = (HttpURLConnection)urlConnection;
+			httpConnection.setRequestMethod("GET");
+			httpConnection.setRequestProperty("Content-Type", "application/json");
+			httpConnection.setDoOutput(true);
+
+			if (httpConnection.getInputStream() == null) {
+			System.out.println("No stream");
+			}
+
+			Scanner httpResponseScanner = new Scanner (httpConnection.getInputStream());
+			String resp = "";
+			while (httpResponseScanner.hasNext()) {
+				String line = httpResponseScanner.nextLine();
+				resp += line;
+			}
+			httpResponseScanner.close();
+
+			JSONObject json = new JSONObject(resp);
+			JSONArray results =  json.getJSONArray("results");
+			JSONObject sessionobj=results.getJSONObject(0);
+			JSONObject geometry=sessionobj.getJSONObject("geometry");
+			JSONObject location=geometry.getJSONObject("location");
+			latitude=location.getDouble("lat");
+			longitude=location.getDouble("lng");
+		}
+		else  {
+			Parent p=pRepository.findByUsername(filters.getUsername());
+			latitude=p.getLatitude();
+			longitude=p.getLongitude();
+		}
 		List<E> results1;
 		if (filters.getText()=="") {
 			results1=eRepository.findAll();
@@ -93,77 +143,74 @@ public class SearchController {
 		List<E> results3;
 		List<E> results4;
 		List<E> results5=new ArrayList<>();
-		Double lat1;
-		Double lat2;
-		Double long1;
-		Double long2;
-		Double d;
-	    Parent p=pRepository.findByUsername(filters.getUsername());
-		if (filters.getPrice() == 1)
+		if (filters.getPrice() == 1) {
 			results2= eRepository.findByPriceBetween(-1,11);
-		else if (filters.getPrice() == 2)
+			results1.retainAll(results2); }
+		else if (filters.getPrice() == 2) {
 			results2=eRepository.findByPriceBetween(9,21);
-		else if (filters.getPrice()==3)
+			results1.retainAll(results2);}
+		else if (filters.getPrice()==3) {
 			results2=eRepository.findByPriceBetween(19,51);
-		else if (filters.getPrice()==4)
+			results1.retainAll(results2);}
+		else if (filters.getPrice()==4) {
 			results2=eRepository.findByPriceBetween(49,10000);
-		else results2=results1;
-		results1.retainAll(results2);
-
-		if (filters.getAgeGroup() == 1)
+			results1.retainAll(results2);}
+		else {}
+		
+		if (filters.getAgeGroup() == 1) {
 			results3= eRepository.findByAgeGroup(1);
-		else if (filters.getAgeGroup() == 2)
+			results1.retainAll(results3);}
+		else if (filters.getAgeGroup() == 2) {
 			results3=eRepository.findByAgeGroup(2);
-		else if (filters.getAgeGroup()==3)
+			results1.retainAll(results3);}
+		else if (filters.getAgeGroup()==3) {
 			results3=eRepository.findByAgeGroup(3);
-		else if (filters.getAgeGroup()==4)
+			results1.retainAll(results3);}
+		else if (filters.getAgeGroup()==4) {
 			results3=eRepository.findByAgeGroup(4);
-		else results3=results1;
-		results1.retainAll(results3);
-
-		if (filters.getCategory() == 1)
+			results1.retainAll(results3);}
+		else {}
+	
+		if (filters.getCategory() == 1) {
 			results4= eRepository.findByCategory(1);
-		else if (filters.getCategory() == 2)
+			results1.retainAll(results4);}
+		else if (filters.getCategory() == 2) {
 			results4=eRepository.findByCategory(2);
-		else if (filters.getCategory()==3)
+			results1.retainAll(results4);}
+		else if (filters.getCategory()==3) {
 			results4=eRepository.findByCategory(3);
-		else if (filters.getCategory()==4)
-			results4=eRepository.findByCategory(4);
-		else results4=results1;
-		results1.retainAll(results4);
+			results1.retainAll(results4);}
+		else {}
 
-
-		if (filters.getDistance() == 1)
+		if (filters.getDistance() == 1) {
 			for(E e:results1) {
-				lat1=e.getLatitude();
-				lat2=p.getLatitude();
-				long1=e.getLongitude();
-				long2=p.getLongitude();
-				 d= distance(lat1,lat2,long1,long2,0 ,0 );
-				if ( d > 5000.00)
+				if(distance((e.getLatitude()),latitude,(e.getLongitude()),longitude,0 ,0) > 5000.00)
 					results5.add(e);
 			}
-		else if (filters.getDistance() == 2)
+			results1.removeAll(results5);}
+		else if (filters.getDistance() == 2) {
 			for(E e:results1) {
-				if (distance((e.getLatitude()),(p.getLatitude()),
-			(e.getLongitude()) ,(p.getLongitude()) ,0,0) > 8000.00)
+				if (distance((e.getLatitude()),latitude,
+			(e.getLongitude()) ,longitude ,0,0) > 8000.00)
 					results5.add(e);
 			}
-
-		else if (filters.getDistance()==3)
+			results1.removeAll(results5);}
+		else if (filters.getDistance()==3) {
 			for(E e:results1) {
-				if (distance((e.getLatitude()),(p.getLatitude()),
-			(e.getLongitude()) ,(p.getLongitude()) ,0,0) > 10000.00)
+				if (distance((e.getLatitude()),latitude,
+			(e.getLongitude()) ,longitude ,0,0) > 10000.00)
 					results5.add(e);
 			}
-		else if (filters.getCategory()==4)
+			results1.removeAll(results5);}
+		else if (filters.getCategory()==4) {
 			for(E e:results1) {
-				if (distance((e.getLatitude()),(p.getLatitude()),
-				(e.getLongitude()) ,(p.getLongitude()) ,0,0) <=10000.00)
+				if (distance((e.getLatitude()),latitude,
+				(e.getLongitude()) ,longitude ,0,0) <=10000.00)
 					results5.add(e);
 			}
-		else results5=null;
-		results1.removeAll(results5);
+			results1.removeAll(results5);}
+		else {}
+		
 		for (E e1:results1) {
 			String uri=e1.getPhotoUri();
 			String relpath="./upload-dir/";

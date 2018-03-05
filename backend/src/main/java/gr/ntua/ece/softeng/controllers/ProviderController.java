@@ -89,7 +89,7 @@ public class ProviderController {
 
 		for (Role role : user.getRoles()) {
 				if (role.getName().equals("BLOCKED")) {
-						return "User is blocked by admin";
+						return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("User is blocked by admin");
 				}
 		}
 

@@ -12,7 +12,7 @@
           <div class="row">
             <label for="search" class="sr-only">Search</label>
             <input type="text" class="form-control col-md-8" [(ngModel)]="newSearch.text" name="search" id="search"
-                   placeholder="search">
+            placeholder="search">
             <span class="glyphicon glyphicon-search form-control-feedback"></span>
             <button (click)="searchEvents()" type="submit" class="btn btn-primary col-md-2">Αναζήτηση</button>
           </div>
@@ -28,61 +28,65 @@
       <form #eventForm="ngForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="inputAgeGroup">Ηλικιακή Κατηγορία</label>
+          <button (click)="newSearch.ageGroup=0" type="submit" class="btn btn-primary col-md-2">Καθαρισμός φίλτρου</button>
           <div class="form-check">
             <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup"
-                   value="1">2-5
+            value="1">2-5
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup"
-                   value="2">5-10
+            value="2">5-10
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup"
-                   value="3">10-15
+            value="3">10-15
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup"
-                   value="4">15+
+            value="4">15+
           </div>
         </div>
         <div class="form-group">
           <label for="inputCategory">Κατηγορία Δραστηριότητας</label>
+          <button (click)="newSearch.category=0" type="submit" class="btn btn-primary col-md-2">Καθαρισμός φίλτρου</button>
           <div class="form-check">
             <input class="form-check-input" type="radio" [(ngModel)]="newSearch.category" name="inputCategory"
-                   value="1">Αθλητισμός
+            value="1">Αθλητισμός
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" [(ngModel)]="newSearch.category" name="inputCategory"
-                   value="2">Καλλιτεχνικά
+            value="2">Καλλιτεχνικά
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" [(ngModel)]="newSearch.category" name="inputCategory"
-                   value="3">Εκπαίδευση
+            value="3">Εκπαίδευση
           </div>
         </div>
         <div class="form-group">
           <label for="inputDistance">Απόσταση</label>
+          <button (click)="newSearch.distance=0" type="submit" class="btn btn-primary col-md-2">Καθαρισμός φίλτρου</button>
           <div class="form-check">
             <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance"
-                   value="1">Έως 5χλμ
+            value="1">Έως 5χλμ
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance"
-                   value="2">Έως 8χλμ
+            value="2">Έως 8χλμ
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance"
-                   value="3">Έως 10χλμ
+            value="3">Έως 10χλμ
           </div>
           <div class="form-check">
             <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance"
-                   value="4">Πάνω από 10χλμ
+            value="4">Πάνω από 10χλμ
           </div>
         </div>
         <div class="form-group">
           <label for="inputAgeGroup">Τιμή</label>
+          <button (click)="newSearch.price=0" type="submit" class="btn btn-primary col-md-2">Καθαρισμός φίλτρου</button>
           <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.price" name="inputPrice" value="1">5-10
+            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.price" name="inputPrice" value="1">0-10
             Ευρά
           </div>
           <div class="form-check">
@@ -97,6 +101,17 @@
             <input class="form-check-input" type="radio" [(ngModel)]="newSearch.price" name="inputPrice" value="4">50+
             Ευρά
           </div>
+        </div>
+        <div *ngIf="isAnonymous && newSearch.distance!=0" class="form-group">
+          <label for="inputArea" class="sr-only">Περιοχή</label>
+          <input type="text" class="form-control col-md-8" [(ngModel)]="newSearch.area" name="inputArea" id="inputArea"
+          placeholder="search">
+          <label for="inputStreetName" class="sr-only">Οδός</label>
+          <input type="text" class="form-control col-md-8" [(ngModel)]="newSearch.streetName" name="inputStreetName" id="inputStreetName"
+          placeholder="search">
+          <label for="inputStreetNumber" class="sr-only">Αριθμός</label>
+          <input type="text" class="form-control col-md-8" [(ngModel)]="newSearch.streetNumber" name="inputStreetNumber" id="inputStreetNumber"
+          placeholder="search">
         </div>
       </form>
     </div>

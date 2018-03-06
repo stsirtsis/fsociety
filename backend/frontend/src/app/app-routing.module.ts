@@ -72,9 +72,8 @@ const appRoutes: Routes = [
     component: EventsMapComponent
   },
   {
-    path: 'one-event/:Id' ,
+    path: 'one-event/:Id',
     component: OneEventComponent,
-    canActivate: [AuthGuardService]
   },
   {
     path: 'add-event',

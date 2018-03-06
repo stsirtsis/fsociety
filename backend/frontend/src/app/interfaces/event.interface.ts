@@ -8,10 +8,12 @@ export class Event {
   AgeGroup: number;
   capacity: number;
   price: number;
-  category: string;
+  category: number;
   state: string;
   latitude: string;
   longitude: string;
   photoUri: string;
   photoBody: string;
+  clicks: number;
+  initial: number;
 }

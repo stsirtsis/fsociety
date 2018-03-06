@@ -1,38 +1,39 @@
 package gr.ntua.ece.softeng.controllers;
-
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import gr.ntua.ece.softeng.config.PDFConfig;
 import gr.ntua.ece.softeng.entities.Event;
-import gr.ntua.ece.softeng.entities.Parent;
 import gr.ntua.ece.softeng.repositories.EventRepository;
-import gr.ntua.ece.softeng.repositories.ParentRepository;
-import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-
-import javax.mail.internet.MimeMessage;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class EventController {
 
+    private static String encodeFileToBase64Binary(File file){
+        String encodedfile = null;
+        try {
+            FileInputStream fileInputStreamReader = new FileInputStream(file);
+            byte[] bytes = new byte[(int)file.length()];
+            fileInputStreamReader.read(bytes);
+            encodedfile = new String(Base64.encodeBase64(bytes), "UTF-8");
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return encodedfile;
+    }
+	
+	
 	@Autowired
 	private EventRepository eventRepository;
 
@@ -50,7 +51,12 @@ public class EventController {
 
 	@RequestMapping(path="/eventById/{eventId}")
 	public @ResponseBody Event findEvent (@PathVariable Long eventId) {
-		return eventRepository.findOne(eventId);
+		Event e=eventRepository.findOne(eventId);
+		String uri=e.getPhotoUri();
+		String relpath="./upload-dir/";
+		File thefile=new File(relpath+uri);
+		e.setPhotoBody(encodeFileToBase64Binary(thefile));
+		return e;
 	}
 
 }

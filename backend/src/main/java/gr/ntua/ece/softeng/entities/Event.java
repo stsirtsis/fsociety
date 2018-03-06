@@ -34,6 +34,7 @@ public class Event {
     @NotNull private Integer clicks;
     @NotNull private Integer initial;
 		private String photoUri;
+		private String photoBody;
 
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -183,6 +184,14 @@ public class Event {
 
 	public void setPhotoUri(String photoUri) {
 		this.photoUri = photoUri;
+	}
+
+	public String getPhotoBody() {
+		return photoBody;
+	}
+
+	public void setPhotoBody(String photoBody) {
+		this.photoBody = photoBody;
 	}
 
 

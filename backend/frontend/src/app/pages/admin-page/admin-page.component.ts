@@ -12,6 +12,7 @@ declare var $ :any;
   styleUrls: ['./admin-page.component.css']
 })
 export class AdminPageComponent implements OnInit {
+
   parentlist: Parent[] = [];
   constructor(private userProfileDataService: UserProfileDataService) {
 
@@ -64,6 +65,8 @@ export class AdminPageComponent implements OnInit {
     this.username=x;
     this.userProfileDataService.lockUser(this.username);
       console.log('blocked'+this.username);
+
+
   }
   unlockUser(x:string): void {
     this.username=x;

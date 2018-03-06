@@ -1,4 +1,7 @@
 <app-main-toolbar> </app-main-toolbar>
+<div class="xoxo">
+<div id="formContent">
+<div class="card card-1">
 <div class="container">
   <h2>Νέα Εκδήλωση</h2>
   <br>
@@ -9,25 +12,26 @@
     </div>
     <div class="form-group">
       <label for="inputDescription">Περιγραφή Εκδήλωσης</label>
-      <input type="text" class="form-control" id="inputDescription" [(ngModel)]="event.description" name="description" required>
+      <textarea class="form-control" id="inputDescription" [(ngModel)]="event.description" name="description" required></textarea>
     </div>
     <div class="form-group">
       <label class="btn btn-default">Εικόνα Εκδήλωσης</label>
       <input type="file" (change)="selectFile($event)">
     </div>
-    <div class="form-group">
+    <div class="form-row">
+    <div class="form-group col-md-4">
       <label for="inputArea">Περιοχή</label>
       <input type="text" class="form-control" id="inputArea" [(ngModel)]="event.area" name="Area" required>
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-4">
       <label for="inputStreetName">Οδός</label>
       <input type="text" class="form-control" id="inputStreetName" [(ngModel)]="event.streetName" name="StreetName" required>
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-4">
       <label for="inputStreetNumber">Αριθμός</label>
       <input type="number" class="form-control" id="inputStreetNumber" [(ngModel)]="event.streetNumber" name="StreetNumber" required>
     </div>
-
+  </div>
     <div class="form-group">
       <label for="inputAgeGroup">Ηλικίες</label>
       <input type="radio" [(ngModel)]="event.ageGroup" name="inputAgeGroup" [value]="1"> 2-5
@@ -67,4 +71,6 @@
       {{progress.percentage}}%</div>
     </div>
   </form>
+</div>
+</div>
 </div>

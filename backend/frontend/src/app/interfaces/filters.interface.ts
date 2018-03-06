@@ -5,4 +5,7 @@ export class Filters {
   category: number;
   distance: number;
   text: string;
+  streetName: string;
+  streetNumber: number;
+  area: string;
 }

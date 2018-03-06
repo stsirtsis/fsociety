@@ -12,10 +12,10 @@
     </div>
     <div class="form-group">
       <label for="inputDescription">Περιγραφή Εκδήλωσης</label>
-      <textarea class="form-control" id="inputDescription" [(ngModel)]="event.description" name="description" required></textarea>
+      <textarea class="textarea form-control" id="inputDescription" [(ngModel)]="event.description" name="description" required></textarea>
     </div>
     <div class="form-group">
-      <label class="btn btn-default">Εικόνα Εκδήλωσης</label>
+      <label>Εικόνα Εκδήλωσης</label>
       <input type="file" (change)="selectFile($event)">
     </div>
     <div class="form-row">

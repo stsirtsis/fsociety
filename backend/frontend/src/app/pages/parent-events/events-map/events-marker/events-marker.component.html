@@ -6,6 +6,6 @@
 <agm-info-window [maxWidth]="200">
   <h5>{{event.eventname}}</h5>
   <p>{{shortDescription}}</p>
-  <a href="#">Δείτε περισσότερα</a>
+  <a routerLink="/one-event/{{event.id}}">Δείτε περισσότερα</a>
 </agm-info-window>
 </agm-marker>

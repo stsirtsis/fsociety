@@ -24,6 +24,7 @@ export class ParentEventsComponent implements OnInit {
     price: new FormControl()
   });
 
+  isAnonymous: boolean;
   eventsList: Event[] = [];
   listOrMap = 0;  // 0 is list, 1 is map
 
@@ -33,16 +34,18 @@ export class ParentEventsComponent implements OnInit {
     ageGroup: 0,
     category: 0,
     distance: 0,
-    text: ''
+    text: '',
+    area: '',
+    streetName: '',
+    streetNumber: 0
   };
 
   constructor(private eventService: EventService, private userService: UserService) {
   }
 
   ngOnInit() {
-    // this.getEvents();
-    // this.setBounds();
-    // this.isParent = this.userService.isParentUser();
+    this.isAnonymous = !this.userService.isUser();
+    this.searchEvents();
   }
 
   onSubmit() {
@@ -51,7 +54,8 @@ export class ParentEventsComponent implements OnInit {
 
   searchEvents(): void {
     console.log(this.newSearch);
-    this.newSearch.username = this.userService.getUsername();
+    if (!this.userService.isUser()) this.newSearch.username = '';
+    else this.newSearch.username = this.userService.getUsername();
     this.eventService.searchEvents(this.newSearch)
       .subscribe(data => {
         this.eventsList = data;

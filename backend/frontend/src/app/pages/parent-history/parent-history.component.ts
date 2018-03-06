@@ -33,7 +33,10 @@ export class ParentHistoryComponent implements OnInit {
     ageGroup: 0,
     category: 0,
     distance: 0,
-    text: ''
+    text: '',
+    area: '',
+    streetName: '',
+    streetNumber: 0
   };
 
   constructor(private eventService: EventService, private userService: UserService) {

@@ -13,6 +13,7 @@ export class EventService {
 
   private POST_NEW_EVENT_URL;
   private POST_SEARCH_EVENT_URL;
+  private POST_GET_EVENT_ID_URL;
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient, private userService: UserService) {
@@ -41,7 +42,10 @@ export class EventService {
     return this.http.post<any>(this.POST_SEARCH_EVENT_URL, filters, {headers: this.headers});
   }
 
-  getEventById(myId: number): Event{
-    return null;
+  getEventById(myId: number): Observable<Event>{
+    this.POST_GET_EVENT_ID_URL = '/eventById/'+myId;
+    return this.http.post<any>(this.POST_GET_EVENT_ID_URL, {}, {headers: this.headers});
   }
+
+
 }

@@ -10,12 +10,10 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
 import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -85,7 +83,7 @@ public class SearchController {
 	
 	
 	@PostMapping(path="/text")
-	public @ResponseBody List<E> textsearch(@RequestBody Filters filters)
+	public @ResponseBody List<E> textsearch(@RequestBody Filters filters) throws IOException
 	{	
 		Double latitude;
 		Double longitude;

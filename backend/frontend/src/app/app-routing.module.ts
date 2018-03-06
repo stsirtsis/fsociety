@@ -16,11 +16,16 @@ import { ProviderProfileComponent} from './pages/provider-profile/provider-profi
 import { ProvidersHistoryComponent} from './pages/providers-history/providers-history.component';
 import { ParentProfileComponent } from './pages/parent-profile/parent-profile.component';
 import { ParentHistoryComponent } from './pages/parent-history/parent-history.component';
+import { AdminPageComponent} from './pages/admin-page/admin-page.component';
 
 const appRoutes: Routes = [
   {
     path: '',
     component: FrontPageComponent
+  },
+  {
+    path:'admin-page',
+    component:AdminPageComponent
   },
   {
     path: 'parent-register',

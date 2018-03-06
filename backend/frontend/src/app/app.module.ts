@@ -43,6 +43,7 @@ import {ParentHistoryComponent} from './pages/parent-history/parent-history.comp
 import {ParentHistoryListComponent} from './pages/parent-history/parent-history-list/parent-history-list.component';
 import {ParentSingleEventComponent} from './pages/parent-history/parent-history-list/parent-single-event/parent-single-event.component';
 import {UserProfileDataService} from './services/user-profile-data.service';
+import { TeamPageComponent } from './pages/team-page/team-page.component';
 
 export function authHttpServiceFactory(http: Http) {
   return new AuthHttp(new AuthConfig({
@@ -78,7 +79,8 @@ export function authHttpServiceFactory(http: Http) {
     ProviderSingleEventComponent,
     ParentHistoryComponent,
     ParentHistoryListComponent,
-    ParentSingleEventComponent
+    ParentSingleEventComponent,
+    TeamPageComponent
   ],
   imports: [
     BrowserModule,

@@ -18,6 +18,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import gr.ntua.ece.softeng.entities.E;
+import gr.ntua.ece.softeng.repositories.ERepository;
 
 import javax.mail.internet.MimeMessage;
 
@@ -40,6 +42,9 @@ import gr.ntua.ece.softeng.error.CustomResponse;
 public class BuyTicketController {
 
     @Autowired
+    private ERepository eRepository;
+
+    @Autowired
     private EventRepository eventRepository;
 
     @Autowired
@@ -57,7 +62,9 @@ public class BuyTicketController {
     public synchronized @ResponseBody CustomResponse buynewticket (@RequestParam String parent_username,
                                                            @RequestParam Long event_id,
                                                            @RequestParam Integer quantity) {
-        Event event = eventRepository.findOne(event_id) ;
+        Event event = eventRepository.findOne(event_id);
+        String id = Long.toString(event_id);
+        E e = eRepository.findOne(id);
         eventname=event.getEventname();
         eventprice=event.getPrice();
         TotalPrice=eventprice*quantity;
@@ -98,19 +105,21 @@ public class BuyTicketController {
             parent.setWallet(finwallet);
 
             event.setCapacity(new_capacity);
+            e.setCapacity(new_capacity);
             event.getParents().add(parent);
             eventRepository.save(event);
+            eRepository.save(e);
 
             parent.getEvents().add(event);
             parentRepository.save(parent);
             if(new_capacity <= 0){
               CustomResponse res = new CustomResponse();
-              res.setMessage("OK, ticket bought and now event is full! You have " + new_Fpoints + " Fpoints and " + finwallet + " € in your wallet");
+              res.setMessage("OK, ticket bought and now event is full! You have " + new_Fpoints + " Fpoints and " + finwallet + "$ in your wallet");
               return res;
 
           }
           CustomResponse res = new CustomResponse();
-          res.setMessage("OK, ticket bought " + new_capacity + " left. Hurry! You have " + new_Fpoints + " Fpoints and " + finwallet + "  € in your wallet");
+          res.setMessage("OK, ticket bought " + new_capacity + " left. Hurry! You have " + new_Fpoints + " Fpoints and " + finwallet + "$ in your wallet");
           return res;
         }
         else{

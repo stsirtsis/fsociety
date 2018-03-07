@@ -30,6 +30,21 @@
         <p class="card-text"><b>Κατηγορία Δραστηριότητας: </b> {{categoryString}}</p>
        <p class="card-text"><b>Συνολικές θέσεις Δραστηριότητας: </b> {{this.event.capacity}}</p>
        <p class="card-text"><b> Τιμή εισιτηρίου: </b> {{this.event.price}}€</p>
+       <p></p>
+
+       <div class="row">
+       <div class="col-xs-4 col-md-4">
+         <b>Όνομα Επιχείρησης:</b> {{this.provider.companyName}}
+       </div>
+       <div class="col-xs-4 col-md-4">
+         <b>Tηλέφωνο:</b> {{this.provider.telNumber}}
+       </div>
+       <div class="col-xs-4 col-md-4">
+         <b>Email:</b> {{this.provider.mail}}
+       </div>
+       </div>
+
+
           <div *ngIf="!flag then content1 else content2"></div>
           <ng-template #content1>
             <button  class="btn btn-primary" routerLink="/login-page">Κράτα θέση</button>
@@ -65,7 +80,7 @@
           </div>
           <div class="xexe" style="margin-left:55%;">
           <button type="button" style="	background-color:#00b4e6;"  class="btn1 btn-secondary" data-dismiss="modal">Ακύρωση</button>
-          <button type="button" style="	background-color:#00b4e6;" class="btn1 btn-primary" (click)="buy_ticket(model.num)">Υποβολή</button>
+          <button type="button" style="	background-color:#00b4e6;" class="btn1 btn-primary" (click)="this.buy_ticket1(model.num)">Υποβολή</button>
         </div>
           <div class="modal-footer">
           <div *ngIf="error" class="alert alert-danger">{{error}}</div>

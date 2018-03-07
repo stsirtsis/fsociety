@@ -153,6 +153,7 @@ public class SearchController {
  		List<E> results3;
  		List<E> results4;
  		List<E> results5=new ArrayList<>();
+ 		List<E> results6=new ArrayList<>();
  		if (filters.getPrice() == 1) {
  			results2= eRepository.findByPriceBetween(-1,11);
  			results1.retainAll(results2); }
@@ -229,8 +230,10 @@ public class SearchController {
  				File thefile=new File(relpath+uri);
  				e1.setPhotoBody(encodeFileToBase64Binary(thefile));
  			}
+ 			else results6.add(e1);
  		}
- 		return results1;
+ 		 results1.removeAll(results6);
+ 		 return results1;
  	}
 
 

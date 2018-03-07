@@ -47,4 +47,7 @@ export class ParentProfileComponent implements OnInit {
 
   }
 
+
+}
+export class NgbdPopoverBasic {
 }

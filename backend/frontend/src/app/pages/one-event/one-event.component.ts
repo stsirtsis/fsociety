@@ -22,6 +22,7 @@ export class OneEventComponent implements OnInit {
   flag: boolean = false ;
   model: any = {};
   error: string = '';
+  error1: string='';
   customResponse: CustomResponse;
   provider= new Providers();
 
@@ -30,6 +31,8 @@ export class OneEventComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.error='';
+    this.error1='';
     if(this.userService.isParentUser()){
        this.flag=true;
     }
@@ -63,17 +66,21 @@ export class OneEventComponent implements OnInit {
       this.event.capacity = this.event.capacity - num;
       if (this.customResponse.message === 'Sorry, event is full'){
         this.error = 'Sorry, event is full';
+        this.error1='';
       }
       else{
-        this.error = this.customResponse.message;
+        this.error1 = this.customResponse.message;
+        this.error='';
         this.parentService.send_ticket_mail().subscribe(data=>{console.log(data);})
       }
 
     })
   }else if(this.event.capacity==0){
     this.error = 'Sorry, event is full';
+    this.error1='';
   }else{
     this.error = 'Oι θέσεις δεν επαρκούν παρακαλώ επιλέξτε μέχρι και '+ this.event.capacity +' θέσεις';
+    this.error1='';
     }
   }
 

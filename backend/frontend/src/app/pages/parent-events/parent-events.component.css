@@ -1,12 +1,15 @@
+
 .btn{
 	height:35px;
 	background-color:#00b4e6;
+	border-color:#00b4e6;
+
+}
+.x{
+	left:-2.8%;
 }
 .container{
-	position:relative;
-    transition: .5s ease;
-    top: 5%;
-    left: -6.4%;
+	max-width: 90%;
 }
 
     	.behclick-panel  .list-group {

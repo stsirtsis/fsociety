@@ -1,24 +1,16 @@
 <app-main-toolbar> </app-main-toolbar>
+<div class="general">
+  <br>
+  <br>
 
-  <p> </p>
-  <p>
-        <a class="btn btn-info btn-lg" onclick="history.back(-1)" color:white>
-          <span class="glyphicon glyphicon-chevron-left"> < </span> Back
-        </a>
-  </p>
+<div class="container">
+<div class="card w-100">
 
-
-
-<div class="row">
-<div class="col-xs-1 col-md-1"></div>
-
-<div class="card w-75 col-xs-11 col-md-11">
-  <div class="card w-100">
     <div class="row">
-      <div class="col-xs-5 col-md-5">
+      <div class="col-xs-4 col-md-4">
         <img class="group myimage" src="data:image/png;base64,{{event.photoBody}}" alt="Sorry" routerLink="/one-event/{{event.id}}" />
       </div>
-      <div class="col-xs-7 col-md-7">
+      <div class="col-xs-8 col-md-8">
       <div class="card-body">
         <h1 class="card-title"  ><b>{{this.event.eventname}} </b></h1>
         <p class="card-text"><b>Περιγραφή Δραστηριότητας: </b>{{this.event.description}}</p>
@@ -37,17 +29,13 @@
         <p></p>
         <p class="card-text"><b>Κατηγορία Δραστηριότητας: </b> {{categoryString}}</p>
        <p class="card-text"><b>Συνολικές θέσεις Δραστηριότητας: </b> {{this.event.capacity}}</p>
-        <div class="row">
-        <div class="col-xs-8 col-md-8">
-          <b> Τιμή εισιτηρίου: </b> {{this.event.price}}€
-        </div>
-        <div class="col-xs-4 col-md-4">
+       <p class="card-text"><b> Τιμή εισιτηρίου: </b> {{this.event.price}}€</p>
           <div *ngIf="!flag then content1 else content2"></div>
           <ng-template #content1>
-            <button  type="button" class="btn btn-primary" routerLink="/login-page">Κράτα θέση</button>
+            <button  class="btn btn-primary" routerLink="/login-page">Κράτα θέση</button>
           </ng-template>
           <ng-template #content2>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Κράτα θέση</button>
+            <button  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Κράτα θέση</button>
             <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog"  role="document">
@@ -75,17 +63,17 @@
           </div>
           </form>
           </div>
+          <div class="xexe" style="margin-left:55%;">
+          <button type="button" style="	background-color:#00b4e6;"  class="btn1 btn-secondary" data-dismiss="modal">Ακύρωση</button>
+          <button type="button" style="	background-color:#00b4e6;" class="btn1 btn-primary" (click)="buy_ticket(model.num)">Υποβολή</button>
+        </div>
           <div class="modal-footer">
-          <button type="button"  class="btn btn-secondary" data-dismiss="modal">Ακύρωση</button>
-          <button type="button"  class="btn btn-primary" (click)="buy_ticket(model.num)">Υποβολή</button>
           <div *ngIf="error" class="alert alert-danger">{{error}}</div>
           </div>
           </div>
           </div>
           </div>
           </ng-template>
-        </div>
-      </div>
       </div>
     </div>
   </div>

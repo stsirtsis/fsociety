@@ -1,6 +1,8 @@
 import {Component, OnInit, Input, OnChanges } from '@angular/core';
 import {Event} from '../../../interfaces/event.interface';
 import {SimpleChanges} from '@angular/core';
+declare var jquery:any;
+declare var $ :any;
 
 @Component({
   selector: 'app-events-list',

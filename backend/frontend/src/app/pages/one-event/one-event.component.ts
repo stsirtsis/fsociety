@@ -5,6 +5,7 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 import {UserService} from '../../services/authentication/user.service';
 import {ParentService} from '../../services/parent.service';
 import {CustomResponse} from '../../interfaces/customResponse.interface';
+import {Providers} from '../../interfaces/providers.interface';
 
 
 
@@ -24,6 +25,7 @@ export class OneEventComponent implements OnInit {
   error: string = '';
   error1: string='';
   customResponse: CustomResponse;
+  provider= new Providers();
 
 
   constructor(private parentService: ParentService,private eventService: EventService, private route: ActivatedRoute,private userService: UserService) {
@@ -56,13 +58,17 @@ export class OneEventComponent implements OnInit {
       else if (this.event.AgeGroup == 2) this.ageGroupString = "5-10";
       else if (this.event.AgeGroup == 3) this.ageGroupString = "10-15";
       else this.ageGroupString = "15+";
-      this.eventService.setclicks(id).subscribe();
+      this.eventService.getpro(id).subscribe(data=>{
+        this.provider = data;
+        this.eventService.setclicks(id).subscribe();
+      });
+
 
 
     });
   }
 
-  buy_ticket(num: number): void{
+  buy_ticket1(num: number): void{
     if((this.event.capacity - num )>=0){
     this.parentService.buy_ticket(this.event.id,num).subscribe(data=>{
       this.customResponse = data.body;

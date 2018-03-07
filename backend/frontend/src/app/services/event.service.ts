@@ -7,6 +7,7 @@ import {Event} from '../interfaces/event.interface';
 import {Filters} from '../interfaces/filters.interface';
 import {newEvent} from '../interfaces/newEvent.interface';
 import {UserService} from './authentication/user.service';
+import {Providers} from '../interfaces/providers.interface';
 
 @Injectable()
 export class EventService {
@@ -51,5 +52,9 @@ export class EventService {
     return this.http.post<any>(this.POST_GET_EVENT_ID_URL, {}, {headers: this.headers});
   }
 
+  getpro(myId: number): Observable<Providers>{
+    this.POST_GET_EVENT_ID_URL = '/one-event/'+myId;
+    return this.http.post<any>(this.POST_GET_EVENT_ID_URL, {}, {headers: this.headers});
+  }
 
 }

@@ -92,13 +92,13 @@ my_events(): void{
       this.sum_t = this.stats_tickets(this.eventsList);
 
      this.providersService.getmonth().subscribe(data => {
-          this.tempList = data.body;
+          this.tempList = data;
           this.monthly_t = this.stats_tickets(this.tempList);
           this.monthly_m = this.stats_money(this.tempList);
-          //this.my_events_byCategory();
+          this.my_events_byCategory();
 
         },
-          error => {console.log(error);}); 
+          error => {console.log(error);});
 
     },error => {console.log(error);});
 }
@@ -106,19 +106,19 @@ my_events(): void{
 my_events_byCategory(): void{
   this.providersService.getbyCategory(1).subscribe(data => {
       console.log('byGroup');
-      this.tempList = data.body;
+      this.tempList = data;
       if(this.sum_t != 0){
       this.cat1_stats = this.stats_tickets(this.tempList)*100/this.sum_t;
     }
 
     this.providersService.getbyCategory(2).subscribe(data => {
-        this.tempList = data.body;
+        this.tempList = data;
         if(this.sum_t != 0){
         this.cat2_stats = this.stats_tickets(this.tempList)*100/this.sum_t;
       }
 
         this.providersService.getbyCategory(3).subscribe(data => {
-            this.tempList = data.body;
+            this.tempList = data;
             if(this.sum_t != 0){
             this.cat3_stats = this.stats_tickets(this.tempList)*100/this.sum_t;
           }
@@ -136,25 +136,25 @@ my_events_byCategory(): void{
 my_events_byAge(): void{
   this.providersService.getbyAge(1).subscribe(data => {
       console.log('byAge');
-      this.tempList = data.body;
+      this.tempList = data;
       if(this.sum_t != 0){
       this.age1_stats = this.stats_tickets(this.tempList)*100/this.sum_t;
     }
 
     this.providersService.getbyAge(2).subscribe(data => {
-        this.tempList = data.body;
+        this.tempList = data;
         if(this.sum_t != 0){
         this.age2_stats = this.stats_tickets(this.tempList)*100/this.sum_t;
       }
 
         this.providersService.getbyAge(3).subscribe(data => {
-            this.tempList = data.body;
+            this.tempList = data;
             if(this.sum_t != 0){
             this.age3_stats = this.stats_tickets(this.tempList)*100/this.sum_t;
           }
 
           this.providersService.getbyAge(4).subscribe(data => {
-              this.tempList = data.body;
+              this.tempList = data;
               if(this.sum_t != 0){
               this.age4_stats = this.stats_tickets(this.tempList)*100/this.sum_t;
             }

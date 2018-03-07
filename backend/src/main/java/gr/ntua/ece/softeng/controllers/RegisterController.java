@@ -216,6 +216,8 @@ public class RegisterController {
 				String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);
 				parent.setPassword(sha256hex);
 				parentRepository.save(parent);
+				User u=userRepository.findByUsername(username);
+				u.setPassword(sha256hex);
 			}
 			else {
 				Providers provider=providersRepository.findByUserName(username);
@@ -224,6 +226,8 @@ public class RegisterController {
 				String sha256hex = org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);
 				provider.setPassword(sha256hex);
 				providersRepository.save(provider);
+				User u=userRepository.findByUsername(username);
+				u.setPassword(sha256hex);
 				}
 				
 

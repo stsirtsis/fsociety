@@ -20,7 +20,7 @@
           <ng-template #content1>
             <button  type="button" class="btn btn-primary" routerLink="/login-page">Κράτα θέση</button>
           </ng-template>
-          <ng-template #content2 let-event_id="event.id" let-event_cap="event.capacity">
+          <ng-template #content2 let-event="event">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Κράτα θέση</button>
             <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -51,7 +51,7 @@
       </div>
       <div class="modal-footer">
         <button type="button"  class="btn btn-secondary" data-dismiss="modal">Ακύρωση</button>
-        <button type="button"  class="btn btn-primary" (click)="buy_ticket(model.num,event_id,event_cap)">Υποβολή</button>
+        <button type="button"  class="btn btn-primary" (click)="buy_ticket(model.num,event)">Υποβολή</button>
         <div *ngIf="error" class="alert alert-danger">{{error}}</div>
       </div>
     </div>

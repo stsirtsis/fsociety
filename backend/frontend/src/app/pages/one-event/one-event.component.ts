@@ -60,6 +60,7 @@ export class OneEventComponent implements OnInit {
       }
       else{
         this.error = this.customResponse.message;
+        this.parentService.send_ticket_mail().subscribe(data=>{console.log(data);})
       }
 
     })

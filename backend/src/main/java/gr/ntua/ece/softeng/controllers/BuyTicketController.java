@@ -105,12 +105,12 @@ public class BuyTicketController {
             parentRepository.save(parent);
             if(new_capacity <= 0){
               CustomResponse res = new CustomResponse();
-              res.setMessage("OK, ticket bought and now event is full! You have " + new_Fpoints + " Fpoints and " + finwallet + " in your wallet");
+              res.setMessage("OK, ticket bought and now event is full! You have " + new_Fpoints + " Fpoints and " + finwallet + " € in your wallet");
               return res;
 
           }
           CustomResponse res = new CustomResponse();
-          res.setMessage("OK, ticket bought " + new_capacity + " left. Hurry! You have " + new_Fpoints + " Fpoints and " + finwallet + "  in your wallet");
+          res.setMessage("OK, ticket bought " + new_capacity + " left. Hurry! You have " + new_Fpoints + " Fpoints and " + finwallet + "  € in your wallet");
           return res;
         }
         else{

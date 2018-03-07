@@ -87,17 +87,18 @@ my_events(): void{
   this.providersService.getmyevents()
   .subscribe(
     data => {
-      this.eventsList = data.body;
+      console.log(data);
+      this.eventsList = data;
       this.sum_t = this.stats_tickets(this.eventsList);
 
-      this.providersService.getmonth().subscribe(data => {
+     this.providersService.getmonth().subscribe(data => {
           this.tempList = data.body;
           this.monthly_t = this.stats_tickets(this.tempList);
           this.monthly_m = this.stats_money(this.tempList);
-          this.my_events_byCategory();
+          //this.my_events_byCategory();
 
         },
-          error => {console.log(error);});
+          error => {console.log(error);}); 
 
     },error => {console.log(error);});
 }

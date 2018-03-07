@@ -12,12 +12,13 @@ import {EventService} from '../../../../services/event.service';
 export class ProviderSingleEventComponent implements OnInit {
 
 
-  @Input() event: Event;
+  @Input() event:Event;
   shortDescription: string;
   isLong: boolean;
   tickets: number =0;
   m_tickets: number=0;
   clicks: number=0;
+
 
   constructor(private eventService: EventService) {
   }

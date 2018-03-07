@@ -24,10 +24,7 @@ export class SingleEventComponent implements OnInit, OnChanges {
   flag: boolean = false ;
   customResponse: CustomResponse;
   model: any = {};
-  flag_b: boolean = false;
-
-  event_id : number;
-  event_cap : number;
+  
 
   constructor(private userService: UserService, private parentService: ParentService, private eventService: EventService) {
     }
@@ -36,9 +33,6 @@ export class SingleEventComponent implements OnInit, OnChanges {
     if(this.userService.isParentUser()){
        this.flag=true;
     }
-    this.event_id = this.event.id;
-    this.event_cap = this.event.capacity;
-
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -54,25 +48,5 @@ export class SingleEventComponent implements OnInit, OnChanges {
     }
   }
 
-  buy_ticket(num: number,event_id: number, event_cap: number): void{
-    if((event_cap - num )>=0){
-    this.parentService.buy_ticket(event_id,num).subscribe(data=>{
-      this.customResponse = data.body;
-      console.log(this.customResponse.message);
-      console.log(event_id);
-      event_cap = this.model.event.capacity - num;
-      if (this.customResponse.message === 'Sorry, event is full'){
-        this.error = 'Sorry, event is full';
-      }
-      else{
-        this.error = this.customResponse.message;
-      }
 
-    })
-  }else if(event_cap==0){
-    this.error = 'Sorry, event is full';
-  }else{
-    this.error = 'Oι θέσεις δεν επαρκούν παρακαλώ επιλέξτε μέχρι και '+ event_cap +' θέσεις';
-  }
-}
 }

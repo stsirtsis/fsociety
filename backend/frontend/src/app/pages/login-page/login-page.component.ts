@@ -84,15 +84,15 @@ export class LoginPageComponent implements OnInit {
             this.customResponse = res.body;
             this.message = this.customResponse.message;
             console.log(this.message);
-            if (this.message === 'Your password has been sent to your email') {
-              this.success= 'Your password has been sent to your email';
+            if (this.message === 'Your password has been reset.Please check your emails.') {
+              this.success= 'Your password has been reset.Please check your emails.';
             }
             else{
               this.error1 = 'Username not found';
             }
           },
           error => {
-            console.log('unknown error');
+            console.log(error);
           }
         );
 

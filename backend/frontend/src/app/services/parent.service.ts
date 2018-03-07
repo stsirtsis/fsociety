@@ -12,7 +12,8 @@ import { CustomResponse } from '../interfaces/customResponse.interface';
 export class ParentService {
 
   private POST_PARENT_URL = '/register/parent';
-  private GET_URL_EVENT ;
+  private POST_URL_EVENT ;
+  private GET_URL_EVENT;
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient, private userService: UserService) {}
@@ -21,11 +22,15 @@ export class ParentService {
     return this.http.post<any>(this.POST_PARENT_URL, parent, {observe : 'response'});
   }
   getmyevents(): Observable <any> {
-    this.GET_URL_EVENT= '/parents/'+ this.userService.getUsername()+'/events' + '?access_token=' + this.userService.getAccessToken();
-    return this.http.get<any>(this.GET_URL_EVENT , {observe : 'response'});
+    this.POST_URL_EVENT= '/parents/eventParent/'+ this.userService.getUsername() + '?access_token=' + this.userService.getAccessToken();
+    return this.http.post<any>(this.POST_URL_EVENT , {observe : 'response'});
   }
   buy_ticket(event_id: number , num: number): Observable <any> {
     this.GET_URL_EVENT= '/buyticket/new'+ '?parent_username='+this.userService.getUsername()+'&event_id='+event_id+ '&quantity='+num+ '&access_token=' + this.userService.getAccessToken();
+    return this.http.get<any>(this.GET_URL_EVENT , {observe : 'response'});
+  }
+  send_ticket_mail(): Observable <any> {
+    this.GET_URL_EVENT= '/buyticket/sendEmail'+ '?username='+this.userService.getUsername()+'&access_token=' + this.userService.getAccessToken();
     return this.http.get<any>(this.GET_URL_EVENT , {observe : 'response'});
   }
 }

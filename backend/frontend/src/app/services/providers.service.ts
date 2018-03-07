@@ -11,7 +11,7 @@ import {Providers} from '../interfaces/providers.interface';
 export class ProvidersService {
 
   private static POST_URL = '/register/provider';
-  private GET_URL_EVENT ;
+  private POST_URL_EVENT ;
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
 
 
@@ -21,22 +21,22 @@ export class ProvidersService {
     return this.http.post<any>(ProvidersService.POST_URL, providers, {observe : 'response'});
   }
   getmyevents(): Observable <any> {
-    this.GET_URL_EVENT= '/provider/events/'+ this.userService.getUsername() + '?access_token=' + this.userService.getAccessToken();
-    return this.http.get<any>(this.GET_URL_EVENT , {observe : 'response'});
+    this.POST_URL_EVENT= '/provider/events/'+ this.userService.getUsername() + '?access_token=' + this.userService.getAccessToken();
+    return this.http.post<any>(this.POST_URL_EVENT , {observe : 'response'});
  }
 
  getbyAge(age:number): Observable <any> {
-   this.GET_URL_EVENT= '/provider/AgeGroup/'+ this.userService.getUsername() +'/'+age+'/'+ '?access_token=' + this.userService.getAccessToken();
-   return this.http.get<any>(this.GET_URL_EVENT , {observe : 'response'});
+   this.POST_URL_EVENT= '/provider/AgeGroup/'+ this.userService.getUsername() +'/'+age+ '?access_token=' + this.userService.getAccessToken();
+   return this.http.post<any>(this.POST_URL_EVENT , {observe : 'response'});
 }
 
  getbyCategory(cat:number):Observable <any> {
-   this.GET_URL_EVENT= '/provider/CategoryGroup/'+ this.userService.getUsername() +'/'+cat+'/'+ '?access_token=' + this.userService.getAccessToken();
-   return this.http.get<any>(this.GET_URL_EVENT , {observe : 'response'});
+   this.POST_URL_EVENT= '/provider/CategoryGroup/'+ this.userService.getUsername() +'/'+cat+ '?access_token=' + this.userService.getAccessToken();
+   return this.http.post<any>(this.POST_URL_EVENT , {observe : 'response'});
 }
 getmonth():Observable <any> {
-  this.GET_URL_EVENT= '/provider/monthly/'+ this.userService.getUsername() +'?access_token=' + this.userService.getAccessToken();
-  return this.http.get<any>(this.GET_URL_EVENT , {observe : 'response'});
+  this.POST_URL_EVENT= '/provider/monthly/'+ this.userService.getUsername() +'?access_token=' + this.userService.getAccessToken();
+  return this.http.post<any>(this.POST_URL_EVENT , {observe : 'response'});
 }
 
 

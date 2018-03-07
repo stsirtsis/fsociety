@@ -65,10 +65,10 @@ my_events(): void{
   .subscribe(
     data => {
       console.log('its ok');
-      console.log(data.body);
-      this.eventsList = data.body;
+      console.log(data);
+      this.eventsList = data;
 
-    },() => {console.log('skata pali');});
+    },error => {console.log(error);});
 }
 
 

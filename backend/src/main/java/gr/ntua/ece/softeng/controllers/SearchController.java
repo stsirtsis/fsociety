@@ -88,7 +88,7 @@ public class SearchController {
  	@PostMapping(path="/text")
  	public @ResponseBody List<E> textsearch(@RequestBody Filters filters) throws IOException, ParseException
  	{	
- 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+ 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
  		Date date1 = new Date();
  		Date date2;
  		Double latitude;

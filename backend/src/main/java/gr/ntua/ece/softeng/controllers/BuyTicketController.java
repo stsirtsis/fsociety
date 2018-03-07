@@ -102,8 +102,8 @@ public class BuyTicketController {
             parent.getEvents().add(event);
             parentRepository.save(parent);
             if(new_capacity <= 0)
-                return "OK, ticket bought and now event is full! You have \t" + new_Fpoints + " Fpoints and\t" + finwallet + "$ in your wallet";
-            return "OK, ticket bought\t" + new_capacity + " left. Hurry! You have \t" + new_Fpoints + " Fpoints and\t" + finwallet + "$ in your wallet";
+                return "OK, ticket bought and now event is full! You have \t" + new_Fpoints + " Fpoints and\t" + finwallet + "€ in your wallet";
+            return "OK, ticket bought\t" + new_capacity + " left. Hurry! You have \t" + new_Fpoints + " Fpoints and\t" + finwallet + "€ in your wallet";
         }
         else
             return "Sorry, event is full";

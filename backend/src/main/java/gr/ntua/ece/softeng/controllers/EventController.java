@@ -6,11 +6,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import gr.ntua.ece.softeng.entities.Event;
+import gr.ntua.ece.softeng.entities.Providers;
 import gr.ntua.ece.softeng.repositories.EventRepository;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.security.Provider;
 
 @Controller
 public class EventController {
@@ -58,5 +60,14 @@ public class EventController {
 		e.setPhotoBody(encodeFileToBase64Binary(thefile));
 		return e;
 	}
+	
+	@RequestMapping(path="/one-event/{eventId}")
+	public @ResponseBody Providers findProvider (@PathVariable Long eventId) {
+		Event e=eventRepository.findOne(eventId);
+		Providers provider=e.getProvider();
+		return provider;
+		
+	}
+	
 
 }

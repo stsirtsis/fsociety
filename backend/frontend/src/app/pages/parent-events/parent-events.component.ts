@@ -4,6 +4,7 @@ import {EventService} from '../../services/event.service';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import {Filters} from '../../interfaces/filters.interface';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 import {
   debounceTime, distinctUntilChanged, switchMap
 } from 'rxjs/operators';
@@ -11,8 +12,6 @@ import {UserService} from '../../services/authentication/user.service';
 import {FormsModule, FormControl, FormGroup, Validators} from '@angular/forms';
 declare var jquery:any;
 declare var $ :any;
-
-
 
 @Component({
   selector: 'app-parent-events',
@@ -27,6 +26,17 @@ export class ParentEventsComponent implements OnInit {
     distance: new FormControl(),
     price: new FormControl()
   });
+
+  searchURLParameters: string[] = [
+    '0',
+    '',
+    '0',
+    '0',
+    '0',
+    '',
+    '',
+    '0'
+  ];
 
   isAnonymous: boolean;
   eventsList: Event[] = [];
@@ -44,10 +54,19 @@ export class ParentEventsComponent implements OnInit {
     streetNumber: 0
   };
 
-  constructor(private eventService: EventService, private userService: UserService) {
+  constructor(private eventService: EventService, private userService: UserService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+
+    this.newSearch.category = +this.route.snapshot.paramMap.get('category');
+    this.newSearch.text = this.route.snapshot.paramMap.get('text');
+    this.newSearch.ageGroup = +this.route.snapshot.paramMap.get('ageGroup');
+    this.newSearch.distance = +this.route.snapshot.paramMap.get('distance');
+    this.newSearch.price = +this.route.snapshot.paramMap.get('price');
+    this.newSearch.area = this.route.snapshot.paramMap.get('area');
+    this.newSearch.streetName = this.route.snapshot.paramMap.get('streetName');
+    this.newSearch.streetNumber = +this.route.snapshot.paramMap.get('streetNumber');
     this.isAnonymous = !this.userService.isUser();
     this.searchEvents();
 
@@ -66,6 +85,14 @@ export class ParentEventsComponent implements OnInit {
   }
 
   searchEvents(): void {
+    this.searchURLParameters[0] = this.newSearch.category+"";
+    this.searchURLParameters[1] = this.newSearch.text;
+    this.searchURLParameters[2] = this.newSearch.ageGroup+"";
+    this.searchURLParameters[3] = this.newSearch.distance+"";
+    this.searchURLParameters[4] = this.newSearch.price+"";
+    this.searchURLParameters[5] = this.newSearch.area;
+    this.searchURLParameters[6] = this.newSearch.streetName;
+    this.searchURLParameters[7] = this.newSearch.streetNumber+"";
     console.log(this.newSearch);
     if (!this.userService.isUser()) this.newSearch.username = '';
     else this.newSearch.username = this.userService.getUsername();

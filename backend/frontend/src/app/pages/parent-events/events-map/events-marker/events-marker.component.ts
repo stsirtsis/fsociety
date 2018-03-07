@@ -10,6 +10,7 @@ export class EventsMarkerComponent implements OnInit {
 
   @Input() event: Event;
   @Input() markerId: number;
+  @Input() searchURLParameters: string[];
   myLat: number;
   myLng: number;
   shortDescription: string;

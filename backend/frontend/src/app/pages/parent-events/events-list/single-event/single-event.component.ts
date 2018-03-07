@@ -18,13 +18,14 @@ declare var $ :any;
 export class SingleEventComponent implements OnInit, OnChanges {
 
   @Input() event: Event;
+  @Input() searchURLParameters: string[];
   shortDescription: string;
   isLong: boolean;
   error: string = '';
   flag: boolean = false ;
   customResponse: CustomResponse;
   model: any = {};
-  
+
 
   constructor(private userService: UserService, private parentService: ParentService, private eventService: EventService) {
     }

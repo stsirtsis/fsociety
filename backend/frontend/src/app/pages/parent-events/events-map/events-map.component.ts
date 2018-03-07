@@ -11,6 +11,7 @@ import { SimpleChanges } from '@angular/core';
 export class EventsMapComponent implements OnInit {
 
   @Input() events: Event[];
+  @Input() searchURLParameters: string[];
 
   centerLat: number;
   centerLng: number;

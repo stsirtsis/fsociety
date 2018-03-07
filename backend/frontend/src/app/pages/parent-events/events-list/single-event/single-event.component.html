@@ -1,15 +1,15 @@
 <div class="card w-100">
   <div class="row">
     <div class="col-xs-5 col-md-5">
-      <img class="group myimage" src="data:image/png;base64,{{event.photoBody}}" alt="Sorry" routerLink="/one-event/{{event.id}}" />
+      <img class="group myimage" src="data:image/png;base64,{{event.photoBody}}" alt="Sorry" [routerLink]="['/one-event',event.id,searchURLParameters[0],searchURLParameters[1],searchURLParameters[2],searchURLParameters[3],searchURLParameters[4],searchURLParameters[5],searchURLParameters[6],searchURLParameters[7]]" />
     </div>
     <div class="col-xs-7 col-md-7">
       <div class="card-body">
 
 
-            <h5 class="card-title" routerLink="/one-event/{{event.id}}" ><b>{{event.eventname}}</b></h5>
+            <h5 class="card-title" [routerLink]="['/one-event',event.id,searchURLParameters[0],searchURLParameters[1],searchURLParameters[2],searchURLParameters[3],searchURLParameters[4],searchURLParameters[5],searchURLParameters[6],searchURLParameters[7]]" ><b>{{event.eventname}}</b></h5>
             <p></p><br>
-        <p class="card-text"><b>Περιγραφη: </b>{{shortDescription}} <a *ngIf="isLong" routerLink="/one-event/{{event.id}}" >Δείτε περισσότερα</a></p>
+        <p class="card-text"><b>Περιγραφη: </b>{{shortDescription}} <a *ngIf="isLong" [routerLink]="['/one-event',event.id,searchURLParameters[0],searchURLParameters[1],searchURLParameters[2],searchURLParameters[3],searchURLParameters[4],searchURLParameters[5],searchURLParameters[6],searchURLParameters[7]]" >Δείτε περισσότερα</a></p>
 
         <p class="card-text"><b>Συνολικές θέσεις Δραστηριότητας: </b> {{this.event.capacity}}</p>
         <p></p><br>
@@ -24,7 +24,7 @@
             <button  type="button" class="btn btn-primary" routerLink="/login-page">Κράτα θέση</button>
           </ng-template>
           <ng-template #content2 let-event_id="event.id" let-event_cap="event.capacity">
-            <button type="button" class="btn btn-primary" routerLink="/one-event/{{event.id}}" >Κράτα θέση</button>
+            <button type="button" class="btn btn-primary" [routerLink]="['/one-event',event.id,searchURLParameters[0],searchURLParameters[1],searchURLParameters[2],searchURLParameters[3],searchURLParameters[4],searchURLParameters[5],searchURLParameters[6],searchURLParameters[7]]" >Κράτα θέση</button>
           </ng-template>
         </div>
       </div>

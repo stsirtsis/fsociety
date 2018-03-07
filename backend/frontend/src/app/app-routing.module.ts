@@ -65,7 +65,7 @@ const appRoutes: Routes = [
     component: LoginPageComponent
   },
   {
-    path: 'parent-events',
+    path: 'parent-events/:category/:text/:ageGroup/:distance/:price/:area/:streetName/:streetNumber',
     component: ParentEventsComponent
   },
   {
@@ -73,7 +73,7 @@ const appRoutes: Routes = [
     component: EventsMapComponent
   },
   {
-    path: 'one-event/:Id',
+    path: 'one-event/:Id/:category/:text/:ageGroup/:distance/:price/:area/:streetName/:streetNumber',
     component: OneEventComponent,
   },
   {
@@ -82,7 +82,7 @@ const appRoutes: Routes = [
     canActivate: [ProviderGuardService]
   },
   {
-    path: 'team',
+    path: 'team-page',
     component: TeamPageComponent
   },
   {

@@ -29,23 +29,23 @@
       <i class="fa fa-angle-down"></i>
       <h2>Αθλητικές Δραστηριότητες</h2>
       <div class="zoom">
-      <img src="assets/front-page/soc.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+      <img [routerLink]="['/parent-events', 1, '', 0, 0, 0, '', '', 0]" src="assets/front-page/soc.jpg" class="img-responsive margin" style="width:100%" alt="Image">
     </div></div>
     <div class="col-sm-4">
       <i class="fa fa-angle-down"></i>
       <h2>Εκπαιδευτικές Δραστηριότητες</h2>
      <div class="zoom">
-      <img src="/assets/front-page/math.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+      <img [routerLink]="['/parent-events', 3, '', 0, 0, 0, '', '', 0]" src="/assets/front-page/math.jpg" class="img-responsive margin" style="width:100%" alt="Image">
     </div></div>
     <div class="col-sm-4">
       <i class="fa fa-angle-down"></i>
       <h2>Καλλιτεχνικές δραστηριότητες</h2>
       <div class="zoom">
-      <img src="/assets/front-page/bal.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+      <img [routerLink]="['/parent-events', 2, '', 0, 0, 0, '', '', 0]" src="/assets/front-page/bal.jpg" class="img-responsive margin" style="width:100%" alt="Image">
     </div></div>
   </div>
   <div class="col-sm-12 col-xs-12 com -md 12">
-  <button type="button" class="btn btn-primary btn-lg btn-block" routerLink="/parent-events" href=""><h3>Δραστηριότητες</h3></button><br>
+  <button type="button" class="btn btn-primary btn-lg btn-block" [routerLink]="['/parent-events', 0, '', 0, 0, 0, '', '', 0]" href=""><h3>Δραστηριότητες</h3></button><br>
   </div>
 </div>
 <br>

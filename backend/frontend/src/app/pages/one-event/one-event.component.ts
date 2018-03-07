@@ -18,6 +18,7 @@ export class OneEventComponent implements OnInit {
   event= new Event() ;
   categoryString: string;
   ageGroupString: string;
+  searchURLParameters: string[] = [];
   flag: boolean = false ;
   model: any = {};
   error: string = '';
@@ -35,9 +36,18 @@ export class OneEventComponent implements OnInit {
        this.flag=true;
     }
     const id = +this.route.snapshot.paramMap.get('Id');
+    this.searchURLParameters[0] = this.route.snapshot.paramMap.get('category');
+    this.searchURLParameters[1] = this.route.snapshot.paramMap.get('text');
+    this.searchURLParameters[2] = this.route.snapshot.paramMap.get('ageGroup');
+    this.searchURLParameters[3] = this.route.snapshot.paramMap.get('distance');
+    this.searchURLParameters[4] = this.route.snapshot.paramMap.get('price');
+    this.searchURLParameters[5] = this.route.snapshot.paramMap.get('area');
+    this.searchURLParameters[6] = this.route.snapshot.paramMap.get('streetName');
+    this.searchURLParameters[7] = this.route.snapshot.paramMap.get('streetNumber');
     this.eventService.getEventById(id).
     subscribe(data => {
       this.event=data;
+      console.log('TEST');
       console.log(this.event);
       if (this.event.category == 1) this.categoryString = "Αθλητισμός";
       else if (this.event.category == 2) this.categoryString = "Καλλιτεχνικά";

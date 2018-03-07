@@ -18,6 +18,10 @@
     box-shadow: 0 12px 20px 0 rgba(0.1,0.1,0.1,0.2);
 }
 .btn{
+  position: relative;
+  display: inline-block;
+  width: auto;
+  height: auto;
 	background-color:#00b4e6;
 
 }

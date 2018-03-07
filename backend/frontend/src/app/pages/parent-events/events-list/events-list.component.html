@@ -1,5 +1,5 @@
 <div *ngIf="events.length!=0">
-<app-single-event *ngFor="let ev of visibleEvents" [event]="ev">
+<app-single-event [searchURLParameters]="searchURLParameters" *ngFor="let ev of visibleEvents" [event]="ev">
 </app-single-event>
 <div class="row">
 <div class="col-md-9">
@@ -18,5 +18,5 @@
 </div>
 </div>
 <div *ngIf="events.length==0">
-  <p> Δεν υπάρχουν δραστηριότητες για τα φίλτρα αναζήτησης που χρησιμοποιήσατε </p>
+  <p> Λυπούμαστε, δεν υπάρχουν δραστηριότητες για τα κριτήρια αναζήτησης που χρησιμοποιήσατε. </p>
 </div>

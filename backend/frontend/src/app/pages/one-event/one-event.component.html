@@ -2,34 +2,34 @@
 <div class="general">
   <br>
   <br>
-
+  <button type="button" [routerLink]="['/parent-events',searchURLParameters[0],searchURLParameters[1],searchURLParameters[2],searchURLParameters[3],searchURLParameters[4],searchURLParameters[5],searchURLParameters[6],searchURLParameters[7]]" class="btn btn-primary">Back</button>
 <div class="container">
 <div class="card w-100">
 
     <div class="row">
       <div class="col-xs-4 col-md-4">
-        <img class="group myimage" src="data:image/png;base64,{{event.photoBody}}" alt="Sorry" routerLink="/one-event/{{event.id}}" />
+        <img class="group myimage" src="data:image/png;base64,{{event.photoBody}}" alt="Sorry" />
       </div>
       <div class="col-xs-8 col-md-8">
       <div class="card-body">
-        <h1 class="card-title"  ><b>{{this.event.eventname}} </b></h1>
-        <p class="card-text"><b>Περιγραφή Δραστηριότητας: </b>{{this.event.description}}</p>
+        <h1 class="card-title"  ><b>{{event.eventname}} </b></h1>
+        <p class="card-text"><b>Περιγραφή Δραστηριότητας: </b>{{event.description}}</p>
         <p class="card-text"><b>Ηλικιακή κατηγορία Δραστηριότητας: </b>{{ageGroupString}}</p>
         <div class="row">
         <div class="col-xs-4 col-md-4">
-          <b>Περιοχή:</b> {{this.event.area}}
+          <b>Περιοχή:</b> {{event.area}}
         </div>
         <div class="col-xs-4 col-md-4">
-          <b>Οδός:</b> {{this.event.streetName}}
+          <b>Οδός:</b> {{event.streetName}}
         </div>
         <div class="col-xs-4 col-md-4">
-          <b>Αριθμός:</b> {{this.event.streetNumber}}
+          <b>Αριθμός:</b> {{event.streetNumber}}
         </div>
         </div>
         <p></p>
         <p class="card-text"><b>Κατηγορία Δραστηριότητας: </b> {{categoryString}}</p>
-       <p class="card-text"><b>Συνολικές θέσεις Δραστηριότητας: </b> {{this.event.capacity}}</p>
-       <p class="card-text"><b> Τιμή εισιτηρίου: </b> {{this.event.price}}€</p>
+       <p class="card-text"><b>Συνολικές θέσεις Δραστηριότητας: </b> {{event.capacity}}</p>
+       <p class="card-text"><b> Τιμή εισιτηρίου: </b> {{event.price}}€</p>
           <div *ngIf="!flag then content1 else content2"></div>
           <ng-template #content1>
             <button  class="btn btn-primary" routerLink="/login-page">Κράτα θέση</button>

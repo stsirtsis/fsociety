@@ -46,6 +46,10 @@ export class EventService {
     this.POST_GET_EVENT_ID_URL = '/eventById/'+myId;
     return this.http.post<any>(this.POST_GET_EVENT_ID_URL, {}, {headers: this.headers});
   }
+  setclicks(myId: number): Observable<Event>{
+    this.POST_GET_EVENT_ID_URL = '/event_click/'+myId;
+    return this.http.post<any>(this.POST_GET_EVENT_ID_URL, {}, {headers: this.headers});
+  }
 
 
 }

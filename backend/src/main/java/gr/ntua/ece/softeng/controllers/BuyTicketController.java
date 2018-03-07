@@ -29,6 +29,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import gr.ntua.ece.softeng.error.CustomResponse;
+
 
 
 
@@ -52,7 +54,7 @@ public class BuyTicketController {
     private static Integer Tickets;
 
     @RequestMapping(path="/new")
-    public synchronized @ResponseBody String buynewticket (@RequestParam String parent_username,
+    public synchronized @ResponseBody CustomResponse buynewticket (@RequestParam String parent_username,
                                                            @RequestParam Long event_id,
                                                            @RequestParam Integer quantity) {
         Event event = eventRepository.findOne(event_id) ;
@@ -101,13 +103,21 @@ public class BuyTicketController {
 
             parent.getEvents().add(event);
             parentRepository.save(parent);
-            if(new_capacity <= 0)
-                return "OK, ticket bought and now event is full! You have \t" + new_Fpoints + " Fpoints and\t" + finwallet + "$ in your wallet";
-            return "OK, ticket bought\t" + new_capacity + " left. Hurry! You have \t" + new_Fpoints + " Fpoints and\t" + finwallet + "$ in your wallet";
-        }
-        else
-            return "Sorry, event is full";
+            if(new_capacity <= 0){
+              CustomResponse res = new CustomResponse();
+              res.setMessage("OK, ticket bought and now event is full! You have " + new_Fpoints + " Fpoints and " + finwallet + " $ in your wallet");
+              return res;
 
+          }
+          CustomResponse res = new CustomResponse();
+          res.setMessage("OK, ticket bought " + new_capacity + " left. Hurry! You have " + new_Fpoints + " Fpoints and " + finwallet + " $ in your wallet");
+          return res;
+        }
+        else{
+          CustomResponse res = new CustomResponse();
+          res.setMessage("Sorry, event is full");
+          return res;
+          }
     }
 
     @RequestMapping("/sendEmail")

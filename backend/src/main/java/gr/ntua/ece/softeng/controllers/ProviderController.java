@@ -200,28 +200,24 @@ public class ProviderController {
 	}
 
 
-	@GetMapping(path = "/AgeGroup/{provider_username}")
+	@GetMapping(path="/AgeGroup/{provider_username}/{Age}")
 	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
-	public @ResponseBody
-	List<Event> getEventsByAge(@PathVariable String provider_username, @RequestParam Integer Age) {
-
-			Set<Event> all_events = providersRepository.findByUserName(provider_username).getEvents();
-			Map<Integer, List<Event>> EventsByAge = all_events.stream().collect(groupingBy(Event::getAgeGroup));
-			return EventsByAge.get(Age);
+	public @ResponseBody List<Event> getEventsByAge(@PathVariable String provider_username,@PathVariable Integer Age) {
+		Set<Event> all_events=providersRepository.findByUserName(provider_username).getEvents();
+		Map<Integer, List<Event>> EventsByAge= all_events.stream().collect(groupingBy(Event::getAgeGroup));
+		return EventsByAge.get(Age);
 
 	}
 
 
-	@GetMapping(path = "/CategoryGroup/{provider_username}")
-	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
-	public @ResponseBody
-	List<Event> getEventsByCategory(@PathVariable String provider_username, @RequestParam Integer Category) {
 
-			Set<Event> all_events = providersRepository.findByUserName(provider_username).getEvents();
-			Map<Integer, List<Event>> EventsByCategory = all_events.stream().collect(groupingBy(Event::getCategory));
-			return EventsByCategory.get(Category);
+	@GetMapping(path="/CategoryGroup/{provider_username}/{Category}")
+	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
+	public @ResponseBody List<Event> getEventsByCategory(@PathVariable String provider_username,@PathVariable Integer Category) {
+
+		Set<Event> all_events=providersRepository.findByUserName(provider_username).getEvents();
+		Map<Integer, List<Event>> EventsByCategory= all_events.stream().collect(groupingBy(Event::getCategory));
+		return EventsByCategory.get(Category);
 
 	}
-
-
 }

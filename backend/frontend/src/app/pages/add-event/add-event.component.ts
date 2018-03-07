@@ -64,6 +64,7 @@ export class AddEventComponent implements OnInit {
         this.progress.percentage = Math.round(100 * event.loaded / event.total);
       } else if (event instanceof HttpResponse) {
         console.log('File is completely uploaded!');
+        this.router.navigate(['/provider-profile'])
       }
     })
 

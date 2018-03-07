@@ -14,7 +14,7 @@ export class MainToolbarComponent implements OnInit {
   isuser = false;
   isparent = false;
   isprovider = false;
-
+  isadmin = false;
   constructor(private userService: UserService, private router: Router) {
   }
 
@@ -29,6 +29,7 @@ export class MainToolbarComponent implements OnInit {
     this.isuser = this.userService.isUser();
     this.isparent = this.userService.isParentUser();
     this.isprovider = this.userService.isProviderUser();
+    this.isadmin = this.userService.isAdminUser();
   }
 
   logout() {
@@ -36,6 +37,7 @@ export class MainToolbarComponent implements OnInit {
     this.isuser = false;
     this.isparent = false;
     this.isprovider = false;
+    this.isadmin = false;
     this.router.navigate(['front-page']);
   }
 

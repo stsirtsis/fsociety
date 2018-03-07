@@ -2,6 +2,11 @@ import {Component, OnInit, Input} from '@angular/core';
 import {Event} from '../../interfaces/event.interface';
 import {EventService} from '../../services/event.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
+import {UserService} from '../../services/authentication/user.service';
+import {ParentService} from '../../services/parent.service';
+import {CustomResponse} from '../../interfaces/customResponse.interface';
+
+
 
 @Component({
   selector: 'app-one-event',
@@ -10,14 +15,22 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 })
 export class OneEventComponent implements OnInit {
 
-  event: Event;
+  event= new Event() ;
   categoryString: string;
   ageGroupString: string;
+  flag: boolean = false ;
+  model: any = {};
+  error: string = '';
+  customResponse: CustomResponse;
 
-  constructor(private eventService: EventService, private route: ActivatedRoute) {
+
+  constructor(private parentService: ParentService,private eventService: EventService, private route: ActivatedRoute,private userService: UserService) {
   }
 
   ngOnInit() {
+    if(this.userService.isParentUser()){
+       this.flag=true;
+    }
     const id = +this.route.snapshot.paramMap.get('Id');
     this.eventService.getEventById(id).
     subscribe(data => {
@@ -30,6 +43,31 @@ export class OneEventComponent implements OnInit {
       else if (this.event.AgeGroup == 2) this.ageGroupString = "5-10";
       else if (this.event.AgeGroup == 3) this.ageGroupString = "10-15";
       else this.ageGroupString = "15+";
+      this.eventService.setclicks(id).subscribe();
+
+
     });
   }
+
+  buy_ticket(num: number): void{
+    if((this.event.capacity - num )>=0){
+    this.parentService.buy_ticket(this.event.id,num).subscribe(data=>{
+      this.customResponse = data.body;
+      console.log(this.customResponse.message);
+      this.event.capacity = this.event.capacity - num;
+      if (this.customResponse.message === 'Sorry, event is full'){
+        this.error = 'Sorry, event is full';
+      }
+      else{
+        this.error = this.customResponse.message;
+      }
+
+    })
+  }else if(this.event.capacity==0){
+    this.error = 'Sorry, event is full';
+  }else{
+    this.error = 'Oι θέσεις δεν επαρκούν παρακαλώ επιλέξτε μέχρι και '+ this.event.capacity +' θέσεις';
+    }
+  }
+
 }

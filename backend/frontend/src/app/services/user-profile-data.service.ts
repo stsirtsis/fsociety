@@ -39,5 +39,9 @@ export class UserProfileDataService {
                       + '?access_token=' + this.userService.getAccessToken(),
                       {observe: 'response'});}
 
+private GET_URL_RESET = '/register/resetpassword';
+send_email(username:string): Observable<any>{
+    return this.http.get<any>(this.GET_URL_RESET + '?username=' + username,{observe: 'response'});
+          }
 
-                     }
+}

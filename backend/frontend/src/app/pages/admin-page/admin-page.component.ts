@@ -13,69 +13,106 @@ declare var $ :any;
 })
 export class AdminPageComponent implements OnInit {
 
-  parentlist: Parent[] = [];
+  userList: any[] = [];
+  parentsList: Parent[];
+  providersList: Providers[];
+  ParorProv=0; //0 is Parent,1 is Providers
+
   constructor(private userProfileDataService: UserProfileDataService) {
 
-   }
-  providerslist:Providers[]=[];
-  ParorProv=0; //0 is Parent,1 is Providers
-  username:string;
-  flag1=0;
-  flag2=0;
+  }
 
   ngOnInit() {
-  this.getParents();
-  $(document).ready(function(){
-    $("#myInput").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("#myTable tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    this.getParents();
+    this.getProviders();
+    this.getAllUsers();
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
       });
     });
-  });
-
   }
+
+  getAllUsers(): void {
+    this.userProfileDataService.getUsers()
+    .subscribe(data => {
+      console.log("Hey Hey Hey");
+      console.log(data);
+      console.log(this.parentsList);
+      console.log(this.providersList);
+      console.log("Hey Hey Hey");
+      for (let par of this.parentsList){
+        for (let usr of data){
+          if (usr.username === par.username){
+            if (usr.roles.some(el => el.name === 'BLOCKED')) this.userList.push([par, 'BLOCKED', 'PARENT']);
+            else this.userList.push([par, 'UNBLOCKED', 'PARENT']);
+          }
+        }
+      }
+      for (var prov of this.providersList){
+        for (var usr of data){
+          if (usr.username === prov.userName){
+            if (usr.roles.some(el => el.name === 'BLOCKED')) this.userList.push([prov, 'BLOCKED', 'PROVIDER']);
+            else this.userList.push([prov, 'UNBLOCKED', 'PROVIDER']);
+          }
+        }
+      }
+      console.log(this.userList);
+    });
+  }
+
   getParents(): void {
-    //console.log(this.newSearch);
-    //this.newSearch.username = this.userService.getUsername();
     this.userProfileDataService.getParents()
-      .subscribe(data => {
-        this.parentlist=data.body;
-        console.log(data.body);
-      },
-      error=>{
-        console.log(error);
-      }
-    );
+    .subscribe(data => {
+      this.parentsList=data.body;
+      console.log(data.body);
+    },
+    error=>{
+      console.log(error);
+    }
+  );
+}
+
+getProviders(): void {
+  this.userProfileDataService.getProviders()
+  .subscribe(data => {
+    this.providersList=data.body;
+    console.log(data.body);
+  },
+  error=>{
+    console.log(error);
   }
-  getProviders(): void {
-    //console.log(this.newSearch);
-    //this.newSearch.username = this.userService.getUsername();
-    this.userProfileDataService.getProviders()
-      .subscribe(data => {
-        this.providerslist=data.body;
-        console.log(data.body);
-      },
-      error=>{
-        console.log(error);
-      }
-    );
+);
+}
+
+lockUser(x:string): void {
+  for (var usr of this.userList){
+    if (usr[2]==='PROVIDER'){
+      if (usr[0].userName===x) usr[1]='BLOCKED'
+    }
+    if (usr[2]==='PARENT'){
+      if (usr[0].username===x) usr[1]='BLOCKED'
+    }
   }
-  lockUser(x:string): void {
-    this.username=x;
-    this.userProfileDataService.lockUser(this.username);
-      console.log('blocked'+this.username);
+  this.userProfileDataService.lockUser(x).
+  subscribe(data => {console.log(data);}, error => {console.log(error);});
+  console.log('blocked '+x);
+}
 
-
+unlockUser(x:string): void {
+  for (var usr of this.userList){
+    if (usr[2]==='PROVIDER'){
+      if (usr[0].userName===x) usr[1]='UNBLOCKED'
+    }
+    if (usr[2]==='PARENT'){
+      if (usr[0].username===x) usr[1]='UNBLOCKED'
+    }
   }
-  unlockUser(x:string): void {
-    this.username=x;
-    this.userProfileDataService.unlockUser(this.username)
-    console.log ('unblocked'+this.username);
-  }
-
-
-
-
-
+  this.userProfileDataService.unlockUser(x).
+  subscribe(data => {console.log(data);}, error => {console.log(error);});
+  console.log ('unblocked '+x);
+}
 }

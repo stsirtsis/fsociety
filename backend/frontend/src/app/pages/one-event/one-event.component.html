@@ -13,37 +13,77 @@
 <div class="col-xs-1 col-md-1"></div>
 
 <div class="card w-75 col-xs-11 col-md-11">
-<div class="w3-container">
-  <div class="row">
-    <div class="col-xs-3 col-md-3">
-      <p></p>
-      <img class="group myimage" src="data:image/png;base64,{{event.photoBody}}" alt="Sorry" />
-    </div>
-    <div class="col-xs-9 col-md-9">
+  <div class="card w-100">
+    <div class="row">
+      <div class="col-xs-5 col-md-5">
+        <img class="group myimage" src="data:image/png;base64,{{event.photoBody}}" alt="Sorry" routerLink="/one-event/{{event.id}}" />
+      </div>
+      <div class="col-xs-7 col-md-7">
       <div class="card-body">
-        <h1 class="card-title" routerLink="/one-event" ><b>{{event.eventname}} </b></h1>
-        <p class="card-text"><b>Περιγραφή Δραστηριότητας: </b>{{event.description}}</p>
+        <h1 class="card-title"  ><b>{{this.event.eventname}} </b></h1>
+        <p class="card-text"><b>Περιγραφή Δραστηριότητας: </b>{{this.event.description}}</p>
         <p class="card-text"><b>Ηλικιακή κατηγορία Δραστηριότητας: </b>{{ageGroupString}}</p>
         <div class="row">
         <div class="col-xs-4 col-md-4">
-          <b>Περιοχή:</b> {{event.area}}
+          <b>Περιοχή:</b> {{this.event.area}}
         </div>
         <div class="col-xs-4 col-md-4">
-          <b>Οδός:</b> {{event.streetName}}
+          <b>Οδός:</b> {{this.event.streetName}}
         </div>
         <div class="col-xs-4 col-md-4">
-          <b>Αριθμός:</b> {{event.streetNumber}}
+          <b>Αριθμός:</b> {{this.event.streetNumber}}
         </div>
         </div>
         <p></p>
-        <p class="card-text"><b>Κατηγορία Δραστηριότητας </b> {{categoryString}}</p>
-       <p class="card-text"><b>Συνολικές θέσεις Δραστηριότητας </b> {{event.capacity}}</p>
+        <p class="card-text"><b>Κατηγορία Δραστηριότητας: </b> {{categoryString}}</p>
+       <p class="card-text"><b>Συνολικές θέσεις Δραστηριότητας: </b> {{this.event.capacity}}</p>
         <div class="row">
         <div class="col-xs-8 col-md-8">
-          <b> Τιμή εισιτηρίου: </b> {{event.price}}€
+          <b> Τιμή εισιτηρίου: </b> {{this.event.price}}€
         </div>
         <div class="col-xs-4 col-md-4">
-          <a href="#" class="btn btn-primary" >Κράτηση</a>
+          <div *ngIf="!flag then content1 else content2"></div>
+          <ng-template #content1>
+            <button  type="button" class="btn btn-primary" routerLink="/login-page">Κράτα θέση</button>
+          </ng-template>
+          <ng-template #content2>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Κράτα θέση</button>
+            <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog"  role="document">
+          <div class="modal-content" >
+          <div class="modal-header">
+
+
+          <h4 class="modal-title" id="exampleModalLabel">Κράτηση εισητηρίων</h4>
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+
+
+          </div>
+          <div class="modal-body" style="height:90px;">
+          <form>
+          <div class="form-row">
+          <div class="form-group col-md-9">
+          <p><b>Πλήθος εισητηρίων για κράτηση</b></p>
+          </div>
+          <div class="form-group col-md-3">
+            <input type="number"class="form-control" name="num" [(ngModel)]="model.num">
+          </div>
+          </div>
+          </form>
+          </div>
+          <div class="modal-footer">
+          <button type="button"  class="btn btn-secondary" data-dismiss="modal">Ακύρωση</button>
+          <button type="button"  class="btn btn-primary" (click)="buy_ticket(model.num)">Υποβολή</button>
+          <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </ng-template>
         </div>
       </div>
       </div>

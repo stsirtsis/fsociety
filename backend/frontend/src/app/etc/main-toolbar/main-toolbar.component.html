@@ -14,7 +14,7 @@
         <a class="nav-link" routerLink="/" href="">Περιγραφή</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/team">Η ομάδα</a>
+        <a class="nav-link" routerLink="/" href="">Η ομάδα</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/" href="">Επικοινωνία</a>
@@ -22,21 +22,21 @@
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a *ngIf="!isuser" class="nav-link" routerLink="/login-page" href="">
+        <a *ngIf="!isuser && !isadmin" class="nav-link" routerLink="/login-page" href="">
           Σύνδεση
         </a>
         <a *ngIf="isparent" class="nav-link" routerLink="/parent-profile"> <i class="fa fa-user"></i><b> {{username}} </b></a>
         <a *ngIf="isprovider" class="nav-link" routerLink="/provider-profile"> <i class="fa fa-user"></i><b> {{username}} </b></a>
-
+        <a *ngIf="isadmin" class="nav-link" routerLink="/admin-page"> <i class="fa fa-user"></i><b> {{username}} </b></a>
       </li>
       <li class="nav-item dropdown">
-        <a *ngIf="!isuser" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a *ngIf="!isuser && !isadmin" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Εγγραφή
         </a>
-        <a *ngIf="isuser" class="nav-link" (click)="logout()" >Αποσύνδεση</a>
+        <a *ngIf="isuser || isadmin" class="nav-link" (click)="logout()" >Αποσύνδεση</a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <a *ngIf="!isuser" class="dropdown-item" routerLink="/parent-register" href="">Γονέας</a>
-          <a *ngIf="!isuser" class="dropdown-item" routerLink="/provider-register" href="">Πάροχος</a>
+          <a *ngIf="!isuser && !isadmin" class="dropdown-item" routerLink="/parent-register" href="">Γονέας</a>
+          <a *ngIf="!isuser && !isadmin" class="dropdown-item" routerLink="/provider-register" href="">Πάροχος</a>
         </div>
       </li>
     </ul>

@@ -14,6 +14,7 @@ export class UserProfileDataService {
   private GET_PROVIDERS_URL='/admin/all_providers';
   private GET_LOCK_URL='/admin/lock_user';
   private GET_UNLOCK_URL='/admin/unlock_user';
+  private GET_URL_RESET = '/register/resetpassword';
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
   //parents: Parent[]=[];
 
@@ -48,5 +49,9 @@ export class UserProfileDataService {
     return this.http.get<any>(this.GET_UNLOCK_URL + '?username=' + username +
     '&access_token=' + this.userService.getAccessToken(),
     {observe: 'response'});
+  }
+
+  send_email(username:string): Observable<any>{
+    return this.http.get<any>(this.GET_URL_RESET + '?username=' + username,{observe: 'response'});
   }
 }

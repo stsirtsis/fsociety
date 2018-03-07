@@ -62,7 +62,9 @@ public class ProviderController {
 
 	@PostMapping(path="/addNewEvent/{providerCompanyName}")
 	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
-	public ResponseEntity<String> addNewEvent_post (@RequestParam("event") String str, @PathVariable String providerCompanyName,@RequestParam("file") MultipartFile file) throws IOException, JSONException {
+	public ResponseEntity<String> addNewEvent_post (@RequestParam("event") String str,
+																									@PathVariable String providerCompanyName,
+																									@RequestParam("file") MultipartFile file) throws IOException, JSONException {
 		Providers provider = providersRepository.findByUserName(providerCompanyName);
 		String username = provider.getUserName();
 		User user = userRepository.findByUsername(username);
@@ -150,14 +152,15 @@ public class ProviderController {
 			}
 		}
 
-	@PostMapping(path = "/eventsByCompany/{providerCompanyName}")
+
+	@PostMapping(path="/eventsByCompany/{providerCompanyName}")
 	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
 	public @ResponseBody
 	Set<Event> getEventsByCompanyName(@PathVariable String providerCompanyName) {
 			return providersRepository.findByCompanyName(providerCompanyName).getEvents();
 	}
 
-	@GetMapping(path = "/events/{provider_username}")
+	@PostMapping(path = "/events/{provider_username}")
 	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
 	public @ResponseBody
 	Set<Event> getEvents(@PathVariable String provider_username) {
@@ -166,7 +169,7 @@ public class ProviderController {
 
 
 	@SuppressWarnings("deprecation")
-	@GetMapping(path = "/monthly/{provider_username}")
+	@PostMapping(path = "/monthly/{provider_username}")
 	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
 	public @ResponseBody
 	List<Event> getEventsByDate(@PathVariable String provider_username) {
@@ -199,29 +202,24 @@ public class ProviderController {
 			return EventsByDay;
 	}
 
-
-	@GetMapping(path = "/AgeGroup/{provider_username}")
+	
+	@PostMapping(path = "/AgeGroup/{provider_username}/{Age}")
 	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
-	public @ResponseBody
-	List<Event> getEventsByAge(@PathVariable String provider_username, @RequestParam Integer Age) {
-
-			Set<Event> all_events = providersRepository.findByUserName(provider_username).getEvents();
-			Map<Integer, List<Event>> EventsByAge = all_events.stream().collect(groupingBy(Event::getAgeGroup));
-			return EventsByAge.get(Age);
+	public @ResponseBody List<Event> getEventsByAge(@PathVariable String provider_username,@PathVariable Integer Age) {
+		Set<Event> all_events=providersRepository.findByUserName(provider_username).getEvents();
+		Map<Integer, List<Event>> EventsByAge= all_events.stream().collect(groupingBy(Event::getAgeGroup));
+		return EventsByAge.get(Age);
 
 	}
 
 
-	@GetMapping(path = "/CategoryGroup/{provider_username}")
+	@PostMapping(path = "/CategoryGroup/{provider_username}/{Category}")
 	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
-	public @ResponseBody
-	List<Event> getEventsByCategory(@PathVariable String provider_username, @RequestParam Integer Category) {
+	public @ResponseBody List<Event> getEventsByCategory(@PathVariable String provider_username,@PathVariable Integer Category) {
 
-			Set<Event> all_events = providersRepository.findByUserName(provider_username).getEvents();
-			Map<Integer, List<Event>> EventsByCategory = all_events.stream().collect(groupingBy(Event::getCategory));
-			return EventsByCategory.get(Category);
+		Set<Event> all_events=providersRepository.findByUserName(provider_username).getEvents();
+		Map<Integer, List<Event>> EventsByCategory= all_events.stream().collect(groupingBy(Event::getCategory));
+		return EventsByCategory.get(Category);
 
 	}
-
-
 }

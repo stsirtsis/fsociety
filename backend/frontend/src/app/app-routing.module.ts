@@ -29,7 +29,8 @@ const appRoutes: Routes = [
   },
   {
     path:'admin-page',
-    component:AdminPageComponent
+    component:AdminPageComponent,
+    canActivate: [AdminAuthGuardService]
   },
   {
     path: 'parent-register',

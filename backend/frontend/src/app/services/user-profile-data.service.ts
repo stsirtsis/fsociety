@@ -14,7 +14,6 @@ export class UserProfileDataService {
   private GET_PROVIDERS_URL='/admin/all_providers';
   private GET_LOCK_URL='/admin/lock_user';
   private GET_UNLOCK_URL='/admin/unlock_user';
-  private GET_URL_RESET = '/register/resetpassword';
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
   //parents: Parent[]=[];
 

@@ -63,12 +63,13 @@
           </div>
           </form>
           </div>
-          <div class="xexe" style="margin-left:55%;">
-          <button type="button" style="	background-color:#00b4e6;"  class="btn1 btn-secondary" data-dismiss="modal">Ακύρωση</button>
-          <button type="button" style="	background-color:#00b4e6;" class="btn1 btn-primary" (click)="buy_ticket(model.num)">Υποβολή</button>
+          <div class="xexe" style="margin-left:52%;">
+          <button type="button" style="	background-color:#00b4e6; padding: 15px 20px;"  class="btn1 btn-secondary" data-dismiss="modal">Ακύρωση</button>
+          <button type="button" style="	background-color:#00b4e6; padding: 15px 20px;" class="btn1 btn-primary" (click)="buy_ticket(model.num)">Υποβολή</button>
         </div>
           <div class="modal-footer">
           <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+          <div *ngIf="error1" class="alert alert-success">{{error1}}</div>
           </div>
           </div>
           </div>

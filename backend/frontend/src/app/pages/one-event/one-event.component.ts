@@ -21,6 +21,7 @@ export class OneEventComponent implements OnInit {
   flag: boolean = false ;
   model: any = {};
   error: string = '';
+  error1: string='';
   customResponse: CustomResponse;
 
 
@@ -59,7 +60,7 @@ export class OneEventComponent implements OnInit {
         this.error = 'Sorry, event is full';
       }
       else{
-        this.error = this.customResponse.message;
+        this.error1 = this.customResponse.message;
         this.parentService.send_ticket_mail().subscribe(data=>{console.log(data);})
       }
 

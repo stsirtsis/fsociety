@@ -23,9 +23,9 @@
             Διεύθυνση: {{ this.parent.streetName }} {{ this.parent.streetNumber}}, {{ this.parent.area }}.
           </p>
           <p><i class="fa fa-envelope" aria-hidden="true"></i>
-            Στοιχεία επικοινωνίας: <br/>
-            email: {{this.parent.email}} <br/>
-            Τηλέφωνο: {{this.parent.phoneNumber}}
+             Στοιχεία επικοινωνίας: <br/>
+              email: {{this.parent.email}} <br/>
+              Τηλέφωνο: {{this.parent.phoneNumber}}
           </p>
 
           <hr>
@@ -35,10 +35,12 @@
           <span>
             <b>Εξαργυρώσιμες μονάδες(σε ευρώ): {{ this.parent.wallet }}</b> <br/>
             <b>Πόντοι επιβράβευσης: {{ this.parent.fpoints }} </b> <br/>
-            <b>
-              Πολιτική επιβράβευσης: Σε 1000 πόντους κερδίζετε 10 ευρώ εξαργύρωσης. <br/>
-              Μάθετε περισσότερα για το πώς κερδίζετε πόντους...
-            </b>
+
+              <button type="button" class="btn btn-outline-secondary" style="all:initial;color:blue" placement="right"
+              ngbPopover="Σε 1000 πόντους κερδίζετε 10 ευρώ επιβράβευσης τα οποια μπορειτε να χρησιμοποιήσετε για τις επομενες κρατησεις.Κάθε ευρώ απο τις διαστηριότητες που κλείνονται αντιστοιχοί σε 10 πόντους επιβράβευσης" popoverTitle="Πολιτική επιβράβευσης">
+           Πολιτική επιβράβευσης:Μάθετε περισσότερα..
+            </button>
+
           </span>
         </div>
       </div>

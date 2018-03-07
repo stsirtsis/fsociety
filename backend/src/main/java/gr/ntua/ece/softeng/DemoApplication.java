@@ -1,5 +1,6 @@
 package gr.ntua.ece.softeng;
 
+import gr.ntua.ece.softeng.elasticEntity.EventElastic;
 import gr.ntua.ece.softeng.entities.Role;
 import gr.ntua.ece.softeng.entities.User;
 import gr.ntua.ece.softeng.repositories.UserRepository;
@@ -9,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.Arrays;
@@ -26,6 +28,9 @@ public class DemoApplication implements CommandLineRunner {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ElasticsearchTemplate elasticsearchTemplate;
+
     @Resource
     StorageService storageService;
 
@@ -42,6 +47,9 @@ public class DemoApplication implements CommandLineRunner {
     @Bean
     InitializingBean sendDatabase() {
         return () -> {
+//            elasticsearchTemplate.refresh(EventElastic.class);
+//            elasticsearchTemplate.putMapping(EventElastic.class);
+
             String password = org.apache.commons.codec.digest.DigestUtils.sha256Hex("admin");
             userRepository.save(new User("admin", password, Arrays.asList(new Role("ADMIN"))));
         };

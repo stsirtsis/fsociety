@@ -2,15 +2,13 @@ package gr.ntua.ece.softeng.elasticEntity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import org.springframework.data.elasticsearch.annotations.Field;
 
 @Document(indexName = "events")
 public class EventElastic {
     @Id
     private String id;
-    private String eventName;
+    @Field  private String eventName;
     private String description;
     private String Area;
     private String StreetName;
@@ -47,15 +45,25 @@ public class EventElastic {
     public String toString() {
         return String.format(
                 "EventElastic " +
-                        "{ \"id\" = \"%s\", \"eventName\" = \"%s\", \"description\" = \"%s\", " +
-                        "\"Area\" = \"%s\", \"StreetName\" = \"%s\", \"StreetNumber\" = %s, " +
-                "\"ageGroup\" = %s, \"capacity\" = %s, \"price\" = %s, \"category\" = %s, \"company_name\" = %s" +
-                        ", \"latitude\" = %s, \"longitude\" = %s" +
-                " \"state\" = \"%s\" }"
+                        "{" +
+                           "\"id\" = \"%s\", " +
+                           "\"eventName\" = \"%s\", " +
+                           "\"description\" = \"%s\", " +
+                           "\"Area\" = \"%s\", " +
+                           "\"StreetName\" = \"%s\", " +
+                           "\"StreetNumber\" = %s, " +
+                           "\"ageGroup\" = %s," +
+                           "\"capacity\" = %s, " +
+                           "\"price\" = %s," +
+                           "\"category\" = %s," +
+                           "\"company_name\" = %s, " +
+                           "\"latitude\" = %s," +
+                           "\"longitude\" = %s" +
+                           "\"state\" = \"%s\" " +
+                        "}"
                 ,this.id, this.eventName, this.description, this.Area, this.StreetName,
                 this.StreetNumber, this.ageGroup, this.capacity, this.price, this.category,
                 this.company_name, this.latitude, this.longitude, this.state);
-
     }
 
     public String getId() {

@@ -63,21 +63,35 @@ public class AdminController {
 
 
 
+
     @GetMapping(path = "/lock_user")
     @Transactional
     public @ResponseBody
     CustomResponse<String> lockUser(@RequestParam String username) {
 
         CustomResponse cr = new CustomResponse<>();
+        cr.setMessage("");
 
         User user = userRepository.findByUsername(username);
         if (user == null) {
             cr.setMessage("user does not exist in table user");
             return cr;
         }
-        String roles = user.getRoles().get(0).getName();
 
-        switch (roles) {
+        user.getRoles().forEach(role -> {
+            if (role.getName().equals("BLOCKED")) {
+                cr.setMessage("user is already blocked");
+            }
+
+        });
+
+        if(!cr.equals("")) {
+            return cr;
+        }
+
+        String role = user.getRoles().get(0).getName();
+
+        switch (role) {
             case "PARENT":
                 user.getRoles().add(new Role("BLOCKED"));
                 userRepository.save(user);
@@ -89,12 +103,10 @@ public class AdminController {
             default:
                 cr.setMessage("Not expected user role");
                 break;
-
-
         }
 
 
-        cr.setMessage("ok: username " + roles);
+        cr.setMessage("ok: username " + role);
         return cr;
     }
 

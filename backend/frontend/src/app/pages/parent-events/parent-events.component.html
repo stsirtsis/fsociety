@@ -1,129 +1,185 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <app-main-toolbar></app-main-toolbar>
-<div class="container">
+<div class="container-fluid">
+   <br>
   <div class="row">
-    <div class="col-md-4 ">
-      <h4>Αναζήτηση Δραστηριότητας </h4>
+    <div class="col-sm-3">
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12 ">
-      <form action="" class="search-form">
-        <div class="form-group has-feedback">
-          <div class="row">
-            <label for="search" class="sr-only">Search</label>
-            <input type="text" class="form-control col-md-8" [(ngModel)]="newSearch.text" name="search" id="search"
-            placeholder="search">
-            <span class="glyphicon glyphicon-search form-control-feedback"></span>
-            <button (click)="searchEvents()" type="submit" class="btn btn-primary col-md-2">Αναζήτηση</button>
+    <div class="col-sm-9">
+          <h5 style="color:dimgray;"><b style="margin-left:3.6%;">Αναζήτηση Δραστηριότητας</b></h5>
+          <form action="" class="search-form" style="margin-left:4.6%;">
+            <div class="form-group has-feedback">
+             <div class="row">
+                 <label for="search" class="sr-only">Search..</label>
+                 <input type="text" class="form-control col-md-10" [(ngModel)]="newSearch.text" name="search" id="search"
+                 placeholder="search">
+             <button (click)="searchEvents()" type="submit" class="btn btn-primary col-md-1"><i class="material-icons">search</i></button>
           </div>
         </div>
       </form>
     </div>
   </div>
 </div>
-
 <div class="container">
   <div class="row">
     <div class="col-xs-6 col-sm-3">
-      <form #eventForm="ngForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="inputAgeGroup">Ηλικιακή Κατηγορία</label>
-          <button (click)="newSearch.ageGroup=0" type="submit" class="btn btn-primary col-md-2">Καθαρισμός φίλτρου</button>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup"
-            value="1">2-5
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup"
-            value="2">5-10
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup"
-            value="3">10-15
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup"
-            value="4">15+
-          </div>
+      <div id="accordion" class="panel panel-primary behclick-panel">
+        <div class="panel-heading">
+          <h5 class="panel-title" style="color:dimgray;"><b>Φίλτρα Αναζήτησης</b></h5>
         </div>
-        <div class="form-group">
-          <label for="inputCategory">Κατηγορία Δραστηριότητας</label>
-          <button (click)="newSearch.category=0" type="submit" class="btn btn-primary col-md-2">Καθαρισμός φίλτρου</button>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.category" name="inputCategory"
-            value="1">Αθλητισμός
+        <div class="panel-body" >
+          <form #eventForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+            <div class="panel-heading" style="padding:7px;" >
+              <h6 class="panel-title">
+                <a data-toggle="collapse" href="#collapse0">
+                <i class="indicator fa fa-caret-down" aria-hidden="true"></i><b style="color:#00b4e6;" > Ηλικιακή Κατηγορία</b>
+                </a>
+              </h6>
+            </div>
+            <div id="collapse0" class="panel-collapse collapse in" style="margin-left:30px;" >
+              <div class="form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup"
+                value="1">2-5
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup"
+                value="2">5-10
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup"
+                value="3">10-15
+              </div>
+              <div class="form-row">
+              <div class="form-check col-xs-9 col-md-9">
+                <input class="form-check-input" type="radio" [(ngModel)]="newSearch.ageGroup" name="inputAgeGroup"
+                value="4">15+
+              </div>
+              <div class="col-xs-3 col-md-3">
+                <button (click)="newSearch.ageGroup=0" style="all:initial;" type="submit" class="btn btn-primary"><i class="fa fa-trash" aria-hidden="true" style="font-size:20px;"></i></button>
+              </div>
+            </div>
+           </div>
+         </div>
+         <div class="form-group">
+           <div class="panel-heading " style="padding:7px;" >
+             <h6 class="panel-title">
+               <a data-toggle="collapse" href="#collapse1">
+                 <i class="indicator fa fa-caret-down" aria-hidden="true"></i><b style="color:#00b4e6;"> Κατηγορία Δραστηριότητας</b>
+               </a>
+             </h6>
+           </div>
+           <div id="collapse1" class="panel-collapse collapse in" style="margin-left:30px;" >
+             <div class="form-check">
+               <input class="form-check-input" type="radio" [(ngModel)]="newSearch.category" name="inputCategory"
+               value="1">Αθλητισμός
+             </div>
+             <div class="form-check">
+               <input class="form-check-input" type="radio" [(ngModel)]="newSearch.category" name="inputCategory"
+               value="2">Καλλιτεχνικά
+             </div>
+             <div class="form-row">
+             <div class="form-check col-xs-9 col-md-9">
+               <input class="form-check-input" type="radio" [(ngModel)]="newSearch.category" name="inputCategory"
+               value="3">Εκπαίδευση
+             </div>
+             <div class="col-xs-3 col-md-3">
+             <button (click)="newSearch.category=0" style="all:initial;" type="submit" class="btn btn-primary"><i class="fa fa-trash" aria-hidden="true" style="font-size:20px;"></i></button>
+            </div>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.category" name="inputCategory"
-            value="2">Καλλιτεχνικά
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.category" name="inputCategory"
-            value="3">Εκπαίδευση
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputDistance">Απόσταση</label>
-          <button (click)="newSearch.distance=0" type="submit" class="btn btn-primary col-md-2">Καθαρισμός φίλτρου</button>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance"
-            value="1">Έως 5χλμ
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance"
-            value="2">Έως 8χλμ
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance"
-            value="3">Έως 10χλμ
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance"
-            value="4">Πάνω από 10χλμ
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputAgeGroup">Τιμή</label>
-          <button (click)="newSearch.price=0" type="submit" class="btn btn-primary col-md-2">Καθαρισμός φίλτρου</button>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.price" name="inputPrice" value="1">0-10
-            Ευρά
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.price" name="inputPrice" value="2">10-20
-            Ευρά
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.price" name="inputPrice" value="3">20-50
-            Ευρά
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" [(ngModel)]="newSearch.price" name="inputPrice" value="4">50+
-            Ευρά
-          </div>
-        </div>
-        <div *ngIf="isAnonymous && newSearch.distance!=0" class="form-group">
-          <label for="inputArea" class="sr-only">Περιοχή</label>
-          <input type="text" class="form-control col-md-8" [(ngModel)]="newSearch.area" name="inputArea" id="inputArea"
-          placeholder="search">
-          <label for="inputStreetName" class="sr-only">Οδός</label>
-          <input type="text" class="form-control col-md-8" [(ngModel)]="newSearch.streetName" name="inputStreetName" id="inputStreetName"
-          placeholder="search">
-          <label for="inputStreetNumber" class="sr-only">Αριθμός</label>
-          <input type="text" class="form-control col-md-8" [(ngModel)]="newSearch.streetNumber" name="inputStreetNumber" id="inputStreetNumber"
-          placeholder="search">
-        </div>
-      </form>
-    </div>
-    <div class="col-xs-6 col-sm-9">
-      <div class="btn-group" role="group" aria-label="Basic example">
-        <button (click)="listOrMap=0" type="button" class="btn btn-secondary">Λίστα</button>
-        <button (click)="listOrMap=1" type="button" class="btn btn-secondary">Χάρτης</button>
-      </div>
-      <app-events-list *ngIf="listOrMap==0" [events]="eventsList">
-      </app-events-list>
-      <app-events-map *ngIf="listOrMap==1" [events]="eventsList">
-      </app-events-map>
-    </div>
-  </div>
+           </div>
+         </div>
+         <div class="form-group">
+           <div class="panel-heading " style="padding:7px;" >
+             <h6 class="panel-title">
+               <a data-toggle="collapse" href="#collapse2" >
+                 <i class="indicator fa fa-caret-down" aria-hidden="true"></i><b style="color:#00b4e6;"> Απόσταση</b>
+               </a>
+             </h6>
+           </div>
+           <div id="collapse2" class="panel-collapse collapse in" style="margin-left:30px;">
+             <div class="form-check">
+               <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance"
+               value="1">Έως 5χλμ
+             </div>
+             <div class="form-check">
+               <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance"
+               value="2">Έως 8χλμ
+             </div>
+             <div class="form-check">
+               <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance"
+               value="3">Έως 10χλμ
+             </div>
+             <div class="form-row">
+             <div class="form-check col-xs-9 col-md-9">
+               <input class="form-check-input" type="radio" [(ngModel)]="newSearch.distance" name="inputDistance"
+               value="4">Πάνω από 10χλμ
+             </div>
+             <div class="col-xs-3 col-md-3">
+               <button (click)="newSearch.distance=0" style="all:initial;" type="submit" class="btn btn-primary col-md-2"><i class="fa fa-trash" aria-hidden="true" style="font-size:20px;"></i></button>
+             </div>
+           </div>
+           </div>
+         </div>
+         <div class="form-group">
+           <div class="panel-heading " style="padding:7px;" >
+             <h6 class="panel-title">
+               <a data-toggle="collapse" href="#collapse3">
+                 <i class="indicator fa fa-caret-down" aria-hidden="true"></i><b style="color:#00b4e6;"> Τιμή</b>
+               </a>
+             </h6>
+           </div>
+           <div id="collapse3" class="panel-collapse collapse in" style="margin-left:30px;" >
+             <div class="form-check">
+               <input class="form-check-input" type="radio" [(ngModel)]="newSearch.price" name="inputPrice" value="1">0-10
+               Ευρά
+             </div>
+             <div class="form-check">
+               <input class="form-check-input" type="radio" [(ngModel)]="newSearch.price" name="inputPrice" value="2">10-20
+               Ευρω
+             </div>
+             <div class="form-check">
+               <input class="form-check-input" type="radio" [(ngModel)]="newSearch.price" name="inputPrice" value="3">20-50
+               Ευρω
+             </div>
+             <div class="form-row">
+             <div class="form-check col-md-9 col-xs-9">
+               <input class="form-check-input" type="radio" [(ngModel)]="newSearch.price" name="inputPrice" value="4">50+
+               Ευρω
+             </div>
+             <div class="col-md-3 col-xs-3">
+               <button (click)="newSearch.price=0" style="all:initial;" type="submit" class="btn btn-primary col-md-2"><i class="fa fa-trash" aria-hidden="true" style="font-size:20px;"></i></button>
+             </div>
+           </div>
+           </div>
+         </div>
+         <div *ngIf="isAnonymous && newSearch.distance!=0" class="form-group">
+           <label for="inputArea" class="sr-only">Περιοχή</label>
+           <input type="text" class="form-control col-md-8" [(ngModel)]="newSearch.area" name="inputArea" id="inputArea"
+           placeholder="search">
+           <label for="inputStreetName" class="sr-only">Οδός</label>
+           <input type="text" class="form-control col-md-8" [(ngModel)]="newSearch.streetName" name="inputStreetName" id="inputStreetName"
+           placeholder="search">
+           <label for="inputStreetNumber" class="sr-only">Αριθμός</label>
+           <input type="text" class="form-control col-md-8" [(ngModel)]="newSearch.streetNumber" name="inputStreetNumber" id="inputStreetNumber"
+           placeholder="search">
+         </div>
+       </form>
+     </div>
+     <button (click)="searchEvents()" type="submit" class="btn btn-primary" style="position:center;">Υποβολη</button>
+   </div>
+ </div>
+   <div class="col-xs-6 col-sm-9">
+     <div class="btn-group" role="group" aria-label="Basic example" style="margin-left:0%;">
+       <button (click)="listOrMap=0" type="button" class="btn btn-secondary">Λίστα</button>
+       <button (click)="listOrMap=1" type="button" class="btn btn-secondary">Χάρτης</button>
+     </div>
+     <app-events-list *ngIf="listOrMap==0" [events]="eventsList">
+     </app-events-list>
+     <app-events-map *ngIf="listOrMap==1" [events]="eventsList">
+     </app-events-map>
+   </div>
+ </div>
 </div>

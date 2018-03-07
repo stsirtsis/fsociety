@@ -1,6 +1,7 @@
 package gr.ntua.ece.softeng.controllers;
 
 import static java.util.stream.Collectors.groupingBy;
+import org.apache.tomcat.util.codec.binary.Base64;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -37,11 +38,32 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 import gr.ntua.ece.softeng.services.StorageService;
-
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping(path = "/provider")
 public class ProviderController {
+
+	private static String encodeFileToBase64Binary(File file){
+			String encodedfile = null;
+			try {
+					FileInputStream fileInputStreamReader = new FileInputStream(file);
+					byte[] bytes = new byte[(int)file.length()];
+					fileInputStreamReader.read(bytes);
+					encodedfile = new String(Base64.encodeBase64(bytes), "UTF-8");
+			} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+			} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+			}
+
+			return encodedfile;
+	}
 
 	@Autowired
 	private EventRepository eventRepository;
@@ -157,14 +179,29 @@ public class ProviderController {
 	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
 	public @ResponseBody
 	Set<Event> getEventsByCompanyName(@PathVariable String providerCompanyName) {
-			return providersRepository.findByCompanyName(providerCompanyName).getEvents();
+		Set<Event> ev=providersRepository.findByCompanyName(providerCompanyName).getEvents();
+		for (Event e: ev) {
+			String uri=e.getPhotoUri();
+			String relpath="./upload-dir/";
+			File thefile=new File(relpath+uri);
+			e.setPhotoBody(encodeFileToBase64Binary(thefile));
+		}
+		return ev;
 	}
+
 
 	@PostMapping(path = "/events/{provider_username}")
 	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
 	public @ResponseBody
-	Set<Event> getEvents(@PathVariable String provider_username) {
-			return providersRepository.findByUserName(provider_username).getEvents();
+	Set<Event> getEventsbyUserName(@PathVariable String provider_username) {
+		Set<Event> ev=providersRepository.findByUserName(provider_username).getEvents();
+		for (Event e: ev) {
+	  	String uri=e.getPhotoUri();
+			String relpath="./upload-dir/";
+			File thefile=new File(relpath+uri);
+			e.setPhotoBody(encodeFileToBase64Binary(thefile));
+		}
+		return ev;
 	}
 
 
@@ -202,7 +239,7 @@ public class ProviderController {
 			return EventsByDay;
 	}
 
-	
+
 	@PostMapping(path = "/AgeGroup/{provider_username}/{Age}")
 	@PreAuthorize("hasAuthority('PROVIDER') or hasAuthority('ADMIN')")
 	public @ResponseBody List<Event> getEventsByAge(@PathVariable String provider_username,@PathVariable Integer Age) {

@@ -19,7 +19,7 @@
       <input type="file" (change)="selectFile($event)">
     </div>
     <div class="form-row">
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-6">
       <label for="inputArea">Περιοχή</label>
       <input type="text" class="form-control" id="inputArea" [(ngModel)]="event.area" name="Area" required>
     </div>
@@ -27,31 +27,33 @@
       <label for="inputStreetName">Οδός</label>
       <input type="text" class="form-control" id="inputStreetName" [(ngModel)]="event.streetName" name="StreetName" required>
     </div>
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-2">
       <label for="inputStreetNumber">Αριθμός</label>
       <input type="number" class="form-control" id="inputStreetNumber" [(ngModel)]="event.streetNumber" name="StreetNumber" required>
     </div>
   </div>
     <div class="form-group">
-      <label for="inputAgeGroup">Ηλικίες</label>
+      <label for="inputAgeGroup">Ηλικίες</label><br>
       <input type="radio" [(ngModel)]="event.ageGroup" name="inputAgeGroup" [value]="1"> 2-5
       <input type="radio" [(ngModel)]="event.ageGroup" name="inputAgeGroup" [value]="2"> 5-10
       <input type="radio" [(ngModel)]="event.ageGroup" name="inputAgeGroup" [value]="3"> 10-15
       <input type="radio" [(ngModel)]="event.ageGroup" name="inputAgeGroup" [value]="4"> 15+
     </div>
 
-    <div class="form-group">
+    <div class=row>
+    <div class="form-group col-md-6">
       <label for="inputCapacity">Χωρητικότητα</label>
       <input type="number" class="form-control" id="inputCapacity" [(ngModel)]="event.capacity" name="capacity" required>
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-6">
       <label for="inputPrice">Τιμή</label>
       <input type="number" class="form-control" id="inputPrice" [(ngModel)]="event.price" name="price" required>
     </div>
+  </div>
 
     <!--CATEGORY-->
     <div class="form-group">
-      <label for="inputCategory">Κατηγορία</label>
+      <label for="inputCategory">Κατηγορία</label><br>
       <input type="radio" name="inputCategory" [value]="1" [(ngModel)]="event.category"> Αθλητισμός
       <input type="radio" name="inputCategory" [value]="2" [(ngModel)]="event.category"> Καλλιτεχνικά
       <input type="radio" name="inputCategory" [value]="3" [(ngModel)]="event.category"> Εκπαίδευση

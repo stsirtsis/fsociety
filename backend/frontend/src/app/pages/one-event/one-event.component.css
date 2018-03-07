@@ -1,8 +1,82 @@
-.btn{
-	background-color:#00b4e6;color:white;
-    margin-left: 10px;
+
+.general{
+	min-height:100%;
+	min-height: 800px;
 }
 
-.card w-75 {
-    margin-left: 150px;
+.btn1{
+	border:none;
+	position:relative;
+	padding: 3% 8%;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	-webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+	box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+
+.btn{
+  background-color: #56baed;
+  position:center;
+	margin-left: 30%;
+	border: none;
+  color: white;
+  padding: 2% 8%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:hover{
+  background-color: #39ace7;
+}
+
+.btn:active{
+  -moz-transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+  -o-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+
+.card{
+	color:black;
+	background-color:#F5F5F5;
+	  box-shadow: 0 12px 20px 0 rgba(0.1,0.1,0.1,0.1);
+    transition: 0.3s;
+    border-radius: 5px;
+}
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 12px 20px 0 rgba(0.1,0.1,0.1,0.2);
+}
+.myimage{
+  margin: 20px;
+	height: inherit;
+	width: inherit;
+  max-height: 250px;
+  max-width: 400px;
+	position:relative;
+}
+.container{
+	max-width: 80%;
+  min-width: 80%;
 }

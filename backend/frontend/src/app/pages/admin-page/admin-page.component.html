@@ -8,81 +8,62 @@
   <br>
   <h2 style="text-align:center;font-family:sans-serif;text-transform: uppercase;color: #cccccc;">Διαχειρηση χρηστων </h2>
   <div class="btn-group" role="group" aria-label="Basic example">
-    <button (click)="ParorProv=0"  (click)="getParents()" type="button" class="btn btn-secondary">Γονείς</button>
-    <button (click)="ParorProv=1"  (click)="getProviders()"   type="button" class="btn btn-secondary">Πάροχοι</button>
+    <button (click)="ParorProv=0" type="button" class="btn btn-secondary">Γονείς</button>
+    <button (click)="ParorProv=1" type="button" class="btn btn-secondary">Πάροχοι</button>
   </div>
   <p></p>
   <input class="form-control" id="myInput" type="text" placeholder="Search..">
   <br>
-  <div *ngIf="ParorProv==0 then content else other_content1"></div>
-  <ng-template #content><b>Γονείς</b>
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Username</th>
-        <th>Ονομα</th>
-        <th>Επώνυμο</th>
-        <th>Email</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody id="myTable">
-      <tr  *ngFor="let par of parentlist">
-        <td>{{par.username}}</td>
-        <td>{{par.firstName}}</td>
-        <td>{{par.lastName}}</td>
-        <td>{{par.email}}</td>
-        <td style="align-items:center;align-content:center;align-self:center;"><button type="button" (click)="lockUser(par.username)" class="btn btn-danger" style="position:center;margin-left:30%;align-items:center">Block</button>
-     </td>
-     </tr>
-    </tbody>
-  </table>
-  </ng-template>
-  <ng-template #other_content1><b>Πάροχοι Υπηρεσιών</b>
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Username</th>
-        <th>Ονομα</th>
-        <th>Επώνυμο</th>
-        <th>Email</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody id="myTable">
-      <tr  *ngFor="let prov of providerslist">
-        <td>{{prov.userName}}</td>
-        <td>{{prov.firstName}}</td>
-        <td>{{prov.lastName}}</td>
-        <td>{{prov.mail}}</td>
-        <td style="align-items:center;align-content:center;align-self:center;" ><button type="button"  class="btn btn-danger" style="position:center;margin-left:30%;">Block</button></td>
-     </tr>
-    </tbody>
-  </table>
-  </ng-template>
-  <nav aria-label="Page navigation example">
-    <ul class="pagination">
-      <li class="page-item my-clickable"><a class="page-link" (click)="changePage(activePage-1)">Previous</a></li>
-      <li *ngFor="let page of pagesList" class="page-item my-clickable">
-        <a *ngIf="activePage==page" class="page-link my-clicked-page" (click)="changePage(page)">{{page}}</a>
-        <a *ngIf="activePage!=page" class="page-link" (click)="changePage(page)">{{page}}</a>
-      </li>
-      <li class="page-item my-clickable"><a class="page-link" (click)="changePage(activePage+1)">Next</a></li>
-    </ul>
-  </nav>
-
+  <div *ngIf="ParorProv==0">
+    <b>Γονείς</b>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Ονομα</th>
+          <th>Επώνυμο</th>
+          <th>Email</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="myTable">
+        <tr *ngFor="let usr of userList">
+          <td *ngIf="usr[2]==='PARENT'">{{usr[0].username}}</td>
+          <td *ngIf="usr[2]==='PARENT'">{{usr[0].firstName}}</td>
+          <td *ngIf="usr[2]==='PARENT'">{{usr[0].lastName}}</td>
+          <td *ngIf="usr[2]==='PARENT'">{{usr[0].email}}</td>
+          <td *ngIf="usr[2]==='PARENT'" style="align-items:center;align-content:center;align-self:center;">
+            <button type="button" *ngIf="usr[1]==='UNBLOCKED'" (click)="lockUser(usr[0].username)" class="btn btn-danger" style="position:center;margin-left:30%;align-items:center">Block</button>
+            <button type="button" *ngIf="usr[1]==='BLOCKED'" (click)="unlockUser(usr[0].username)" class="btn btn-success" style="position:center;margin-left:30%;align-items:center">Unblock</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="ParorProv==1">
+    <b>Πάροχοι Υπηρεσιών</b>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Ονομα</th>
+          <th>Επώνυμο</th>
+          <th>Email</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="myTable">
+        <tr  *ngFor="let usr of userList">
+          <td *ngIf="usr[2]==='PROVIDER'">{{usr[0].userName}}</td>
+          <td *ngIf="usr[2]==='PROVIDER'">{{usr[0].firstName}}</td>
+          <td *ngIf="usr[2]==='PROVIDER'">{{usr[0].lastName}}</td>
+          <td *ngIf="usr[2]==='PROVIDER'">{{usr[0].mail}}</td>
+          <td *ngIf="usr[2]==='PROVIDER'" style="align-items:center;align-content:center;align-self:center;" >
+            <button type="button" *ngIf="usr[1]==='UNBLOCKED'" (click)="lockUser(usr[0].username)" class="btn btn-danger" style="position:center;margin-left:30%;align-items:center">Block</button>
+            <button type="button" *ngIf="usr[1]==='BLOCKED'" (click)="unlockUser(usr[0].username)" class="btn btn-success" style="position:center;margin-left:30%;align-items:center">Unblock</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>

@@ -7,56 +7,24 @@
       <div class="card-body">
 
 
-            <h5 class="card-title" routerLink="/one-event/{{event.id}}" >{{event.eventname}}</h5>
+            <h5 class="card-title" routerLink="/one-event/{{event.id}}" ><b>{{event.eventname}}</b></h5>
+            <p></p><br>
+        <p class="card-text"><b>Περιγραφη: </b>{{shortDescription}} <a *ngIf="isLong" routerLink="/one-event/{{event.id}}" >Δείτε περισσότερα</a></p>
 
-        <p class="card-text">{{shortDescription}} <a  *ngIf="isLong" routerLink="/one-event/{{event.id}}" >Δείτε περισσότερα</a></p>
         <p class="card-text"><b>Συνολικές θέσεις Δραστηριότητας: </b> {{this.event.capacity}}</p>
+        <p></p><br>
+        <p></p><br>
         <div class="row">
         <div class="col-xs-8 col-md-8">
-          Τιμή εισιτηρίου: {{event.price}}€
+          <b>Τιμή εισιτηρίου:</b> {{event.price}}€
         </div>
         <div class="col-xs-4 col-md-4">
           <div *ngIf="!flag then content1 else content2"></div>
           <ng-template #content1>
             <button  type="button" class="btn btn-primary" routerLink="/login-page">Κράτα θέση</button>
           </ng-template>
-          <ng-template #content2 let-event="event">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Κράτα θέση</button>
-            <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog"  role="document">
-    <div class="modal-content" >
-      <div class="modal-header">
-
-
-          <h4 class="modal-title" id="exampleModalLabel">Κράτηση εισητηρίων</h4>
-
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-          </button>
-
-
-      </div>
-      <div class="modal-body" style="height:90px;">
-        <form>
-          <div class="form-row">
-          <div class="form-group col-md-9">
-          <p><b>Πλήθος εισητηρίων για κράτηση</b></p>
-          </div>
-          <div class="form-group col-md-3">
-            <input type="number"class="form-control" name="num" [(ngModel)]="model.num">
-          </div>
-        </div>
-         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button"  class="btn btn-secondary" data-dismiss="modal">Ακύρωση</button>
-        <button type="button"  class="btn btn-primary" (click)="buy_ticket(model.num,event)">Υποβολή</button>
-        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-      </div>
-    </div>
-  </div>
-</div>
+          <ng-template #content2 let-event_id="event.id" let-event_cap="event.capacity">
+            <button type="button" class="btn btn-primary" routerLink="/one-event/{{event.id}}" >Κράτα θέση</button>
           </ng-template>
         </div>
       </div>

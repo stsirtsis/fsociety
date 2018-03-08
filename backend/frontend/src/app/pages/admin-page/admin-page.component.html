@@ -8,8 +8,8 @@
   <br>
   <h2 style="text-align:center;font-family:sans-serif;text-transform: uppercase;color: #cccccc;">Διαχειρηση χρηστων </h2>
   <div class="btn-group" role="group" aria-label="Basic example">
-    <button (click)="ParorProv=0" type="button" class="btn btn-secondary">Γονείς</button>
-    <button (click)="ParorProv=1" type="button" class="btn btn-secondary">Πάροχοι</button>
+    <button (click)="ParorProv=0" type="button" class="my-clickable btn btn-secondary">Γονείς</button>
+    <button (click)="ParorProv=1" type="button" class="my-clickable btn btn-secondary">Πάροχοι</button>
   </div>
   <p></p>
   <input class="form-control" id="myInput" type="text" placeholder="Search..">
@@ -20,7 +20,7 @@
       <thead>
         <tr>
           <th>Username</th>
-          <th>Ονομα</th>
+          <th>Όνομα</th>
           <th>Επώνυμο</th>
           <th>Email</th>
           <th>Status</th>
@@ -33,8 +33,8 @@
           <td *ngIf="usr[2]==='PARENT'">{{usr[0].lastName}}</td>
           <td *ngIf="usr[2]==='PARENT'">{{usr[0].email}}</td>
           <td *ngIf="usr[2]==='PARENT'" style="align-items:center;align-content:center;align-self:center;">
-            <button type="button" *ngIf="usr[1]==='UNBLOCKED'" (click)="lockUser(usr[0].username)" class="btn btn-danger" style="position:center;margin-left:30%;align-items:center">Block</button>
-            <button type="button" *ngIf="usr[1]==='BLOCKED'" (click)="unlockUser(usr[0].username)" class="btn btn-success" style="position:center;margin-left:30%;align-items:center">Unblock</button>
+            <button type="button" *ngIf="usr[1]==='UNBLOCKED'" (click)="lockUser(usr[0].username)" class="my-clickable btn btn-danger" style="position:center;margin-left:30%;align-items:center">Block</button>
+            <button type="button" *ngIf="usr[1]==='BLOCKED'" (click)="unlockUser(usr[0].username)" class="my-clickable btn btn-success" style="position:center;margin-left:30%;align-items:center">Unblock</button>
           </td>
         </tr>
       </tbody>
@@ -45,8 +45,9 @@
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
+          <th>Όνομα επιχείρησης</th>
           <th>Username</th>
-          <th>Ονομα</th>
+          <th>Όνομα</th>
           <th>Επώνυμο</th>
           <th>Email</th>
           <th>Status</th>
@@ -54,13 +55,14 @@
       </thead>
       <tbody id="myTable">
         <tr  *ngFor="let usr of userList">
+          <td *ngIf="usr[2]==='PROVIDER'">{{usr[0].companyName}}</td>
           <td *ngIf="usr[2]==='PROVIDER'">{{usr[0].userName}}</td>
           <td *ngIf="usr[2]==='PROVIDER'">{{usr[0].firstName}}</td>
           <td *ngIf="usr[2]==='PROVIDER'">{{usr[0].lastName}}</td>
           <td *ngIf="usr[2]==='PROVIDER'">{{usr[0].mail}}</td>
           <td *ngIf="usr[2]==='PROVIDER'" style="align-items:center;align-content:center;align-self:center;" >
-            <button type="button" *ngIf="usr[1]==='UNBLOCKED'" (click)="lockUser(usr[0].username)" class="btn btn-danger" style="position:center;margin-left:30%;align-items:center">Block</button>
-            <button type="button" *ngIf="usr[1]==='BLOCKED'" (click)="unlockUser(usr[0].username)" class="btn btn-success" style="position:center;margin-left:30%;align-items:center">Unblock</button>
+            <button type="button" *ngIf="usr[1]==='UNBLOCKED'" (click)="lockUser(usr[0].userName)" class="my-clickable btn btn-danger" style="position:center;margin-left:30%;align-items:center">Block</button>
+            <button type="button" *ngIf="usr[1]==='BLOCKED'" (click)="unlockUser(usr[0].userName)" class="my-clickable btn btn-success" style="position:center;margin-left:30%;align-items:center">Unblock</button>
           </td>
         </tr>
       </tbody>

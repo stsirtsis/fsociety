@@ -1,11 +1,6 @@
 package gr.ntua.ece.softeng.config;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
+import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -24,7 +19,7 @@ public class PDFConfig {
 	
 	private static Font TIME_ROMAN = new Font(Font.FontFamily.TIMES_ROMAN, 18,Font.BOLD);
 	private static Font TIME_ROMAN_SMALL = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
-
+	private static String font = "/home/aggelosdani/fsociety/fsociety/backend/src/main/resources/font.ttf";
 
     private static String firstname;
     private static String lastname;
@@ -75,12 +70,16 @@ public class PDFConfig {
  
 		Paragraph preface = new Paragraph();
 		creteEmptyLine(preface, 1);
+
+		FontFactory.register(font,"Greek-Regular");
+		Font f = FontFactory.getFont("Greek-Regular", "Cp1253", true);
+
 		preface.add(new Paragraph("Ticket Report", TIME_ROMAN));
  
 		creteEmptyLine(preface, 1);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
-		preface.add(new Paragraph("Ticket bought on "
-				+ simpleDateFormat.format(new Date()), TIME_ROMAN_SMALL));
+		preface.add(new Paragraph("Ο γονέας  "+ firstname + " "+lastname+" αγόρασε "+ tickets +" εισιτήρια. Το συνολικό ποσό ανέρχεται στα "+Price+"$.\n "
+				+ "Tο εισιτήριο αγοράστηκε στις: "+ simpleDateFormat.format(new Date()), f));
 		document.add(preface);
  
 	}
@@ -117,14 +116,16 @@ public class PDFConfig {
 		c1 = new PdfPCell(new Phrase("Total Price"));
 		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 		table.addCell(c1);
-		
+        FontFactory.register(font,"Greek-Regular");
+        Font f = FontFactory.getFont("Greek-Regular", "Cp1253", true);
+
 		table.setHeaderRows(1);
 		table.setWidthPercentage(100);
 		table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
 		table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
-		table.addCell(firstname);
-		table.addCell(lastname);
-		table.addCell(eventName);
+		table.addCell(new Phrase(firstname,f));
+		table.addCell(new Phrase(lastname, f));
+		table.addCell(new Phrase(eventName, f));
 		table.addCell(tickets.toString());
 		table.addCell(Price.toString());
 		

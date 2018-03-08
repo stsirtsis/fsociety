@@ -25,22 +25,22 @@
             Διεύθυνση: {{ this.parent.streetName }} {{ this.parent.streetNumber}}, {{ this.parent.area }}.
           </p>
           <p><i class="fa fa-envelope" aria-hidden="true"></i>
-             Στοιχεία επικοινωνίας: <br/>
-              email: {{this.parent.email}} <br/>
+             Στοιχεία επικοινωνίας <br/>
+              Ε-Μail: {{this.parent.email}} <br/>
               Τηλέφωνο: {{this.parent.phoneNumber}}
           </p>
 
           <hr>
-          <a href="#" class="btn btn-success btn-sm" routerLink="/parent-history"> <i class="fa fa-history"></i><b>Οι
+          <a href="#" class="btn btn-success btn-sm" routerLink="/parent-history"> <i class="fa fa-history"></i><b> Οι
             κρατήσεις μου</b></a>
           <hr>
           <span>
-            <b>Εξαργυρώσιμες μονάδες(σε ευρώ): {{ this.parent.wallet }}</b> <br/>
-            <b>Πόντοι επιβράβευσης: {{ this.parent.fpoints }} </b> <br/>
+            <b>Εξαργυρώσιμες μονάδες:</b> {{ this.parent.wallet }} € <br/>
+            <b>Πόντοι επιβράβευσης:</b> {{ this.parent.fpoints }} fpoints <br/>
 
               <button type="button" class="btn btn-outline-secondary" style="all:initial;color:blue" placement="right"
-              ngbPopover="Σε 1000 πόντους κερδίζετε 10 ευρώ επιβράβευσης τα οποια μπορειτε να χρησιμοποιήσετε για τις επομενες κρατησεις.Κάθε ευρώ απο τις διαστηριότητες που κλείνονται αντιστοιχεί σε 10 πόντους επιβράβευσης" popoverTitle="Πολιτική επιβράβευσης">
-           Πολιτική επιβράβευσης:Μάθετε περισσότερα..
+              ngbPopover="Για κάθε ευρώ που ξοδεύετε σε κράτηση δραστηριότητας αποκτάτε 10 fpoints. Φθάνοντας τα 1000 fpoints κερδίζετε 10 ευρώ επιβράβευσης τα οποία μπορείτε να χρησιμοποιήσετε για τις επόμενες κρατήσεις σας." popoverTitle="Πολιτική επιβράβευσης">
+           Πολιτική επιβράβευσης: Μάθετε περισσότερα..
             </button>
 
           </span>

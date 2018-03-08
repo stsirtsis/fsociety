@@ -2,10 +2,10 @@ export class Event {
   id: number;
   eventname: string;
   description: string;
-  Area: string;
-  StreetName: string;
-  StreetNumber: number;
-  AgeGroup: number;
+  area: string;
+  streetName: string;
+  streetNumber: number;
+  ageGroup: number;
   capacity: number;
   price: number;
   category: number;

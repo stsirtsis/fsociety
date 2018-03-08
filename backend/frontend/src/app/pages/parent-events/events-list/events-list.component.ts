@@ -14,7 +14,7 @@ export class EventsListComponent implements OnInit, OnChanges {
   @Input() events: Event[];
   @Input() searchURLParameters: string[];
   activePage = 1;
-  eventsPerPage = 2;
+  eventsPerPage = 3;
   pagesList: number[] = [1];
   visibleEvents: Event[];
 

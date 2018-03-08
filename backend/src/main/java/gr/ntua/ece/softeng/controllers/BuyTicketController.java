@@ -137,7 +137,7 @@ public class BuyTicketController {
     			sender.send(message);
 
               CustomResponse res = new CustomResponse();
-              res.setMessage("H αγορά ολοκληρώθηκε με επιτυχία. Δεν υπάρχουν άλλες διαθέσιμες θέσεις. Έχετε " + new_Fpoints + " Fpoints και " + finwallet + "$ στο πορτοφόλι σας");
+              res.setMessage("H αγορά ολοκληρώθηκε με επιτυχία. Δεν υπάρχουν άλλες διαθέσιμες θέσεις. Έχετε " + new_Fpoints + " Fpoints και " + finwallet + " € στο πορτοφόλι σας");
               return res;
 
           }
@@ -148,7 +148,7 @@ public class BuyTicketController {
 			helper.setText("Αγοράστηκαν "+Tickets + " εισιτήρια με συνολική τιμή "+TotalPrice+"$. Τα κέρδη θα προστεθούν στο λογαριασμό σας στο τέλος του μήνα");
 			sender.send(message);
           CustomResponse res = new CustomResponse();
-          res.setMessage("Η αγορά ολοκληρώθηκε με επιτυχία. Υπάρχουν ακόμα " + new_capacity + " διαθέσιμες θέσεις. Έχετε " + new_Fpoints + " Fpoints και " + finwallet + "$ στο πορτοφόλι σας.");
+          res.setMessage("Η αγορά ολοκληρώθηκε με επιτυχία. Υπάρχουν ακόμα " + new_capacity + " διαθέσιμες θέσεις. Έχετε " + new_Fpoints + " Fpoints και " + finwallet + " € στο πορτοφόλι σας.");
           return res;
         }
         else{
@@ -165,15 +165,15 @@ public class BuyTicketController {
             CustomResponse res = new CustomResponse();
             res.setMessage("Το εισιτήριο στάλθηκε με email.");
             return res;
-            
+
         }catch(Exception ex) {
-        	
+
         	CustomResponse res1 = new CustomResponse();
             res1.setMessage("Error in sending email: "+ex);
             return res1;
-            
-            
-            
+
+
+
         }
     }
 

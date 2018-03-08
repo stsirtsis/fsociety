@@ -37,14 +37,14 @@ public class DemoApplication implements CommandLineRunner{
 
     @Autowired
     private UserRepository userRepository;
-    
+
     @Autowired
     private ERepository eRepository;
-    
+
     @Autowired
     private EventRepository eventRepository;
-    
-    
+
+
 		@Resource
 		StorageService storageService;
     public static void main(String[] args) {
@@ -56,15 +56,15 @@ public class DemoApplication implements CommandLineRunner{
 		//	storageService.deleteAll();
 			storageService.init();
 		}
-		
-	
-	
+
+
+
     @Bean
     InitializingBean sendDatabase() {
         return () -> {
-        	
+
         	eventRepository.findAll().forEach(e -> {
-        	
+
 				Long myId = e.getId();
 				String id = Long.toString(myId);
 				String eventname = e.getEventname();
@@ -151,10 +151,11 @@ public class DemoApplication implements CommandLineRunner{
             }
         	);
 
-        	
-        	
+
+        	if(userRepository.findByUsername("admin") == null) {
             String password = org.apache.commons.codec.digest.DigestUtils.sha256Hex("admin");
             userRepository.save(new User("admin", password, Arrays.asList(new Role("ADMIN"))));
+          }
         };
     }
 }

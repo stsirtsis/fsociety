@@ -7,16 +7,18 @@
       <div class="card-body">
 
         <h5 class="card-title"><b>{{event.eventname}}</b></h5>
-        <p class="card-text">{{this.shortDescription}}</p>
-        <div class="col-xs-12 col-md-12 col-lg-12 col-sm-12">
-          Αγοράστηκαν εισητήρια:<b>{{tickets}}</b>
-        </div>
-          <div class="col-xs-12 col-md-12 col-lg-12 col-sm-12">
-          Συνολικά χρήματα απο εισητήρια:<b>{{m_tickets}} </b>
-        </div>
-         <div class="col-xs-12 col-md-12 col-lg-12 col-sm-12">
-          Επισκεψιμότητα Δραστηριότητας:<b>{{clicks}} </b>
-        </div>
+        <br>
+        <p class="card-text"><b>Περιγραφή:</b> {{this.shortDescription}}</p>
+        <p class="card-text"><b>Ημερομηνία </b> {{event.date}}</p>
+        <br>
+        <p class="card-text">
+          <b>Αγοράστηκαν εισητήρια:</b>{{tickets}}
+          <br>
+
+          <b>Συνολικά χρήματα απο εισητήρια:</b>{{m_tickets}}
+          <br>
+          <b>Επισκεψιμότητα Δραστηριότητας:</b>{{clicks}}
+        </p>
       </div>
       </div>
     </div>

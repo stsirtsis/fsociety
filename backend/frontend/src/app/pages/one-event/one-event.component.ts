@@ -17,6 +17,7 @@ import {Providers} from '../../interfaces/providers.interface';
 export class OneEventComponent implements OnInit {
 
   event= new Event() ;
+  error2:string='';
   categoryString: string;
   ageGroupString: string;
   searchURLParameters: string[] = [];
@@ -69,7 +70,15 @@ export class OneEventComponent implements OnInit {
   }
 
   buy_ticket1(num: number): void{
-    if((this.event.capacity - num )>=0){
+    this.error2='';
+    this.error1='';
+    this.error='';
+      if (num<0)
+         {
+           this.error2='Λανθασμένο πλήθος εισητηρίων (απαραίτητα θετικό)';
+         }
+
+     else if((this.event.capacity - num )>=0){
     this.parentService.buy_ticket(this.event.id,num).subscribe(data=>{
       this.customResponse = data.body;
       console.log(this.customResponse.message);
@@ -88,7 +97,8 @@ export class OneEventComponent implements OnInit {
   }else if(this.event.capacity==0){
     this.error = 'Sorry, event is full';
     this.error1='';
-  }else{
+  }
+  else{
     this.error = 'Oι θέσεις δεν επαρκούν παρακαλώ επιλέξτε μέχρι και '+ this.event.capacity +' θέσεις';
     this.error1='';
     }

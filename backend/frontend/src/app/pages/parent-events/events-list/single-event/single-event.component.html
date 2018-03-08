@@ -11,8 +11,8 @@
             <p></p><br>
         <p class="card-text"><b>Περιγραφη: </b>{{shortDescription}} <a *ngIf="isLong" [routerLink]="['/one-event',event.id,searchURLParameters[0],searchURLParameters[1],searchURLParameters[2],searchURLParameters[3],searchURLParameters[4],searchURLParameters[5],searchURLParameters[6],searchURLParameters[7]]" >Δείτε περισσότερα</a></p>
 
-        <p class="card-text"><b>Συνολικές θέσεις Δραστηριότητας: </b> {{this.event.capacity}}</p>
-        <p></p><br>
+        <p class="card-text"><b>Συνολικές θέσεις: </b> {{this.event.capacity}}</p>
+        <p class="card-text"><b>Ημερομηνία </b> {{this.event.date}}</p>
         <p></p><br>
         <div class="row">
         <div class="col-xs-8 col-md-8">

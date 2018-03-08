@@ -52,11 +52,11 @@ export class ProviderRegisterPageComponent implements OnInit {
             this.userService.login(result);
             this.router.navigate(['provider-profile']);
           } else {
-            this.error = 'Username or password is incorrect';
+            this.error = 'Λανθασμένο όνομα η κωδικός χρήστη';
           }
         },
         error => {
-          this.error = 'Username or password is incorrect';
+          this.error = 'Λανθασμένο όνομα η κωδικός χρήστη';
         }
       );
   }
@@ -69,7 +69,7 @@ export class ProviderRegisterPageComponent implements OnInit {
   onSubmit() {
     this.error_ch = '';
     if (!this.checkbox) {
-      this.error_ch = 'Terms of use must be accepted';
+      this.error_ch = 'Οι όροι χρήσης πρέπει να γίνουν αποδεκτοί';
       this.router.navigate(['provider-register']);
       this.a = 0;
     }
@@ -86,41 +86,41 @@ export class ProviderRegisterPageComponent implements OnInit {
       this.a = 1;
 
       if (this.providers.companyName === '') {
-        this.error_prov = 'Field Company name must be complected';
+        this.error_prov = 'Το πεδίο όνομα επιχείρησης πρέπει να συμπληρωθεί';
         this.a = 0;
       }
 
       if (this.providers.description === '') {
-        this.error_desc = 'Field Description must be complected';
+        this.error_desc = 'Το πεδίο περιγραφή επιχείρησης πρέπει να συμπληρωθεί';
         this.a = 0;
       }
       if (this.providers.firstName === '') {
-        this.error_fir = 'Field first name must be complected';
+        this.error_fir = 'Το πεδίο όνομα πρέπει να συμπληρωθεί';
         this.a = 0;
       }
       if (this.providers.lastName === '') {
-        this.error_las = 'Field last name must be complected';
+        this.error_las = 'Το πεδίο επώνυμο πρέπει να συμπληρωθεί';
         this.a = 0;
       }
       if (this.providers.userName === '') {
-        this.error_user = 'Field usernane must be complected';
+        this.error_user = 'Το πεδίο ονομα χρήστη πρέπει να συμπληρωθεί';
         this.a = 0;
       }
       if (this.providers.password.length < 8) {
-        this.error_pass = 'Password must be at least 8 characters';
+        this.error_pass = 'Ο κωδικός πρέπει να είναι τουλάχιστον 8 ψηφία';
         this.a = 0;
       }
 
       if (this.providers.mail.indexOf('@') === -1) {
-        this.error_mail = 'Incorrect email';
+        this.error_mail = 'Λανθασμένο email';
         this.a = 0;
       }
       if (this.providers.telNumber.length !== 10) {
-        this.error_tel = 'Incorrect Telephone Number (10 digits needed)';
+        this.error_tel = 'Λανθασμένος αριθμός τηλεφώνου(10 ψηφία απαιτούνται)';
         this.a = 0;
       }
       if (this.providers.iban.length !== 16) {
-        this.error_iban = 'Incorrect Iban (16 digits needed)';
+        this.error_iban = 'Λανθασμένο Iban (16 ψηφία απαιτούνται)';
         this.a = 0;
       }
       if (this.a === 1) {

@@ -156,18 +156,18 @@
            </div>
          </div>
          <div *ngIf="isAnonymous && newSearch.distance!=0" class="form-group">
-           <label for="inputArea" class="sr-only">Περιοχή</label>
-           <input type="text" class="form-control col-md-8" [(ngModel)]="newSearch.area" name="inputArea" id="inputArea"
+           <div class="row">
+           <input type="text" class="form-control col-md-6" style="margin-left:4.1%;" id="inputArea" [(ngModel)]="newSearch.area" name="inputArea" id="inputArea"
            placeholder="Περιοχή" required>
-           <label for="inputStreetName" class="sr-only">Οδός</label>
-           <input type="text" class="form-control col-md-8" [(ngModel)]="newSearch.streetName" name="inputStreetName" id="inputStreetName"
+           <input type="text" class="form-control col-md-4" [(ngModel)]="newSearch.streetName" name="inputStreetName" id="inputStreetName"
            placeholder="Οδός" required>
-           <label for="inputStreetNumber" class="sr-only">Αριθμός</label>
-           <input type="text" class="form-control col-md-8" [(ngModel)]="newSearch.streetNumber" name="inputStreetNumber" id="inputStreetNumber"
+           <input type="text" class="form-control col-md-1" [(ngModel)]="newSearch.streetNumber" name="inputStreetNumber" id="inputStreetNumber"
            placeholder="Αριθμός" required>
+         </div>
          </div>
        </form>
      </div>
+     <div *ngIf="error0 && newSearch.distance!=0" class="alert alert-danger col-md-12">{{error0}}</div>
      <button (click)="searchEvents()" type="submit" class="btn btn-primary" style="position:center;">Υποβολη</button>
    </div>
  </div>

@@ -53,11 +53,11 @@ export class LoginPageComponent implements OnInit {
 
             this.navigateAfterSuccess();
           } else {
-            this.error = 'Username or password is incorrect';
+            this.error = 'Λανθασμένο όνομα ή κωδικός χρήστη';
           }
         },
         error => {
-          this.error = 'Username or password is incorrect';
+          this.error = 'Λανθασμένο όνομα ή κωδικός χρήστη';
           this.loading = false;
         }
       );
@@ -85,10 +85,10 @@ export class LoginPageComponent implements OnInit {
             this.message = this.customResponse.message;
             console.log(this.message);
             if (this.message === 'Your password has been reset.Please check your emails.') {
-              this.success= 'Your password has been reset.Please check your emails.';
+              this.success= 'Ο κωδικός στάλθηκε με επιτυχία στο email σας';
             }
             else{
-              this.error1 = 'Username not found';
+              this.error1 = 'Το όνομα χρήστη δεν βρέθηκε';
             }
           },
           error => {

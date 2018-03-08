@@ -23,9 +23,19 @@
   width: auto;
   height: auto;
 	background-color:#00b4e6;
+  border: none;
+  color: white;
+  padding: 3.2% 8%;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
 
 }
 .button{
+  position: relative;
+  display: inline-block;
+  width: auto;
+  height: auto;
 	background-color:#00b4e6;
 
 }

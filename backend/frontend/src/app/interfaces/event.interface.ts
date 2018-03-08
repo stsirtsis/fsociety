@@ -9,6 +9,7 @@ export class Event {
   capacity: number;
   price: number;
   category: number;
+  date:string;
   state: string;
   latitude: string;
   longitude: string;

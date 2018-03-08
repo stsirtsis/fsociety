@@ -19,6 +19,8 @@ declare var $ :any;
   styleUrls: ['./parent-events.component.css']
 })
 export class ParentEventsComponent implements OnInit {
+   per='';
+   error0='';
 
   searchForm = new FormGroup({
     ageGroup: new FormControl(),
@@ -58,7 +60,7 @@ export class ParentEventsComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.error0='';
     this.newSearch.category = +this.route.snapshot.paramMap.get('category');
     this.newSearch.text = this.route.snapshot.paramMap.get('text');
     this.newSearch.ageGroup = +this.route.snapshot.paramMap.get('ageGroup');
@@ -67,8 +69,10 @@ export class ParentEventsComponent implements OnInit {
     this.newSearch.area = this.route.snapshot.paramMap.get('area');
     this.newSearch.streetName = this.route.snapshot.paramMap.get('streetName');
     this.newSearch.streetNumber = +this.route.snapshot.paramMap.get('streetNumber');
+    this.per=this.newSearch.area;
     this.isAnonymous = !this.userService.isUser();
     this.searchEvents();
+
 
         function toggleChevron(e) {
 		$(e.target)
@@ -85,6 +89,8 @@ export class ParentEventsComponent implements OnInit {
   }
 
   searchEvents(): void {
+    this.error0='';
+    this.per=this.newSearch.area;
     this.searchURLParameters[0] = this.newSearch.category+"";
     this.searchURLParameters[1] = this.newSearch.text;
     this.searchURLParameters[2] = this.newSearch.ageGroup+"";
@@ -101,6 +107,8 @@ export class ParentEventsComponent implements OnInit {
         this.eventsList = data;
         console.log(this.eventsList);
       });
+      if(this.per==='')
+         this.error0='Περιοχή,Οδός,Αριθμός απαιτούνται';
   }
 
 }

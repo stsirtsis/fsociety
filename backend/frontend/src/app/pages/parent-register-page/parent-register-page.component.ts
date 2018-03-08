@@ -61,11 +61,11 @@ export class ParentRegisterPageComponent implements OnInit {
             this.userService.login(result);
             this.router.navigate(['parent-events']);
           } else {
-            this.error = 'Username or password is incorrect';
+            this.error = 'Λανθασμένο όνομα η κωδικός χρήστη';
           }
         },
         error => {
-          this.error = 'Username or password is incorrect';
+          this.error = 'Λανθασμένο όνομα η κωδικός χρήστη';
         }
       );
   }
@@ -77,7 +77,7 @@ export class ParentRegisterPageComponent implements OnInit {
   onSubmit() {
     this.error_ch = '';
     if (!this.checkbox) {
-      this.error_ch = 'Terms of use must be accepted';
+      this.error_ch = 'Οι όροι χρήσης πρέπει να γίνουν αποδεκτοί';
       this.router.navigate(['parent-register']);
       this.a = 0;
     }
@@ -92,32 +92,32 @@ export class ParentRegisterPageComponent implements OnInit {
       this.a = 1;
 
       if (this.parent.firstName === '') {
-        this.error_fir = 'Field first name must be completed';
+        this.error_fir = 'Το πεδίο όνομα πρέπει να συμπληρωθεί';
         this.a = 0;
       }
       if (this.parent.lastName === '') {
-        this.error_las = 'Field last name must be completed';
+        this.error_las = 'Το πεδίο επώνυμο πρέπει να συμπληρωθεί';
         this.a = 0;
       }
       if (this.parent.username === '') {
-        this.error_user = 'Field usernane must be completed';
+        this.error_user = 'Το πεδίο όνομα χρήστη πρέπει να συμπληρωθεί';
         this.a = 0;
       }
       if (this.parent.password.length < 8) {
-        this.error_pass = 'Password must be at least 8 characters';
+        this.error_pass = 'Ο κωδικός πρέπει να είναι τουλάχιστον 8 ψηφία';
         this.a = 0;
       }
 
       if (this.parent.email.indexOf('@') === -1) {
-        this.error_mail = 'Incorrect email';
+        this.error_mail = 'Λανθασμένο email';
         this.a = 0;
       }
       if (this.parent.phoneNumber.length !== 10) {
-        this.error_tel = 'Incorrect Telephone Number (10 digits needed)';
+        this.error_tel = 'Λανθασμένος αριθμός τηλεφώνου(10 ψηφία απαιτούνται)';
         this.a = 0;
       }
       if (this.parent.debitCard.length !== 16) {
-        this.error_iban = 'Incorrect Iban (16 digits needed)';
+        this.error_iban = 'Λανθασμένο Iban (16 ψηφία απαιτούνται)';
         this.a = 0;
       }
       if (this.a === 1) {

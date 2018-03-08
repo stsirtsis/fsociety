@@ -11,7 +11,7 @@ export class ParentHistoryListComponent implements OnInit {
 
   @Input() events: Event[];
   activePage: number = 1;
-  eventsPerPage: number = 2;
+  eventsPerPage: number = 4;
   pagesList: number[] = [1];
   visibleEvents: Event[];
   constructor() { }

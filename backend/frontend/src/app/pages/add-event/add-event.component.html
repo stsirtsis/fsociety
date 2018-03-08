@@ -34,11 +34,11 @@
     <div class=row>
     <div class="form-group col-md-6">
       <label for="inputCapacity">Χωρητικότητα</label>
-      <input type="text" class="form-control" id="inputCapacity" [(ngModel)]="event.capacity" name="capacity" required>
+      <input type="text" min="1" class="form-control" id="inputCapacity" [(ngModel)]="event.capacity" name="capacity" required>
     </div>
     <div class="form-group col-md-6">
       <label for="inputPrice">Τιμή</label>
-      <input type="text" class="form-control" id="inputPrice" [(ngModel)]="event.price" name="price" required>
+      <input type="text" min="0" class="form-control" id="inputPrice" [(ngModel)]="event.price" name="price" required>
     </div>
   </div>
   <div class="form-group">
@@ -74,7 +74,11 @@
       [ngStyle]="{width:progress.percentage+'%'}">
       {{progress.percentage}}%</div>
     </div>
+      <div *ngIf="error1" class="alert alert-danger">{{error1}}</div>
+      <div *ngIf="error2" class="alert alert-danger">{{error2}}</div>
+    <div *ngIf="error0" class="alert alert-info">{{error0}}</div>
   </form>
+
 </div>
 </div>
 </div>

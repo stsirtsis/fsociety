@@ -14,6 +14,10 @@ export class AddEventComponent implements OnInit {
 
   selectedFiles: FileList
   currentFileUpload: File
+  error0='';
+  error1='';
+  error2='';
+  flag=0;
   progress: { percentage: number } = { percentage: 0 }
 
   eventForm = new FormGroup({
@@ -55,7 +59,18 @@ export class AddEventComponent implements OnInit {
   }
 
   onSubmit() {
-
+    this.flag=0;
+    this.error0='';
+    this.error1='';
+    this.error2='';
+    if (this.event.capacity < 0){
+        this.error1='Λανθασμένη τιμή χωρητικότητας';
+        this.flag=1;}
+    if ( this.event.price < 0){
+        this.error2='Λανθασμένη τιμή τιμής';
+        this.flag=1;
+      }
+    if (this.flag==0){
     this.progress.percentage = 0;
 
     this.currentFileUpload = this.selectedFiles.item(0)
@@ -66,7 +81,10 @@ export class AddEventComponent implements OnInit {
         console.log('File is completely uploaded!');
         this.router.navigate(['/provider-profile'])
       }
+       else {
+           this.error0='Αναμονή.Περίπτωση σφάλματος ανεβάσματος αρχείο λόγω μεγέθους';
+       }
     })
 
   }
-}
+}}

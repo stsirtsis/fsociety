@@ -19,7 +19,7 @@ public class PDFConfig {
 	
 	private static Font TIME_ROMAN = new Font(Font.FontFamily.TIMES_ROMAN, 18,Font.BOLD);
 	private static Font TIME_ROMAN_SMALL = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
-	private static String font = "/home/panagiotis/git/softeng/backend/src/main/resources/font.ttf";
+	private static String font = "/home/aggelosdani/fsociety/fsociety/backend/src/main/resources/font.ttf";
 
     private static String firstname;
     private static String lastname;
@@ -78,8 +78,8 @@ public class PDFConfig {
  
 		creteEmptyLine(preface, 1);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
-		preface.add(new Paragraph("Ticket bought on "
-				+ simpleDateFormat.format(new Date()), f));
+		preface.add(new Paragraph("Ο γονέας  "+ firstname + " "+lastname+" αγόρασε "+ tickets +" εισιτήρια. Το συνολικό ποσό ανέρχεται στα "+Price+"$.\n "
+				+ "Tο εισιτήριο αγοράστηκε στις: "+ simpleDateFormat.format(new Date()), f));
 		document.add(preface);
  
 	}

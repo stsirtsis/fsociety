@@ -1,4 +1,6 @@
 .gradle
+bin/
+data/
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 src/main/resources/static/

@@ -81,13 +81,14 @@ public class AdminController {
         user.getRoles().forEach(role -> {
             if (role.getName().equals("BLOCKED")) {
                 cr.setMessage("user is already blocked");
+               
             }
 
         });
+        
+        if(cr.getMessage()!="") return cr;
 
-        if(!cr.equals("")) {
-            return cr;
-        }
+      
 
         String role = user.getRoles().get(0).getName();
 

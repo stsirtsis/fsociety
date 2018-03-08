@@ -114,28 +114,37 @@ public class BuyTicketController {
             parentRepository.save(parent);
             if(new_capacity <= 0){
               CustomResponse res = new CustomResponse();
-              res.setMessage("OK, ticket bought and now event is full! You have " + new_Fpoints + " Fpoints and " + finwallet + "$ in your wallet");
+              res.setMessage("H αγορά ολοκληρώθηκε με επιτυχία. Δεν υπάρχουν άλλες διαθέσιμες θέσεις. Έχετε " + new_Fpoints + " Fpoints και " + finwallet + "$ στο πορτοφόλι σας");
               return res;
 
           }
           CustomResponse res = new CustomResponse();
-          res.setMessage("OK, ticket bought " + new_capacity + " left. Hurry! You have " + new_Fpoints + " Fpoints and " + finwallet + "$ in your wallet");
+          res.setMessage("Η αγορά ολοκληρώθηκε με επιτυχία. Υπάρχουν ακόμα " + new_capacity + " διαθέσιμες θέσεις. Έχετε " + new_Fpoints + " Fpoints και " + finwallet + "$ στο πορτοφόλι σας.");
           return res;
         }
         else{
           CustomResponse res = new CustomResponse();
-          res.setMessage("Sorry, event is full");
+          res.setMessage("Συγγνώμη. Δεν υπάρχουν διαθέσιμες θέσεις.");
           return res;
           }
     }
 
     @RequestMapping("/sendEmail")
-    public  @ResponseBody String home(@RequestParam String username) {
+    public  @ResponseBody  CustomResponse  home(@RequestParam String username) {
         try {
             sendEmail(username);
-            return "Email Sent!";
+            CustomResponse res = new CustomResponse();
+            res.setMessage("Το εισιτήριο στάλθηκε με email.");
+            return res;
+            
         }catch(Exception ex) {
-            return "Error in sending email: "+ex;
+        	
+        	CustomResponse res1 = new CustomResponse();
+            res1.setMessage("Error in sending email: "+ex);
+            return res1;
+            
+            
+            
         }
     }
 

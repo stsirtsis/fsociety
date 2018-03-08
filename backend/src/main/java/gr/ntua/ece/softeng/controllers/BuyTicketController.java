@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import gr.ntua.ece.softeng.config.PDFConfig;
 import gr.ntua.ece.softeng.entities.Event;
 import gr.ntua.ece.softeng.entities.Parent;
+import gr.ntua.ece.softeng.entities.Providers;
 import gr.ntua.ece.softeng.repositories.EventRepository;
 import gr.ntua.ece.softeng.repositories.ParentRepository;
+import gr.ntua.ece.softeng.repositories.ProvidersRepository;
+
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,6 +24,7 @@ import java.io.InputStream;
 import gr.ntua.ece.softeng.entities.E;
 import gr.ntua.ece.softeng.repositories.ERepository;
 
+import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +53,9 @@ public class BuyTicketController {
 
     @Autowired
     private ParentRepository parentRepository;
+    
+    @Autowired
+    private ProvidersRepository providerRepository;
 
     @Autowired
     private JavaMailSender sender;
@@ -57,20 +64,28 @@ public class BuyTicketController {
     private static String eventname;
     private static Integer TotalPrice;
     private static Integer Tickets;
-
+    private static Providers provider;
+    private static String mail;
+    private static String firstname;
+    private static String lastname;
+    
     @RequestMapping(path="/new")
     public synchronized @ResponseBody CustomResponse buynewticket (@RequestParam String parent_username,
                                                            @RequestParam Long event_id,
-                                                           @RequestParam Integer quantity) {
+                                                           @RequestParam Integer quantity) throws MessagingException {
         Event event = eventRepository.findOne(event_id);
         String id = Long.toString(event_id);
         E e = eRepository.findOne(id);
         eventname=event.getEventname();
         eventprice=event.getPrice();
+        provider=event.getProvider();
+        mail=provider.getMail();
         TotalPrice=eventprice*quantity;
         Tickets=quantity;
         Parent parent    = parentRepository.findByUsername(parent_username);
         Integer capacity;
+        firstname=parent.getFirstName();
+        lastname=parent.getLastName();
 
 
         capacity = event.getCapacity();
@@ -113,11 +128,25 @@ public class BuyTicketController {
             parent.getEvents().add(event);
             parentRepository.save(parent);
             if(new_capacity <= 0){
+            	MimeMessage message = sender.createMimeMessage();
+    			MimeMessageHelper helper = new MimeMessageHelper(message,true);
+
+    			helper.setTo(mail);
+    			helper.setSubject("Aγορά Εισιτηρίου");
+    			helper.setText("Αγοράστηκαν "+Tickets + " εισιτήρια με συνολική τιμή "+TotalPrice+"$. Τα κέρδη θα προστεθούν στο λογαριασμό σας στο τέλος του μήνα");
+    			sender.send(message);
+
               CustomResponse res = new CustomResponse();
               res.setMessage("H αγορά ολοκληρώθηκε με επιτυχία. Δεν υπάρχουν άλλες διαθέσιμες θέσεις. Έχετε " + new_Fpoints + " Fpoints και " + finwallet + " € στο πορτοφόλι σας");
               return res;
 
           }
+        	MimeMessage message = sender.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(message,true);
+            helper.setTo(mail);
+			helper.setSubject("Aγορά Εισιτηρίου");
+			helper.setText("Αγοράστηκαν "+Tickets + " εισιτήρια με συνολική τιμή "+TotalPrice+"$. Τα κέρδη θα προστεθούν στο λογαριασμό σας στο τέλος του μήνα");
+			sender.send(message);
           CustomResponse res = new CustomResponse();
           res.setMessage("Η αγορά ολοκληρώθηκε με επιτυχία. Υπάρχουν ακόμα " + new_capacity + " διαθέσιμες θέσεις. Έχετε " + new_Fpoints + " Fpoints και " + finwallet + " € στο πορτοφόλι σας.");
           return res;

@@ -19,7 +19,11 @@ public class PDFConfig {
 
 	private static Font TIME_ROMAN = new Font(Font.FontFamily.TIMES_ROMAN, 18,Font.BOLD);
 	private static Font TIME_ROMAN_SMALL = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
+<<<<<<< HEAD
 	private static String font = "/home/dimitra/fsociety/backend/src/main/resources/font.ttf";
+=======
+	private static String font = "/home/aggelosdani/fsociety/fsociety/backend/src/main/resources/font.ttf";
+>>>>>>> 96543910002978eff27cf6ad038483b32870d79b
 
     private static String firstname;
     private static String lastname;

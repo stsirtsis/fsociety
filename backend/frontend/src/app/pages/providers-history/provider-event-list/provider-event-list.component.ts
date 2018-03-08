@@ -11,7 +11,7 @@ export class ProviderEventListComponent implements OnInit {
 
   @Input() events: Event[];
   activePage: number = 1;
-  eventsPerPage: number = 3;
+  eventsPerPage: number = 2;
   pagesList: number[] = [1];
   visibleEvents: Event[];
   constructor() { }

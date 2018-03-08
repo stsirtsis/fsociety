@@ -42,6 +42,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import gr.ntua.ece.softeng.textualWatermark.VisibleTextualWatermark;
+
 
 @Controller
 @RequestMapping(path = "/provider")
@@ -79,6 +81,8 @@ public class ProviderController {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	 VisibleTextualWatermark vtw = new VisibleTextualWatermark();
 
 	List<String> files = new ArrayList<String>();
 
@@ -108,6 +112,9 @@ public class ProviderController {
 				files.add(file.getOriginalFilename());
 
 				message = "You successfully uploaded " + file.getOriginalFilename() + "!";
+				String uri=file.getOriginalFilename();
+ 				String relpath="./upload-dir/";
+ 				vtw.mkWatermark(relpath+uri,relpath+uri,provider.getcompanyName() );
 				eventRepository.save(e);
 				provider.getEvents().add(e);
 				providersRepository.save(provider);

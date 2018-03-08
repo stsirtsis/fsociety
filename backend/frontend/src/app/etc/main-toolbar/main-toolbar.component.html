@@ -33,7 +33,7 @@
         <a *ngIf="!isuser && !isadmin" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Εγγραφή
         </a>
-        <a *ngIf="isuser || isadmin" class="nav-link" (click)="logout()" >Αποσύνδεση</a>
+        <a *ngIf="isuser || isadmin" class="my-clickable nav-link" (click)="logout()" >Αποσύνδεση</a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <a *ngIf="!isuser && !isadmin" class="dropdown-item" routerLink="/parent-register" href="">Γονέας</a>
           <a *ngIf="!isuser && !isadmin" class="dropdown-item" routerLink="/provider-register" href="">Πάροχος</a>

@@ -55,9 +55,9 @@ export class OneEventComponent implements OnInit {
       if (this.event.category == 1) this.categoryString = "Αθλητισμός";
       else if (this.event.category == 2) this.categoryString = "Καλλιτεχνικά";
       else if (this.event.category == 3) this.categoryString = "Εκπαίδευση";
-      if (this.event.AgeGroup == 1) this.ageGroupString = "2-5";
-      else if (this.event.AgeGroup == 2) this.ageGroupString = "5-10";
-      else if (this.event.AgeGroup == 3) this.ageGroupString = "10-15";
+      if (this.event.ageGroup == 1) this.ageGroupString = "2-5";
+      else if (this.event.ageGroup == 2) this.ageGroupString = "5-10";
+      else if (this.event.ageGroup == 3) this.ageGroupString = "10-15";
       else this.ageGroupString = "15+";
       this.eventService.getpro(id).subscribe(data=>{
         this.provider = data;

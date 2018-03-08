@@ -2,6 +2,7 @@
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <app-main-toolbar></app-main-toolbar>
+<div class="general">
 <div class="container-fluid">
    <br>
   <div class="row">
@@ -167,7 +168,7 @@
          </div>
        </form>
      </div>
-     <div *ngIf="error0 && newSearch.distance!=0" class="alert alert-danger col-md-12">{{error0}}</div>
+     <div *ngIf="error0 && isAnonymous && newSearch.distance!=0" class="alert alert-danger col-md-12">{{error0}}</div>
      <button (click)="searchEvents()" type="submit" class="btn btn-primary" style="position:center;">Υποβολη</button>
    </div>
  </div>
@@ -182,4 +183,5 @@
      </app-events-map>
    </div>
  </div>
+</div>
 </div>

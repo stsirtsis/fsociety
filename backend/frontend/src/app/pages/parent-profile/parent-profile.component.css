@@ -1,7 +1,10 @@
 body {
   background: #F5F5F5;
   padding-top: 15px;
-  min-height: 800px;
+  min-height: 900px;
+}
+.general{
+  min-height:900px;
 }
 
 .main-section {

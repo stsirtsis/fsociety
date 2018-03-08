@@ -16,16 +16,24 @@ import { ProviderProfileComponent} from './pages/provider-profile/provider-profi
 import { ProvidersHistoryComponent} from './pages/providers-history/providers-history.component';
 import { ParentProfileComponent } from './pages/parent-profile/parent-profile.component';
 import { ParentHistoryComponent } from './pages/parent-history/parent-history.component';
-
 import { TeamPageComponent } from './pages/team-page/team-page.component';
-
 import { AdminPageComponent} from './pages/admin-page/admin-page.component';
+import { AboutPageComponent} from './pages/about-page/about-page.component';
+import { ContactPageComponent} from './pages/contact-page/contact-page.component';
 
 
 const appRoutes: Routes = [
   {
     path: '',
     component: FrontPageComponent
+  },
+  {
+    path:'about-page',
+    component:AboutPageComponent
+  },
+  {
+    path:'contact-page',
+    component:ContactPageComponent
   },
   {
     path:'admin-page',

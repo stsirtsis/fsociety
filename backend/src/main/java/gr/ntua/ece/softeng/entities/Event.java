@@ -35,6 +35,8 @@ public class Event {
     @NotNull private Integer initial;
 		private String photoUri;
 		private String photoBody;
+		private Double latitude;
+		private Double longitude;
 
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -192,6 +194,22 @@ public class Event {
 
 	public void setPhotoBody(String photoBody) {
 		this.photoBody = photoBody;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
 	}
 
 

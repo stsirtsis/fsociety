@@ -163,7 +163,9 @@ public class ProviderController {
 				JSONObject location=geometry.getJSONObject("location");
 				Double latitude=location.getDouble("lat");
 				Double longitude=location.getDouble("lng");
-
+				e.setLatitude(latitude);
+				e.setLongitude(longitude);
+				eventRepository.save(e);
 				eRepository.save(new E(id, eventname, description , Area , StreetName , StreetNumber , AgeGroup , capacity , price , category , company_name, latitude, longitude, date, state, photoUri, photoBody ));
 
 				return ResponseEntity.status(HttpStatus.OK).body(message);
